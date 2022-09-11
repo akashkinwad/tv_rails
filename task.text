@@ -1,0 +1,79 @@
+05/08/2022
+
+api 1 :
+take mobile, send otp
+success
+
+api 2 : verify otp
+
+api 3 : signup
+
+username, password, category, role => create user here
+mobile number => uniq
+
+gv_talent
+
+user
+edit use
+profile
+-> video
+
+feed API
+->
+like
+comment
+replies
+
+user info
+->
+title
+desc
+name
+image
+hashtag
+
+except my videos
+
+------
+
+user follow
+
+my following
+
+----------
+
+battle
+- user_id 2
+- user_id 1
+- video 1
+- video 2
+
+
+video_id
+new video
+
+request
+
+live => battle
+
+voting => video 1 & 2 vote
+
+24 hours live battle
+
+
+a
+- b
+  - c
+d
+
+
+cdn
+s3 by defaukt cdn?
+Open up all API's
+
+Upcoming:
+Deploy to server
+Changes as per mobile dev's
+
+
+cent os
