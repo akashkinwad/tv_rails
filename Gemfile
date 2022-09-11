@@ -64,6 +64,11 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano-secrets-yml'
 end
 
 group :test do
@@ -78,4 +83,3 @@ gem 'devise-jwt'
 gem 'rack-cors'
 gem 'haml-rails', '~> 2.0'
 gem 'aws-sdk-s3'
-gem 'rack-cors'
