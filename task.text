@@ -77,3 +77,116 @@ Changes as per mobile dev's
 
 
 cent os
+
+cap deploy
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-centos7
+https://blog.appsignal.com/2022/07/13/deploy-your-ruby-on-rails-app-using-capistrano.html
+
+
+cat ~/.ssh/talent.pub | ssh root@185.25.164.82 "mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/authorized_keys"
+
+/usr/local/rvm/gems/ruby-3.0.2
+
+
+passenger_root /usr/share/ruby/vendor_ruby/phusion_passenger/locations.ini;
+passenger_ruby /usr/local/rvm/gems/ruby-3.0.2/bin/ruby;
+passenger_instance_registry_dir /var/run/passenger-instreg;
+
+------------------
+References:
+
+https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/apache/oss/conclusion.html
+
+
+------------------
+IP: 185.25.164.82 (login via SSH)
+User: root
+Password: THS12345
+
+ssh root@185.25.164.82
+
+-----
+
+sudo mkdir -p /var/www/tv_rails
+
+sudo chown root: /var/www/tv_rails
+
+cd /var/www/tv_rails
+
+sudo -u root -H git clone git@bitbucket.org:talentsversehq10/tv_rails.git
+
+sudo -u root -H git clone git://bitbucket.org/talentsversehq10/tv_rails.git code
+
+
+
+/var/log/nginx/error.log
+
+
+
+sudo mkdir -p /var/www/tv_rails
+sudo chown myappuser: /var/www/tv_rails
+cd /var/www/tv_rails
+
+sudo -u myappuser -H git clone git://github.com/username/myapp.git code
+
+sudo -u root -H git clone https://github.com/akashkinwad/tv_rails.git code
+
+
+sudo apachectl restart
+sudo nano /etc/httpd/conf.d/code.conf
+
+passenger-config --detect-apache2
+==========================================
+
+https://www.phusionpassenger.com/docs/advanced_guides/config_and_optimization/apache/intro.html
+
+firewall enable
+
+https://qiita.com/alokrawat050/items/ecd864a098198ebb3537
+
+https://stackoverflow.com/questions/44172158/passenger-nginx-phusion-passenger-is-currently-not-serving-any-applications
+
+
+Check this *****
+
+https://www.phusionpassenger.com/docs/advanced_guides/in_depth/ruby/anonymous_telemetry_reporting.html
+
+https://www.phusionpassenger.com/docs/advanced_guides/troubleshooting/apache/overall_status_report.html
+
+==========================================
+
+sudo passenger-config restart-app
+
+
+<VirtualHost *:80>
+    ServerName 185.25.164.82
+
+    # Tell Apache and Passenger where your app's 'public' directory is
+    DocumentRoot /var/www/talent/code/public
+
+    PassengerRuby /usr/local/rvm/gems/ruby-3.0.2/wrappers/ruby
+
+    # Relax Apache security settings
+    <Directory /var/www/talent/code/public>
+      Allow from all
+      Options -MultiViews
+      # Uncomment this if you're on Apache >= 2.4:
+      Require all granted
+    </Directory>
+</VirtualHost>
+
+
+<VirtualHost *:80>
+  ServerName 185.25.164.82
+  # Be sure to point to 'public'!
+  DocumentRoot /var/www/talent/code/public
+
+  <Directory /var/www/talent/code/public>
+    # Relax Apache security settings
+    AllowOverride all
+    Require all granted
+    # MultiViews must be turned off
+    Options -MultiViews
+ </Directory>
+</VirtualHost>

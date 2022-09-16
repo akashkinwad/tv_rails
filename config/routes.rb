@@ -28,6 +28,8 @@ Rails.application.routes.draw do
         member do
           get :profile, to: 'users#show'
           patch :update_profile, to: 'users#update'
+          post :follow
+          post :unfollow
         end
       end
 
