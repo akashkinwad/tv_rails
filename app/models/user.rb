@@ -13,7 +13,8 @@ class User < ApplicationRecord
   has_many :followers, through: :following_users
 
   def generate_otp
-    rand.to_s[2..7]
+    # rand.to_s[2..7]
+    "000000"
   end
 
   def generate_user_otp!
