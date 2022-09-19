@@ -15,7 +15,7 @@ module Api
           render json: {
             messages: 'Comment created successfully',
             is_success: true,
-            data: { post: @post }
+            data: { comment: @comment }
           }, status: :ok
         else
           render json: {

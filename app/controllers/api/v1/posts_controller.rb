@@ -5,7 +5,7 @@ module Api
 
       def index
         posts = current_user.posts.order(created_at: :desc)
-        render json: posts
+        render json: posts.map(&:render_json)
       end
 
       def create

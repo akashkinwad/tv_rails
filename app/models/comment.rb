@@ -12,4 +12,14 @@ class Comment < ApplicationRecord
           class_name: 'Comment',
           foreign_key: :parent_id,
           dependent: :destroy
+
+  validate :reply_to_comment, if: :parent_id
+
+  private
+
+  def reply_to_comment
+    unless parent.post_id == post_id
+      errors.add(:parent_id, 'parent comment is not associated with this post')
+    end
+  end
 end
