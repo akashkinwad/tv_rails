@@ -20,6 +20,11 @@ class User < ApplicationRecord
   def generate_user_otp!
     self.mobile_otp = generate_otp
     self.otp_sent_at = Time.now.utc
+
+    unless persisted?
+      self.email = "#{mobile}@demo.com"
+    end
+
     save(validate: false)
   end
 

@@ -14,7 +14,7 @@ module Api
               render json: {
                 messages: 'Sign Up Successfully',
                 is_success: true,
-                data: { user: user }
+                data: { user: user, token: user.generate_jwt }
               }, status: :ok
             else
               render json: {

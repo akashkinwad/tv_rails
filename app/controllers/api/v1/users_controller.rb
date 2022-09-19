@@ -28,14 +28,39 @@ module Api
 
       def follow
         @user = User.find(params[:id])
-        current_user.followees << @user
-        redirect_back(fallback_location: user_path(@user))
+
+        if current_user.followees << @user
+          render json: {
+            messages: 'You have followed successfully',
+            is_success: true,
+            data: {}
+          }, status: :ok
+        else
+          render json: {
+            messages: current_user.errors.full_messages.first,
+            is_success: false,
+            data: {}
+          }, status: :unprocessable_entity
+        end
       end
 
       def unfollow
         @user = User.find(params[:id])
-        current_user.followed_users.find_by(followee_id: @user.id).destroy
-        redirect_back(fallback_location: user_path(@user))
+        followed_user = current_user.followed_users.find_by(followee_id: @user.id)
+
+        if followed_user && followed_user.destroy
+          render json: {
+            messages: 'Successfully unfollowed',
+            is_success: true,
+            data: {}
+          }, status: :ok
+        else
+          render json: {
+            messages: followed_user.present? ? current_user.errors.full_messages.first : 'User not found',
+            is_success: false,
+            data: {}
+          }, status: :unprocessable_entity
+        end
       end
 
       private
