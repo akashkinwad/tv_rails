@@ -258,4 +258,6 @@ media_url
 base64 uri
 
 
+RAILS_ENV=production bundle exec rails db:migrate
+
 rvmsudo passenger-config restart-app

@@ -16,7 +16,8 @@ module Api
           folder_path = "#{Rails.env}/profiles/#{current_user.id}/#{Time.now.to_i}-#{file.original_filename}"
           image_url = upload_to_s3(open(file).read, folder_path)
           current_user.image_url = image_url
-        elsif params[:user][:video]
+        end
+        if params[:user][:video]
           file = params[:user][:video]
           folder_path = "#{Rails.env}/profiles/#{current_user.id}/#{Time.now.to_i}-#{file.original_filename}"
           video_url = upload_to_s3(open(file).read, folder_path)
