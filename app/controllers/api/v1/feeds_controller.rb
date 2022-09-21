@@ -3,7 +3,7 @@ module Api
     class FeedsController < ApiController
       def index
         posts = Post.all.order(created_at: :desc)
-        render json: posts
+        render json: posts.map(&:render_json)
       end
     end
   end

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       devise_scope :user do
         post 'users/verify_otp', to: 'registrations#verify_otp'
         post 'users/send_otp', to: 'registrations#send_otp'
+        post 'users/resend_otp', to: 'registrations#resend_otp'
       end
 
       resources :users, only: [:show, :update] do

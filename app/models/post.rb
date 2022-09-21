@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   def render_json
     {
       post: self,
+      user: user,
       comments: comments
     }
   end

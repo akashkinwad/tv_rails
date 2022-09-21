@@ -94,6 +94,25 @@ module Api
         end
       end
 
+      def resend_otp
+        user = User.find_by(mobile: params[:user].dig(:mobile))
+        if user
+          user.generate_user_otp!
+
+          render json: {
+            messages: 'OTP Sent Successfully',
+            is_success: true,
+            data: { user: user }
+          }, status: :ok
+        else
+          render json: {
+            messages: 'Mobile not registered',
+            is_success: false,
+            data: {}
+          }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def ensure_mobile_params_exist
