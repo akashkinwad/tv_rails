@@ -10,6 +10,14 @@ module Api
 
       def create
         post = current_user.posts.new(post_params)
+
+        if params[:post][:media]
+          file = params[:post][:media]
+          folder_path = "posts/#{current_user.id}"
+          media_url = upload_to_s3(open(file).read, folder_path)
+          post.url = media_url
+        end
+
         if post.save
           render json: {
             messages: 'Post created successfully',
@@ -26,6 +34,13 @@ module Api
       end
 
       def update
+        if params[:post][:media]
+          file = params[:post][:media]
+          folder_path = "#{Rails.env}/posts/#{current_user.id}/#{Time.now.to_i}-#{file.original_filename}"
+          media_url = upload_to_s3(open(file).read, folder_path)
+          @post.url = media_url
+        end
+
         if @post.update(post_params)
           render json: {
             messages: 'Post created successfully',
@@ -48,7 +63,9 @@ module Api
           :title,
           :description,
           :category,
-          :hastag
+          :hastag,
+          :content_type,
+          :extension
         )
       end
 

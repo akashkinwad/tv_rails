@@ -246,3 +246,16 @@ if sudo grep -q secure_path /etc/sudoers; then sudo sh -c "echo export rvmsudo_s
       Require all granted
     </Directory>
 </VirtualHost>
+
+====================================
+
+Posts:
+
+type
+extension
+media_url
+
+base64 uri
+
+
+rvmsudo passenger-config restart-app
