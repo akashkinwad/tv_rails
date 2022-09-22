@@ -13,7 +13,7 @@ module Api
 
         if params[:post][:media]
           file = params[:post][:media]
-          folder_path = "posts/#{current_user.id}"
+          folder_path = "#{Rails.env}/posts/#{current_user.id}/#{Time.now.to_i}-#{file.original_filename}"
           media_url = upload_to_s3(open(file).read, folder_path)
           post.url = media_url
         end
