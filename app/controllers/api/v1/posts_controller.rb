@@ -14,8 +14,10 @@ module Api
         if params[:post][:media]
           file = params[:post][:media]
           folder_path = "#{Rails.env}/posts/#{current_user.id}/#{Time.now.to_i}-#{file.original_filename}"
-          media_url = upload_to_s3(open(file).read, folder_path)
+          media_url = upload_to_s3(file, folder_path)
           post.url = media_url
+          post.content_type = file.content_type
+          post.extension = file.original_filename.split('.').last
         end
 
         if post.save
@@ -37,8 +39,10 @@ module Api
         if params[:post][:media]
           file = params[:post][:media]
           folder_path = "#{Rails.env}/posts/#{current_user.id}/#{Time.now.to_i}-#{file.original_filename}"
-          media_url = upload_to_s3(open(file).read, folder_path)
+          media_url = upload_to_s3(file, folder_path)
           @post.url = media_url
+          @post.content_type = file.content_type
+          @post.extension = file.original_filename.split('.').last
         end
 
         if @post.update(post_params)
