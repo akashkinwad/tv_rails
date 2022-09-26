@@ -10,17 +10,18 @@ module Api
 
       def create
         post = current_user.posts.new(post_params)
-
-        if params[:post][:media]
-          file = params[:post][:media]
-          folder_path = "#{Rails.env}/posts/#{current_user.id}/#{Time.now.to_i}-#{file.original_filename}"
-          media_url = upload_to_s3(file, folder_path)
-          post.url = media_url
-          post.content_type = file.content_type
-          post.extension = file.original_filename.split('.').last
-        end
-
         if post.save
+          if params[:post][:media]
+            file = params[:post][:media]
+            folder_path = "#{Rails.env}/#{current_user.id}/posts/#{post.id}/#{Time.now.to_i}-#{file.original_filename}"
+            media_url = upload_to_s3(file, folder_path)
+            post.update(
+              url: media_url,
+              content_type: file.content_type,
+              extension: file.original_filename.split('.').last
+            )
+          end
+
           render json: {
             messages: 'Post created successfully',
             is_success: true,
@@ -36,16 +37,16 @@ module Api
       end
 
       def update
-        if params[:post][:media]
-          file = params[:post][:media]
-          folder_path = "#{Rails.env}/posts/#{current_user.id}/#{Time.now.to_i}-#{file.original_filename}"
-          media_url = upload_to_s3(file, folder_path)
-          @post.url = media_url
-          @post.content_type = file.content_type
-          @post.extension = file.original_filename.split('.').last
-        end
-
         if @post.update(post_params)
+          if params[:post][:media]
+            file = params[:post][:media]
+            folder_path = "#{Rails.env}/#{current_user.id}/posts/#{@post.id}/#{Time.now.to_i}-#{file.original_filename}"
+            media_url = upload_to_s3(file, folder_path)
+            @post.url = media_url
+            @post.content_type = file.content_type
+            @post.extension = file.original_filename.split('.').last
+          end
+
           render json: {
             messages: 'Post created successfully',
             is_success: true,
