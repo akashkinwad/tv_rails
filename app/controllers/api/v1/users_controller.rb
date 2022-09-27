@@ -3,11 +3,7 @@ module Api
     class UsersController < ApiController
 
       def show
-        render json: {
-          messages: nil,
-          is_success: true,
-          data: { user: current_user }
-        }, status: :ok
+        render json: current_user, status: :ok
       end
 
       def update
@@ -44,7 +40,7 @@ module Api
 
         if current_user.followees << @user
           render json: {
-            messages: 'You have followed successfully',
+            messages: 'You have followed user successfully',
             is_success: true,
             data: {}
           }, status: :ok
@@ -63,7 +59,7 @@ module Api
 
         if followed_user && followed_user.destroy
           render json: {
-            messages: 'Successfully unfollowed',
+            messages: 'Successfully unfollowed a user',
             is_success: true,
             data: {}
           }, status: :ok

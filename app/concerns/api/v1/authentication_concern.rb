@@ -5,6 +5,7 @@ module Api::V1::AuthenticationConcern
     skip_before_action :verify_authenticity_token, if: ->(c) { c.request.format == "application/json" }
     protect_from_forgery with: :exception, unless: -> { request.format.json? }
     before_action :authenticate_user
+    before_action :authenticate_user!
   end
 
   private

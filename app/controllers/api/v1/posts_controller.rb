@@ -4,8 +4,8 @@ module Api
       before_action :find_post, only: [:update]
 
       def index
-        posts = current_user.posts.order(created_at: :desc)
-        render json: posts.map(&:render_json)
+        posts = current_user.posts.includes(:likes).order(created_at: :desc)
+        render json: posts.map(&:to_json)
       end
 
       def create

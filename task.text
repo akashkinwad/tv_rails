@@ -261,3 +261,14 @@ base64 uri
 RAILS_ENV=production bundle exec rails db:migrate
 
 rvmsudo passenger-config restart-app
+
+-----------
+
+dont show current user info in my posts
+
+like count
+
+categories
+
+
+- share count

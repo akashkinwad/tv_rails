@@ -38,6 +38,12 @@ Rails.application.routes.draw do
         resources :comments
       end
       resources :feeds, only: :index
+      resources :likes, only: [] do
+        collection do
+          post :like
+          post :dislike
+        end
+      end
     end
   end
 end
