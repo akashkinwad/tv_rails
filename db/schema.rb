@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_27_151720) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_05_121713) do
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.integer "post_id", null: false
@@ -73,6 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_27_151720) do
     t.string "mobile_otp"
     t.string "email_otp"
     t.datetime "otp_sent_at"
+    t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

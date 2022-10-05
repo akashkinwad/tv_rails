@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'demos#index'
+  root to: 'users#index'
 
   devise_for :users
 
@@ -46,4 +46,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :users
 end

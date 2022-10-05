@@ -1,0 +1,55 @@
+.container-full
+  .content-header
+    .d-flex.align-items-center
+      .mr-auto
+        %h3.page-title Users
+        .d-inline-block.align-items-center
+          %nav
+            %ol.breadcrumb
+              %li.breadcrumb-item
+                %a{:href => "#"}
+                  %i.mdi.mdi-home-outline
+              %li.breadcrumb-item{"aria-current" => "page"} Users
+
+  %section.content
+    .row
+      .col-12
+        .box
+          .box-header.with-border
+            %h4.box-title Users
+          .box-body.no-padding
+            .table-responsive
+              %table#example1.table.table-hover.table-tr.m-0
+                %thead.t-head-row
+                  %tr
+                    %th #ID
+                    %th Email
+                    %th First Name
+                    %th Last Name
+                    %th Gender
+                    %th Mobile
+                    %th DOB
+                %tbody
+                  - @users.each do |user|
+                    %tr.t-data-row
+                      %td.t-sr-number
+                        %b.tablesaw-cell-label #ID :
+                        %span.tablesaw-cell-content= user.id
+                      %td.t-btype
+                        %b.tablesaw-cell-label Email :
+                        %span.tablesaw-cell-content= user.email
+                      %td.t-etype
+                        %b.tablesaw-cell-label First Name :
+                        %span.tablesaw-cell-content= user.first_name
+                      %td.t-aurl
+                        %b.tablesaw-cell-label Last Name :
+                        %span.tablesaw-cell-content= user.last_name
+                      %td.t-iurl
+                        %b.tablesaw-cell-label Username :
+                        %span.tablesaw-cell-content= user.username
+                      %td.t-curl
+                        %b.tablesaw-cell-label Mobile :
+                        %span.tablesaw-cell-content= user.mobile
+                      %td.t-visible
+                        %b.tablesaw-cell-label Daily News :
+                        %span.tablesaw-cell-content= user.daily_news
