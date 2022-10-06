@@ -1,0 +1,30 @@
+- if user_signed_in? && current_user.admin?
+  .container-full
+    %section.content
+      .row
+        .col-12
+          .box
+            .box-header.with-border
+              %h4.box-title
+                = "Posts of #{@user.email}"
+            .box-body.no-padding
+              .table-responsive
+              %table
+                %thead
+                  %tr
+                    %th Title
+                    %th Description
+                    %th Category
+                    %th Hashtags
+                    %th Attachment
+                    %th Actions
+                %tbody
+                  - @posts.each do |post|
+                    %tr
+                      %td= post.title
+                      %td= post.description
+                      %td= post.category
+                      %td= post.hastag
+                      %td
+                        %img{src: post.url, width: '50', height: '50'}
+                      %td= link_to 'Show', post_path(post.id)

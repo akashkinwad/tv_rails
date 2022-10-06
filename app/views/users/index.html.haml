@@ -1,55 +1,30 @@
-.container-full
-  .content-header
-    .d-flex.align-items-center
-      .mr-auto
-        %h3.page-title Users
-        .d-inline-block.align-items-center
-          %nav
-            %ol.breadcrumb
-              %li.breadcrumb-item
-                %a{:href => "#"}
-                  %i.mdi.mdi-home-outline
-              %li.breadcrumb-item{"aria-current" => "page"} Users
-
-  %section.content
-    .row
-      .col-12
-        .box
-          .box-header.with-border
-            %h4.box-title Users
-          .box-body.no-padding
-            .table-responsive
-              %table#example1.table.table-hover.table-tr.m-0
-                %thead.t-head-row
+- if user_signed_in? && current_user.admin?
+  .container-full
+    %section.content
+      .row
+        .col-12
+          .box
+            .box-header.with-border
+              %h4.box-title Users
+            .box-body.no-padding
+              .table-responsive
+              %table
+                %thead
                   %tr
-                    %th #ID
                     %th Email
                     %th First Name
                     %th Last Name
-                    %th Gender
+                    %th Username
                     %th Mobile
-                    %th DOB
+                    %th Daily News
+                    %th Actions
                 %tbody
                   - @users.each do |user|
-                    %tr.t-data-row
-                      %td.t-sr-number
-                        %b.tablesaw-cell-label #ID :
-                        %span.tablesaw-cell-content= user.id
-                      %td.t-btype
-                        %b.tablesaw-cell-label Email :
-                        %span.tablesaw-cell-content= user.email
-                      %td.t-etype
-                        %b.tablesaw-cell-label First Name :
-                        %span.tablesaw-cell-content= user.first_name
-                      %td.t-aurl
-                        %b.tablesaw-cell-label Last Name :
-                        %span.tablesaw-cell-content= user.last_name
-                      %td.t-iurl
-                        %b.tablesaw-cell-label Username :
-                        %span.tablesaw-cell-content= user.username
-                      %td.t-curl
-                        %b.tablesaw-cell-label Mobile :
-                        %span.tablesaw-cell-content= user.mobile
-                      %td.t-visible
-                        %b.tablesaw-cell-label Daily News :
-                        %span.tablesaw-cell-content= user.daily_news
+                    %tr
+                      %td= user.email
+                      %td= user.first_name
+                      %td= user.last_name
+                      %td= user.username
+                      %td= user.mobile
+                      %td= user.daily_news
+                      %td= link_to 'Show', user_path(user.id)

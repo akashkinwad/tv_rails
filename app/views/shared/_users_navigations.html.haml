@@ -1,0 +1,14 @@
+%ul.navbar-nav.mr-auto
+  %li.nav-item.active
+    %a.nav-link{href: '/'}
+      Home
+      %span.sr-only (current)
+  %li.nav-item.dropdown
+    %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+      Profile
+    .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+      = link_to 'Users', users_path, class: 'dropdown-item'
+    .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+      = link_to 'Categories', categories_path, class: 'dropdown-item'
+    .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+      = link_to 'Posts', posts_path, class: 'dropdown-item'

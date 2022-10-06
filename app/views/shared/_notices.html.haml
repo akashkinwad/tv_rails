@@ -1,0 +1,6 @@
+- flash.each do |msg_type, message|
+  .alert
+    .container
+      %button.close{"data-dismiss" => "alert"}
+        %span ×
+      = message

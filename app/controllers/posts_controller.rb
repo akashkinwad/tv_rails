@@ -1,14 +1,9 @@
-class UsersController < ApplicationController
+class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin
 
-  def index
-    @users = User.all
-  end
-
   def show
-    @user = User.find_by(id: params[:id])
-    @posts = @user.posts.includes(comments: :replies)
+    @post = Post.find_by(id: params[:id])
   end
 
   private

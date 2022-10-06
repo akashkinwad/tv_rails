@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root to: 'users#index'
 
   devise_for :users
+  resources :users
+  resources :posts
+  resources :categories
 
   # API routes
   namespace :api, defaults: { format: :json } do
@@ -46,6 +49,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  resources :users
 end

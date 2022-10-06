@@ -1,0 +1,11 @@
+- if user_signed_in? && current_user.admin?
+  .container-full
+    %section.content
+      = link_to 'Back', user_path(@post.user_id)
+      .row
+        .col-12
+          .box
+            .box-header.with-border
+              %h4.box-title
+                %img{src: @post.url, width: '200', height: '200'}
+            .box-body.no-padding
