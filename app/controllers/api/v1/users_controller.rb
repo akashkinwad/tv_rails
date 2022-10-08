@@ -7,18 +7,9 @@ module Api
       end
 
       def update
-        if params[:user][:image]
-          file = params[:user][:image]
-          folder_path = "#{Rails.env}/#{current_user.id}/profiles/#{Time.now.to_i}-#{file.original_filename}"
-          image_url = upload_to_s3(file, folder_path)
-          current_user.image_url = image_url
-        end
-        if params[:user][:video]
-          file = params[:user][:video]
-          folder_path = "#{Rails.env}/#{current_user.id}/profiles/#{Time.now.to_i}-#{file.original_filename}"
-          video_url = upload_to_s3(file, folder_path)
-          current_user.video_url = video_url
-        end
+        upload_and_set_attr(:blr_image, params[:user][:blr_image], 'blur-image')
+        upload_and_set_attr(:image_url, params[:user][:image], 'profile-image')
+        upload_and_set_attr(:video_url, params[:user][:video], 'profile-video')
 
         if current_user.update(user_params)
           render json: {
@@ -82,6 +73,15 @@ module Api
           :image_url,
           :video_url,
         )
+      end
+
+      def upload_and_set_attr(attribute, file, attr_type)
+        if file
+          extension = File.extname(file)
+          folder_path = "#{Rails.env}/#{current_user.id}/profiles/#{current_user.id}-#{Time.now.to_i}-#{attr_type}#{extension}"
+          upload_object = upload_to_s3(file, folder_path)
+          current_user.send("#{attribute}=", upload_object.public_url) if upload_object
+        end
       end
     end
   end

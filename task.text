@@ -295,4 +295,22 @@ blockchain wallet
 
 etherium connect
 
+--------------------
 
+user => post_id/ actual, guss_img
+
+
+guss_img => blurred id
+
+prefix
+
+act-datetime-post_id
+
+
+post-datetime-act
+
+userid/posts/post-id/
+- postid-datetime-actual
+- postid-datetime-blr
+
+same for profile

@@ -11,16 +11,8 @@ module Api
       def create
         post = current_user.posts.new(post_params)
         if post.save
-          if params[:post][:media]
-            file = params[:post][:media]
-            folder_path = "#{Rails.env}/#{current_user.id}/posts/#{post.id}/#{Time.now.to_i}-#{file.original_filename}"
-            media_url = upload_to_s3(file, folder_path)
-            post.update(
-              url: media_url,
-              content_type: file.content_type,
-              extension: file.original_filename.split('.').last
-            )
-          end
+          upload_and_set_attr(post, :blr_image, params[:post][:blr_image], 'blr')
+          upload_and_set_attr(post, :url, params[:post][:media], 'act')
 
           render json: {
             messages: 'Post created successfully',
@@ -38,17 +30,8 @@ module Api
 
       def update
         if @post.update(post_params)
-          if params[:post][:media]
-            file = params[:post][:media]
-            folder_path = "#{Rails.env}/#{current_user.id}/posts/#{@post.id}/#{Time.now.to_i}-#{file.original_filename}"
-            media_url = upload_to_s3(file, folder_path)
-            @post.url = media_url
-            @post.content_type = file.content_type
-            @post.extension = file.original_filename.split('.').last
-          end
-
           render json: {
-            messages: 'Post created successfully',
+            messages: 'Post updated successfully',
             is_success: true,
             data: { post: @post }
           }, status: :ok
@@ -68,9 +51,7 @@ module Api
           :title,
           :description,
           :category,
-          :hastag,
-          :content_type,
-          :extension
+          :hashtag
         )
       end
 
@@ -79,6 +60,24 @@ module Api
 
         unless @post.present?
           render json: { error: 'Post not found' }, status: 404 and return
+        end
+      end
+
+      def upload_and_set_attr(post, attribute, file, attr_type)
+        if file
+          extension = File.extname(file)
+          folder_path = "#{Rails.env}/#{current_user.id}/posts/#{post.id}-#{Time.now.to_i}-#{attr_type}#{extension}"
+          upload_object = upload_to_s3(file, folder_path)
+
+          if attribute == :url
+            post.update(
+              url: upload_object.public_url,
+              content_type: file.content_type,
+              extension: extension
+            )
+          else
+            post.update(blr_image: upload_object.public_url)
+          end if upload_object
         end
       end
     end

@@ -1,6 +1,6 @@
 module Api::V1
   class ApiController < ApplicationController
     include AuthenticationConcern
-    include ApplicationHelper
+    include UploadToS3
   end
 end

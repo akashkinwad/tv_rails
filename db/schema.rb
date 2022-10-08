@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_06_164155) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_08_183033) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "thumbnail_url"
@@ -51,13 +51,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_164155) do
     t.string "title"
     t.text "description"
     t.string "category"
-    t.text "hastag"
+    t.text "hashtag"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "url"
     t.string "content_type"
     t.string "extension"
+    t.string "blr_image"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -81,6 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_164155) do
     t.string "email_otp"
     t.datetime "otp_sent_at"
     t.integer "role", default: 0
+    t.string "blr_image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

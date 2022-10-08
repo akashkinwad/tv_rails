@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  include ApplicationHelper
+  include UploadToS3
   before_action :authenticate_user!
   before_action :authenticate_admin
   before_action :set_category, only: %i[ show edit update destroy ]
@@ -26,15 +26,10 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(name: category_params.dig(:name))
 
-    if category_params.dig(:thumbnail)
-      file = category_params.dig(:thumbnail)
-      folder_path = "#{Rails.env}/categories/#{Time.now.to_i}-#{file.original_filename}"
-      image_url = upload_to_s3(file, folder_path)
-      @category.thumbnail_url = image_url
-    end
-
     respond_to do |format|
       if @category.save
+        upload_and_set_attr(category_params.dig(:thumbnail))
+
         format.html { redirect_to category_url(@category), notice: "Category was successfully created." }
         format.json { render :show, status: :created, location: @category }
       else
@@ -48,9 +43,10 @@ class CategoriesController < ApplicationController
   def update
     if category_params.dig(:thumbnail)
       file = category_params.dig(:thumbnail)
-      folder_path = "#{Rails.env}/categories/#{Time.now.to_i}-#{file.original_filename}"
-      image_url = upload_to_s3(file, folder_path)
-      params[:category][:thumbnail_url] = image_url
+      folder_path = "#{Rails.env}/categories/#{@category.id}/#{Time.now.to_i}-#{file.original_filename}"
+      upload_object = upload_to_s3(file, folder_path)
+      binding.pry
+      params[:category][:thumbnail_url] = upload_object.public_url
       params[:category].delete(:thumbnail)
     end
 
@@ -76,7 +72,6 @@ class CategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find(params[:id])
     end
@@ -89,6 +84,14 @@ class CategoriesController < ApplicationController
     def authenticate_admin
       unless current_user.admin?
         redirect_to root_path, notice: 'You are not authorized to perform this action'
+      end
+    end
+
+    def upload_and_set_attr(file)
+      if file
+        folder_path = "#{Rails.env}/categories/#{@category.id}/#{Time.now.to_i}-#{file.original_filename}"
+        upload_object = upload_to_s3(file, folder_path)
+        @category.update(thumbnail_url: upload_object.public_url) if upload_object
       end
     end
 end
