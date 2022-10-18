@@ -1,30 +1,219 @@
-- if user_signed_in? && current_user.admin?
+/ Content Wrapper. Contains page content
+.content-wrapper
   .container-full
+    / Content Header (Page header)
+    .content-header
+      .d-flex.align-items-center
+        .me-auto
+          %h4.page-title Members Profile
+          .d-inline-block.align-items-center
+            %nav
+              %ol.breadcrumb
+                %li.breadcrumb-item
+                  %a{href: "#"}
+                    %i.mdi.mdi-home-outline
+                %li.breadcrumb-item{"aria-current" => "page"} Members
+                %li.breadcrumb-item.active{"aria-current" => "page"} Members Profile
+    / Main content
     %section.content
       .row
-        .col-12
+        .col-xl-4.col-lg-5
+          / Profile Image
+          .box
+            .box-body.box-profile
+              %img.rounded.img-fluid.mx-auto.d-block.max-w-150{alt: "User profile picture", src: "#{@user.image_url}"}/
+              %h3.profile-username.text-center.my-10
+                = @user.name
+              %h4.text-center.mt-0
+                %i.fa.fa-envelope-o.me-10>
+                = @user.email
+              .row.social-states
+                .col-6.text-end
+                  %a.link.text-white{href: "#"}
+                    %i.ion.ion-ios-people-outline
+                    254
+                .col-6.text-start
+                  %a.link.text-white{href: "#"}
+                    %i.ion.ion-images
+                    54
+              .row
+                .col-12
+                  .media-list.media-list-hover.media-list-divided.w-p100.mt-30
+                    %h5.media.media-single.p-15
+                      %i.fa.fa-arrow-circle-o-right.me-10
+                      %span.title My Profile
+                    %h5.media.media-single.p-15
+                      %i.fa.fa-arrow-circle-o-right.me-10
+                      %span.title Invests
+                    %h5.media.media-single.p-15
+                      %i.fa.fa-arrow-circle-o-right.me-10
+                      %span.title The Wallet
+                    %h5.media.media-single.p-15
+                      %i.fa.fa-arrow-circle-o-right.me-10
+                      %span.title Deposit
+                    %h5.media.media-single.p-15
+                      %i.fa.fa-arrow-circle-o-right.me-10
+                      %span.title Reports
+                    %h5.media.media-single.p-15
+                      %i.fa.fa-arrow-circle-o-right.me-10
+                      %span.title Services
+                    %h5.media.media-single.p-15
+                      %i.fa.fa-arrow-circle-o-right.me-10
+                      %span.title Support
+                %h4.title.w-p100.mt-10.mb-0.p-20.text-primary Last Transactions
+                .col-12
+                  .media-list.media-list-hover.w-p100.mt-0
+                    %h5.media.media-single.py-10.px-0.w-p100.justify-content-between
+                      %p
+                        %i.fa.fa-circle.text-danger.pe-10.fs-12>
+                        Deal number 1548
+                        %span.subtitle.ps-20.mt-10
+                          by
+                          %span.text-danger Johen Doe
+                      %p.text-end.pull-right
+                        %span.badge.badge-sm.badge-danger.mb-10 sell
+                        = succeed "0.12458921" do
+                          %br/
+                    %h5.media.media-single.py-10.px-0.w-p100.justify-content-between
+                      %p
+                        %i.fa.fa-circle.text-success.pe-10.fs-12>
+                        Deal number 1548
+                        %span.subtitle.ps-20.mt-10
+                          by
+                          %span.text-success Johen Doe
+                      %p.text-end.pull-right
+                        %span.badge.badge-sm.badge-success.mb-10 sell
+                        = succeed "0.12458921" do
+                          %br/
+                    %h5.media.media-single.py-10.px-0.w-p100.justify-content-between
+                      %p
+                        %i.fa.fa-circle.text-success.pe-10.fs-12>
+                        Deal number 1548
+                        %span.subtitle.ps-20.mt-10
+                          by
+                          %span.text-success Johen Doe
+                      %p.text-end.pull-right
+                        %span.badge.badge-sm.badge-success.mb-10 sell
+                        = succeed "0.12458921" do
+                          %br/
+                    %h5.media.media-single.py-10.px-0.w-p100.justify-content-between
+                      %p
+                        %i.fa.fa-circle.text-danger.pe-10.fs-12>
+                        Deal number 1548
+                        %span.subtitle.ps-20.mt-10
+                          by
+                          %span.text-danger Johen Doe
+                      %p.text-end.pull-right
+                        %span.badge.badge-sm.badge-danger.mb-10 sell
+                        = succeed "0.12458921" do
+                          %br/
+                    %h5.media.media-single.py-10.px-0.w-p100.justify-content-between
+                      %p
+                        %i.fa.fa-circle.text-success.pe-10.fs-12>
+                        Deal number 1548
+                        %span.subtitle.ps-20.mt-10
+                          by
+                          %span.text-success Johen Doe
+                      %p.text-end.pull-right
+                        %span.badge.badge-sm.badge-success.mb-10 sell
+                        = succeed "0.12458921" do
+                          %br/
+            / /.box-body
+          / /.box
+        / /.col
+        .col-xl-8.col-lg-7
           .box
             .box-header.with-border
-              %h4.box-title
-                = "Posts of #{@user.email}"
-            .box-body.no-padding
-              .table-responsive
-              %table
-                %thead
-                  %tr
-                    %th Title
-                    %th Description
-                    %th Category
-                    %th Hashtags
-                    %th Attachment
-                    %th Actions
-                %tbody
-                  - @posts.each do |post|
-                    %tr
-                      %td= post.title
-                      %td= post.description
-                      %td= post.category
-                      %td= post.hastag
-                      %td
-                        %img{src: post.url, width: '50', height: '50'}
-                      %td= link_to 'Show', post_path(post.id)
+              %h4.box-title Personal details
+            / /.box-header
+            .box-body
+              .row
+                .col-12
+                  .form-group.row
+                    %label.col-sm-2.col-form-label First Name
+                    .col-sm-10
+                      %input.form-control{placeholder: "#{@user.first_name}", type: "text"}/
+                  .form-group.row
+                    %label.col-sm-2.col-form-label Last Name
+                    .col-sm-10
+                      %input.form-control{placeholder: "#{@user.last_name}", type: "text"}/
+                  .form-group.row
+                    %label.col-sm-2.col-form-label Email Adress
+                    .col-sm-10
+                      %input.form-control{placeholder: "#{@user.email}", type: "email"}/
+                  .form-group.row
+                    %label.col-sm-2.col-form-label Phone Number
+                    .col-sm-10
+                      %input.form-control{placeholder: "#{@user.mobile}", type: "tel"}/
+                  .form-group.row
+                    %label.col-sm-2.col-form-label
+                    .col-sm-10
+                      %button.btn.btn-primary{type: "submit"} Submit
+                / /.col
+              / /.row
+            / /.box-body
+          / /.box
+          .box
+            .box-header.with-border
+              %h4.box-title Personal address
+            / /.box-header
+            .box-body
+              .row
+                .col-12
+                  .form-group.row
+                    %label.col-sm-2.col-form-label Street
+                    .col-sm-10
+                      %input.form-control{placeholder: "A-458, Lorem Ipsum, city", type: "text"}/
+                  .form-group.row
+                    %label.col-sm-2.col-form-label City
+                    .col-sm-10
+                      %input.form-control{placeholder: "Your City", type: "text"}/
+                  .form-group.row
+                    %label.col-sm-2.col-form-label State
+                    .col-sm-10
+                      %input.form-control{placeholder: "Your State", type: "text"}/
+                  .form-group.row
+                    %label.col-sm-2.col-form-label Post Code
+                    .col-sm-10
+                      %input.form-control{placeholder: "123456", type: "number"}/
+                  .form-group.row
+                    %label.col-sm-2.col-form-label
+                    .col-sm-10
+                      %button.btn.btn-primary{type: "submit"} Submit
+                / /.col
+              / /.row
+            / /.box-body
+          / /.box
+          .box
+            .box-header.with-border
+              %h4.box-title Social media
+            / /.box-header
+            .box-body
+              .row
+                .col-12
+                  .form-group.row
+                    %label.col-sm-2.col-form-label Facebook
+                    .col-sm-10
+                      %input.form-control{placeholder: "facebook id", type: "text"}/
+                  .form-group.row
+                    %label.col-sm-2.col-form-label Instagram
+                    .col-sm-10
+                      %input.form-control{placeholder: "instagram id", type: "text"}/
+                  .form-group.row
+                    %label.col-sm-2.col-form-label Twitter
+                    .col-sm-10
+                      %input.form-control{placeholder: "twitter id", type: "text"}/
+                  .form-group.row
+                    %label.col-sm-2.col-form-label Linkedin
+                    .col-sm-10
+                      %input.form-control{placeholder: "linkedin id", type: "text"}/
+                  .form-group.row
+                    %label.col-sm-2.col-form-label
+                    .col-sm-10
+                      %button.btn.btn-primary{type: "submit"} Submit
+                / /.col
+              / /.row
+            / /.box-body
+          / /.box
+    / /.content
+/ /.content-wrapper

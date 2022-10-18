@@ -1,0 +1,98 @@
+%body
+  %header.main-header
+    .d-flex.align-items-center.logo-box.justify-content-center
+      / Logo
+      %a.logo{:href => "#"}
+        / logo
+        .logo-mini
+          %span.light-logo
+            %img{:alt => "logo", :src => "/admin/images/logo-light.png"}/
+          %span.dark-logo
+            %img{:alt => "logo", :src => "/admin/images/logo-dark.png"}/
+        / logo
+        .logo-lg
+          / <span class="light-logo"><img src="../images/logo-dark-text.png" alt="logo"></span>
+          %span.light-logo
+            %img{:alt => "logo", :src => "/admin/images/logo-light-text.png"}/
+          %span.dark-logo
+            %img{:alt => "logo", :src => "/admin/images/logo-light-text.png"}/
+    / Header Navbar
+    %nav.navbar.navbar-static-top.pl-10
+      / Sidebar toggle button
+      .app-menu
+        %ul.header-megamenu.nav
+          %li.btn-group.nav-item
+            %a.waves-effect.waves-light.nav-link.rounded.push-btn{"data-toggle" => "push-menu", :href => "#", :role => "button"}
+              %span.icon-Align-left
+                %span.path1
+                %span.path2
+                %span.path3
+      .navbar-custom-menu.r-side
+        %ul.nav.navbar-nav
+          %li.btn-group.d-lg-inline-flex.d-none
+            .app-menu
+              .search-bx.mx-5
+                %form
+                  .input-group
+                    %input.form-control{"aria-describedby" => "button-addon2", "aria-label" => "Search", :placeholder => "Search", :type => "search"}/
+                    .input-group-append
+                      %button#button-addon3.btn{:type => "submit"}
+                        %i.ti-search
+          / Notifications
+          %li.dropdown.notifications-menu
+            %a.waves-effect.waves-light.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", :title => "Notifications"}
+              %i.icon-Notifications
+                %span.path1
+                %span.path2
+            %ul.dropdown-menu.animated.bounceIn
+              %li.header
+                .p-20
+                  .flexbox
+                    %div
+                      %h4.mb-0.mt-0 Notifications
+                    %div
+                      %a.text-danger{:href => "#"} Clear All
+              %li
+                / inner menu: contains the actual data
+                %ul.menu.sm-scrol
+                  %li
+                    %a{:href => "#"}
+                      %i.fa.fa-users.text-info
+                      Curabitur id eros quis nunc suscipit blandit.
+                  %li
+                    %a{:href => "#"}
+                      %i.fa.fa-warning.text-warning
+                      Duis malesuada justo eu sapien elementum, in semper diam posuere.
+                  %li
+                    %a{:href => "#"}
+                      %i.fa.fa-users.text-danger
+                      Donec at nisi sit amet tortor commodo porttitor pretium a erat.
+                  %li
+                    %a{:href => "#"}
+                      %i.fa.fa-shopping-cart.text-success
+                      In gravida mauris et nisi
+                  %li
+                    %a{:href => "#"}
+                      %i.fa.fa-user.text-danger
+                      Praesent eu lacus in libero dictum fermentum.
+                  %li
+                    %a{:href => "#"}
+                      %i.fa.fa-user.text-primary
+                      Nunc fringilla lorem
+                  %li
+                    %a{:href => "#"}
+                      %i.fa.fa-user.text-success
+                      Nullam euismod dolor ut quam interdum, at scelerisque ipsum imperdiet.
+              %li.footer
+                %a{:href => "#"} View all
+          %li.btn-group.nav-item.d-none.d-xl-inline-block
+            %a.waves-effect.waves-light.nav-link.rounded.dropdown-toggle{:href => "#", :title => "Chat"}
+              %i.icon-Chat
+                %span.path1
+                %span.path2
+          %li
+            %a.waves-effect.waves-light.show-sidebar{:href => "#", :onclick => "showSidebar()"}
+              %span.icn-sec
+                %i.icon-User
+                  %span.path1
+                  %span.path2

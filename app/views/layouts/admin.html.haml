@@ -1,0 +1,819 @@
+!!!
+%html{lang: "en"}
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{charset: "utf-8"}/
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
+    %meta{content: "", name: "description"}/
+    %meta{content: "", name: "author"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    %link{href: "https://crypto-admin-templates.multipurposethemes.com/sass/bs5/images/favicon.ico", rel: "icon"}/
+    %title Talents Verse
+    / Vendors Style
+    %link{href: "/admin/main/css/vendors_css.css", rel: "stylesheet"}/
+    / Style
+    %link{href: "/admin/main/css/style.css", rel: "stylesheet"}/
+    %link{href: "/admin/main/css/skin_color.css", rel: "stylesheet"}/
+    = javascript_importmap_tags
+  %body.hold-transition.dark-skin.sidebar-mini.theme-warning.fixed
+    .wrapper
+      #loader
+      %header.main-header
+        .d-flex.align-items-center.logo-box.justify-content-start
+          / Logo
+          %a.logo{href: "index.html"}
+            / logo
+            .logo-mini.w-30
+              %span.light-logo
+                %img{alt: "logo", src: "/admin/images/logo-letter.png"}/
+              %span.dark-logo
+                %img{alt: "logo", src: "/admin/images/logo-letter.png"}/
+            .logo-lg
+              %span.light-logo
+                %img{alt: "logo", src: "/admin/images/logo-dark-text.png"}/
+              %span.dark-logo
+                %img{alt: "logo", src: "/admin/images/logo-light-text.png"}/
+        / Header Navbar
+        %nav.navbar.navbar-static-top
+          / Sidebar toggle button
+          .app-menu
+            %ul.header-megamenu.nav
+              %li.btn-group.nav-item
+                %a.waves-effect.waves-light.nav-link.push-btn.btn-primary-light{"data-toggle" => "push-menu", href: "#", role: "button"}
+                  %i{"data-feather" => "align-left"}
+              %li.btn-group.nav-item.d-none.d-xl-inline-block
+                %a.waves-effect.waves-light.nav-link.svg-bt-icon.btn-primary-light{href: "contact_app_chat.html", title: "Chat"}
+                  %i{"data-feather" => "message-circle"}
+              %li.btn-group.nav-item.d-none.d-xl-inline-block
+                %a.waves-effect.waves-light.nav-link.svg-bt-icon.btn-primary-light{href: "mailbox.html", title: "Mailbox"}
+                  %i{"data-feather" => "at-sign"}
+              %li.btn-group.nav-item.d-none.d-xl-inline-block
+                %a.waves-effect.waves-light.nav-link.svg-bt-icon.btn-primary-light{href: "extra_taskboard.html", title: "Taskboard"}
+                  %i{"data-feather" => "clipboard"}
+          .navbar-custom-menu.r-side
+            %ul.nav.navbar-nav
+              %li.btn-group.d-lg-inline-flex.d-none
+                .app-menu
+                  .search-bx.mx-5
+                    %form
+                      .input-group
+                        %input.form-control{"aria-describedby" => "button-addon2", "aria-label" => "Search", placeholder: "Search", type: "search"}/
+                        .input-group-append
+                          %button#button-addon3.btn{type: "submit"}
+                            %i{"data-feather" => "search"}
+              %li.btn-group.nav-item.d-lg-inline-flex.d-none
+                %a.waves-effect.waves-light.nav-link.full-screen.btn-primary-light{"data-provide" => "fullscreen", href: "#", title: "Full Screen"}
+                  %i{"data-feather" => "maximize"}
+              / Notifications
+              %li.dropdown.notifications-menu
+                %a.waves-effect.waves-light.dropdown-toggle.btn-primary-light{"data-bs-toggle" => "dropdown", href: "#", title: "Notifications"}
+                  %i{"data-feather" => "bell"}
+                %ul.dropdown-menu.animated.bounceIn
+                  %li.header
+                    .p-20
+                      .flexbox
+                        %div
+                          %h4.mb-0.mt-0 Notifications
+                        %div
+                          %a.text-danger{href: "#"} Clear All
+                  %li
+                    / inner menu: contains the actual data
+                    %ul.menu.sm-scrol
+                      %li
+                        %a{href: "#"}
+                          %i.fa.fa-users.text-info
+                          Curabitur id eros quis nunc suscipit blandit.
+                      %li
+                        %a{href: "#"}
+                          %i.fa.fa-warning.text-warning
+                          Duis malesuada justo eu sapien elementum, in semper diam posuere.
+                      %li
+                        %a{href: "#"}
+                          %i.fa.fa-users.text-danger
+                          Donec at nisi sit amet tortor commodo porttitor pretium a erat.
+                      %li
+                        %a{href: "#"}
+                          %i.fa.fa-shopping-cart.text-success
+                          In gravida mauris et nisi
+                      %li
+                        %a{href: "#"}
+                          %i.fa.fa-user.text-danger
+                          Praesent eu lacus in libero dictum fermentum.
+                      %li
+                        %a{href: "#"}
+                          %i.fa.fa-user.text-primary
+                          Nunc fringilla lorem
+                      %li
+                        %a{href: "#"}
+                          %i.fa.fa-user.text-success
+                          Nullam euismod dolor ut quam interdum, at scelerisque ipsum imperdiet.
+                  %li.footer
+                    %a{href: "#"} View all
+              / User Account
+              %li.dropdown.user.user-menu
+                %a.waves-effect.waves-light.dropdown-toggle.btn-primary-light{"data-bs-toggle" => "dropdown", href: "#", title: "User"}
+                  %i{"data-feather" => "user"}
+                %ul.dropdown-menu.animated.flipInX
+                  %li.user-body
+                    %a.dropdown-item{href: "#"}
+                      %i.ti-user.text-muted.me-2
+                      Profile
+                    %a.dropdown-item{href: "#"}
+                      %i.ti-wallet.text-muted.me-2
+                      My Wallet
+                    %a.dropdown-item{href: "#"}
+                      %i.ti-settings.text-muted.me-2
+                      Settings
+                    .dropdown-divider
+                    = link_to destroy_user_session_path, class: 'dropdown-item', method: :delete, data: { turbo_method: :delete } do
+                      %i.ti-lock.text-muted.me-2
+                      Logout
+              / Control Sidebar Toggle Button
+              %li
+                %a.waves-effect.waves-light.btn-primary-light{"data-toggle" => "control-sidebar", href: "#", title: "Setting"}
+                  %i{"data-feather" => "settings"}
+      / Left side column. contains the logo and sidebar
+      %aside.main-sidebar
+        / sidebar
+        %section.sidebar.position-relative
+          .multinav
+            .multinav-scroll{style: "height: 100%;"}
+              / sidebar menu
+              %ul.sidebar-menu{"data-widget" => "tree"}
+                %li.treeview
+                  %a{href: "#"}
+                    %i{"data-feather" => "monitor"}
+                    %span Dashboard
+                    %span.pull-right-container
+                      %i.fa.fa-angle-right.pull-right
+                  %ul.treeview-menu
+                    %li.treeview
+                      %a{href: "#"}
+                        %i.icon-Commit>
+                          %span.path1
+                          %span.path2
+                        Options 1 to 5
+                        %span.pull-right-container
+                          %i.fa.fa-angle-right.pull-right
+                      %ul.treeview-menu
+                        %li
+                          %a{href: "index.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 1
+                        %li
+                          %a{href: "index2.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 2
+                        %li
+                          %a{href: "index3.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 3
+                        %li
+                          %a{href: "index4.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 4
+                        %li
+                          %a{href: "index5.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 5
+                    %li.treeview
+                      %a{href: "#"}
+                        %i.icon-Commit>
+                          %span.path1
+                          %span.path2
+                        Options 6 to 10
+                        %span.pull-right-container
+                          %i.fa.fa-angle-right.pull-right
+                      %ul.treeview-menu
+                        %li
+                          %a{href: "index6.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 6
+                        %li
+                          %a{href: "index7.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 7
+                        %li
+                          %a{href: "index8.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 8
+                        %li
+                          %a{href: "index9.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 9
+                        %li
+                          %a{href: "index10.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 10
+                    %li.treeview
+                      %a{href: "#"}
+                        %i.icon-Commit>
+                          %span.path1
+                          %span.path2
+                        Options 11 to 15
+                        %span.pull-right-container
+                          %i.fa.fa-angle-right.pull-right
+                      %ul.treeview-menu
+                        %li
+                          %a{href: "index11.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 11
+                        %li
+                          %a{href: "index12.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 12
+                        %li
+                          %a{href: "index13.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 13
+                        %li
+                          %a{href: "index14.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 14
+                        %li
+                          %a{href: "index15.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 15
+                    %li.treeview
+                      %a{href: "#"}
+                        %i.icon-Commit>
+                          %span.path1
+                          %span.path2
+                        Options 16 to 20
+                        %span.pull-right-container
+                          %i.fa.fa-angle-right.pull-right
+                      %ul.treeview-menu
+                        %li
+                          %a{href: "index16.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 16
+                        %li
+                          %a{href: "index17.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 17
+                        %li
+                          %a{href: "index18.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 18
+                        %li
+                          %a{href: "index19.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 19
+                        %li
+                          %a{href: "index20.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 20
+                    %li.treeview
+                      %a{href: "#"}
+                        %i.icon-Commit>
+                          %span.path1
+                          %span.path2
+                        Options 21 to 25
+                        %span.pull-right-container
+                          %i.fa.fa-angle-right.pull-right
+                      %ul.treeview-menu
+                        %li
+                          %a{href: "index21.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 21
+                        %li
+                          %a{href: "index22.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 22
+                        %li
+                          %a{href: "index23.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 23
+                        %li
+                          %a{href: "index24.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 24
+                        %li
+                          %a{href: "index25.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 25
+                    %li.treeview
+                      %a{href: "#"}
+                        %i.icon-Commit>
+                          %span.path1
+                          %span.path2
+                        Options 26 to 30
+                        %span.pull-right-container
+                          %i.fa.fa-angle-right.pull-right
+                      %ul.treeview-menu
+                        %li
+                          %a{href: "index26.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 26
+                        %li
+                          %a{href: "index27.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 27
+                        %li
+                          %a{href: "index28.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 28
+                        %li
+                          %a{href: "index29.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 29
+                        %li
+                          %a{href: "index30.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 30
+                    %li.treeview
+                      %a{href: "#"}
+                        %i.icon-Commit>
+                          %span.path1
+                          %span.path2
+                        Options 26 to 30
+                        %span.pull-right-container
+                          %i.fa.fa-angle-right.pull-right
+                      %ul.treeview-menu
+                        %li
+                          %a{href: "index26.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 26
+                        %li
+                          %a{href: "index27.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 27
+                        %li
+                          %a{href: "index28.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 28
+                        %li
+                          %a{href: "index29.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 29
+                        %li
+                          %a{href: "index30.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 30
+                    %li.treeview
+                      %a{href: "#"}
+                        %i.icon-Commit>
+                          %span.path1
+                          %span.path2
+                        Options 31 to 35
+                        %span.pull-right-container
+                          %i.fa.fa-angle-right.pull-right
+                      %ul.treeview-menu
+                        %li
+                          %a{href: "index31.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 31
+                        %li
+                          %a{href: "index32.html"}
+                            %i.icon-Commit>
+                              %span.path1
+                              %span.path2
+                            Dash 32
+                %li.treeview
+                  %a{href: "#"}
+                    %i{"data-feather" => "users"}
+                    %span Members
+                    %span.pull-right-container
+                      %i.fa.fa-angle-right.pull-right
+                  %ul.treeview-menu
+                    %li
+                      = link_to users_path do
+                        %i.icon-Commit>
+                          %span.path1
+                          %span.path2
+                        Members List
+              .sidebar-widgets
+                .mx-25.mb-30.p-30.text-center.bg-primary-light.rounded5
+                  %img{alt: "", src: "/admin/images/trophy.png"}/
+                  %h4.my-3.fw-500.text-uppercase.text-primary Start Trading
+                  %span.fs-12.d-block.mb-3.text-black-50 Offering discounts for better online a store can loyalty weapon into driving
+                  %button.waves-effect.waves-light.btn.btn-sm.btn-primary.mb-5{type: "button"} Invest Now
+                .copyright.text-center.m-25
+                  %p
+                    %strong.d-block Talents Admin Dashboard
+                    © 2022 All Rights Reserved
+      / Content Wrapper. Contains page content
+      = yield
+      / /.content-wrapper
+      %footer.main-footer
+        .pull-right.d-none.d-sm-inline-block
+          %ul.nav.nav-primary.nav-dotted.nav-dot-separated.justify-content-center.justify-content-md-end
+            %li.nav-item
+              %a.nav-link{href: "javascript:void(0)"} FAQ
+            %li.nav-item
+              %a.nav-link{href: "https://themeforest.net/item/crypto-admin-responsive-bootstrap-4-admin-html-templates/21604673", target: "_blank"} Purchase Now
+        © 2022
+        = succeed "." do
+          %a{href: "https://www.multipurposethemes.com/"} Multipurpose Themes
+      / Control Sidebar
+      %aside.control-sidebar
+        .rpanel-title
+          %span.pull-right.btn.btn-circle.btn-danger
+            %i.ion.ion-close.text-white{"data-toggle" => "control-sidebar"}
+        / Create the tabs
+        %ul.nav.nav-tabs.control-sidebar-tabs
+          %li.nav-item
+            %a.active{"data-bs-toggle" => "tab", href: "#control-sidebar-home-tab"}
+              %i.mdi.mdi-message-text
+          %li.nav-item
+            %a{"data-bs-toggle" => "tab", href: "#control-sidebar-settings-tab"}
+              %i.mdi.mdi-playlist-check
+        / Tab panes
+        .tab-content
+          / Home tab content
+          #control-sidebar-home-tab.tab-pane.active
+            .flexbox
+              %a.text-grey{href: "javascript:void(0)"}
+                %i.ti-more
+              %p Users
+              %a.text-end.text-grey{href: "javascript:void(0)"}
+                %i.ti-plus
+            .lookup.lookup-sm.lookup-right.d-none.d-lg-block
+              %input.w-p100{name: "s", placeholder: "Search", type: "text"}/
+            .media-list.media-list-hover.mt-20
+              .media.py-10.px-0
+                %a.avatar.avatar-lg.status-success{href: "#"}
+                  %img{alt: "...", src: "/admin/images/avatar/1.jpg"}/
+                .media-body
+                  %p.fs-16
+                    %a.hover-primary{href: "#"}
+                      %strong Tyler
+                  %p Praesent tristique diam...
+                  %span Just now
+              .media.py-10.px-0
+                %a.avatar.avatar-lg.status-danger{href: "#"}
+                  %img{alt: "...", src: "/admin/images/avatar/2.jpg"}/
+                .media-body
+                  %p.fs-16
+                    %a.hover-primary{href: "#"}
+                      %strong Luke
+                  %p Cras tempor diam ...
+                  %span 33 min ago
+              .media.py-10.px-0
+                %a.avatar.avatar-lg.status-warning{href: "#"}
+                  %img{alt: "...", src: "/admin/images/avatar/3.jpg"}/
+                .media-body
+                  %p.fs-16
+                    %a.hover-primary{href: "#"}
+                      %strong Evan
+                  %p In posuere tortor vel...
+                  %span 42 min ago
+              .media.py-10.px-0
+                %a.avatar.avatar-lg.status-primary{href: "#"}
+                  %img{alt: "...", src: "/admin/images/avatar/4.jpg"}/
+                .media-body
+                  %p.fs-16
+                    %a.hover-primary{href: "#"}
+                      %strong Evan
+                  %p In posuere tortor vel...
+                  %span 42 min ago
+              .media.py-10.px-0
+                %a.avatar.avatar-lg.status-success{href: "#"}
+                  %img{alt: "...", src: "/admin/images/avatar/1.jpg"}/
+                .media-body
+                  %p.fs-16
+                    %a.hover-primary{href: "#"}
+                      %strong Tyler
+                  %p Praesent tristique diam...
+                  %span Just now
+              .media.py-10.px-0
+                %a.avatar.avatar-lg.status-danger{href: "#"}
+                  %img{alt: "...", src: "/admin/images/avatar/2.jpg"}/
+                .media-body
+                  %p.fs-16
+                    %a.hover-primary{href: "#"}
+                      %strong Luke
+                  %p Cras tempor diam ...
+                  %span 33 min ago
+              .media.py-10.px-0
+                %a.avatar.avatar-lg.status-warning{href: "#"}
+                  %img{alt: "...", src: "/admin/images/avatar/3.jpg"}/
+                .media-body
+                  %p.fs-16
+                    %a.hover-primary{href: "#"}
+                      %strong Evan
+                  %p In posuere tortor vel...
+                  %span 42 min ago
+              .media.py-10.px-0
+                %a.avatar.avatar-lg.status-primary{href: "#"}
+                  %img{alt: "...", src: "/admin/images/avatar/4.jpg"}/
+                .media-body
+                  %p.fs-16
+                    %a.hover-primary{href: "#"}
+                      %strong Evan
+                  %p In posuere tortor vel...
+                  %span 42 min ago
+          / /.tab-pane
+          / Settings tab content
+          #control-sidebar-settings-tab.tab-pane
+            .flexbox
+              %a.text-grey{href: "javascript:void(0)"}
+                %i.ti-more
+              %p Todo List
+              %a.text-end.text-grey{href: "javascript:void(0)"}
+                %i.ti-plus
+            %ul.todo-list.mt-20
+              %li.py-15.px-5.by-1
+                / checkbox
+                %input#basic_checkbox_1.filled-in{type: "checkbox"}/
+                %label.mb-0.h-15{for: "basic_checkbox_1"}
+                / todo text
+                %span.text-line Nulla vitae purus
+                / Emphasis label
+                %small.badge.bg-danger
+                  %i.fa.fa-clock-o
+                  2 mins
+                / General tools such as edit or delete
+                .tools
+                  %i.fa.fa-edit
+                  %i.fa.fa-trash-o
+              %li.py-15.px-5
+                / checkbox
+                %input#basic_checkbox_2.filled-in{type: "checkbox"}/
+                %label.mb-0.h-15{for: "basic_checkbox_2"}
+                %span.text-line Phasellus interdum
+                %small.badge.bg-info
+                  %i.fa.fa-clock-o
+                  4 hours
+                .tools
+                  %i.fa.fa-edit
+                  %i.fa.fa-trash-o
+              %li.py-15.px-5.by-1
+                / checkbox
+                %input#basic_checkbox_3.filled-in{type: "checkbox"}/
+                %label.mb-0.h-15{for: "basic_checkbox_3"}
+                %span.text-line Quisque sodales
+                %small.badge.bg-warning
+                  %i.fa.fa-clock-o
+                  1 day
+                .tools
+                  %i.fa.fa-edit
+                  %i.fa.fa-trash-o
+              %li.py-15.px-5
+                / checkbox
+                %input#basic_checkbox_4.filled-in{type: "checkbox"}/
+                %label.mb-0.h-15{for: "basic_checkbox_4"}
+                %span.text-line Proin nec mi porta
+                %small.badge.bg-success
+                  %i.fa.fa-clock-o
+                  3 days
+                .tools
+                  %i.fa.fa-edit
+                  %i.fa.fa-trash-o
+              %li.py-15.px-5.by-1
+                / checkbox
+                %input#basic_checkbox_5.filled-in{type: "checkbox"}/
+                %label.mb-0.h-15{for: "basic_checkbox_5"}
+                %span.text-line Maecenas scelerisque
+                %small.badge.bg-primary
+                  %i.fa.fa-clock-o
+                  1 week
+                .tools
+                  %i.fa.fa-edit
+                  %i.fa.fa-trash-o
+              %li.py-15.px-5
+                / checkbox
+                %input#basic_checkbox_6.filled-in{type: "checkbox"}/
+                %label.mb-0.h-15{for: "basic_checkbox_6"}
+                %span.text-line Vivamus nec orci
+                %small.badge.bg-info
+                  %i.fa.fa-clock-o
+                  1 month
+                .tools
+                  %i.fa.fa-edit
+                  %i.fa.fa-trash-o
+              %li.py-15.px-5.by-1
+                / checkbox
+                %input#basic_checkbox_7.filled-in{type: "checkbox"}/
+                %label.mb-0.h-15{for: "basic_checkbox_7"}
+                / todo text
+                %span.text-line Nulla vitae purus
+                / Emphasis label
+                %small.badge.bg-danger
+                  %i.fa.fa-clock-o
+                  2 mins
+                / General tools such as edit or delete
+                .tools
+                  %i.fa.fa-edit
+                  %i.fa.fa-trash-o
+              %li.py-15.px-5
+                / checkbox
+                %input#basic_checkbox_8.filled-in{type: "checkbox"}/
+                %label.mb-0.h-15{for: "basic_checkbox_8"}
+                %span.text-line Phasellus interdum
+                %small.badge.bg-info
+                  %i.fa.fa-clock-o
+                  4 hours
+                .tools
+                  %i.fa.fa-edit
+                  %i.fa.fa-trash-o
+              %li.py-15.px-5.by-1
+                / checkbox
+                %input#basic_checkbox_9.filled-in{type: "checkbox"}/
+                %label.mb-0.h-15{for: "basic_checkbox_9"}
+                %span.text-line Quisque sodales
+                %small.badge.bg-warning
+                  %i.fa.fa-clock-o
+                  1 day
+                .tools
+                  %i.fa.fa-edit
+                  %i.fa.fa-trash-o
+              %li.py-15.px-5
+                / checkbox
+                %input#basic_checkbox_10.filled-in{type: "checkbox"}/
+                %label.mb-0.h-15{for: "basic_checkbox_10"}
+                %span.text-line Proin nec mi porta
+                %small.badge.bg-success
+                  %i.fa.fa-clock-o
+                  3 days
+                .tools
+                  %i.fa.fa-edit
+                  %i.fa.fa-trash-o
+          / /.tab-pane
+      / /.control-sidebar
+      / Add the sidebar's background. This div must be placed immediately after the control sidebar
+      .control-sidebar-bg
+    / ./wrapper
+    / Sidebar
+    #chat-box-body
+      #chat-circle.waves-effect.waves-circle.btn.btn-circle.btn-lg.btn-primary.l-h-70
+        #chat-overlay
+        %span.icon-Group-chat.fs-30
+          %span.path1
+          %span.path2
+      .chat-box
+        .chat-box-header.p-15.d-flex.justify-content-between.align-items-center
+          .btn-group
+            %button.waves-effect.waves-circle.btn.btn-circle.btn-primary-light.h-40.w-40.rounded-circle.l-h-45{"data-bs-toggle" => "dropdown", type: "button"}
+              %span.icon-Add-user.fs-22
+                %span.path1
+                %span.path2
+            .dropdown-menu.min-w-200
+              %a.dropdown-item.fs-16{href: "#"}
+                %span.icon-Color.me-15
+                New Group
+              %a.dropdown-item.fs-16{href: "#"}
+                %span.icon-Clipboard.me-15
+                  %span.path1
+                  %span.path2
+                  %span.path3
+                  %span.path4
+                Contacts
+              %a.dropdown-item.fs-16{href: "#"}
+                %span.icon-Group.me-15
+                  %span.path1
+                  %span.path2
+                Groups
+              %a.dropdown-item.fs-16{href: "#"}
+                %span.icon-Active-call.me-15
+                  %span.path1
+                  %span.path2
+                Calls
+              %a.dropdown-item.fs-16{href: "#"}
+                %span.icon-Settings1.me-15
+                  %span.path1
+                  %span.path2
+                Settings
+              .dropdown-divider
+              %a.dropdown-item.fs-16{href: "#"}
+                %span.icon-Question-circle.me-15
+                  %span.path1
+                  %span.path2
+                Help
+              %a.dropdown-item.fs-16{href: "#"}
+                %span.icon-Notifications.me-15
+                  %span.path1
+                  %span.path2
+                Privacy
+          .text-center.flex-grow-1
+            .text-dark.fs-18 Mayra Sibley
+            %div
+              %span.badge.badge-sm.badge-dot.badge-primary
+              %span.text-muted.fs-12 Active
+          .chat-box-toggle
+            %button#chat-box-toggle.waves-effect.waves-circle.btn.btn-circle.btn-danger-light.h-40.w-40.rounded-circle.l-h-45{type: "button"}
+              %span.icon-Close.fs-22
+                %span.path1
+                %span.path2
+        .chat-box-body
+          .chat-box-overlay
+          .chat-logs
+            .chat-msg.user
+              .d-flex.align-items-center
+                %span.msg-avatar
+                  %img.avatar.avatar-lg{src: "/admin/images/avatar/2.jpg"}/
+                .mx-10
+                  %a.text-dark.hover-primary.fw-bold{href: "#"} Mayra Sibley
+                  %p.text-muted.fs-12.mb-0 2 Hours
+              .cm-msg-text
+                Hi there, I'm Jesse and you?
+            .chat-msg.self
+              .d-flex.align-items-center.justify-content-end
+                .mx-10
+                  %a.text-dark.hover-primary.fw-bold{href: "#"} You
+                  %p.text-muted.fs-12.mb-0 3 minutes
+                %span.msg-avatar
+                  %img.avatar.avatar-lg{src: "/admin/images/avatar/3.jpg"}/
+              .cm-msg-text
+                My name is Anne Clarc.
+            .chat-msg.user
+              .d-flex.align-items-center
+                %span.msg-avatar
+                  %img.avatar.avatar-lg{src: "/admin/images/avatar/2.jpg"}/
+                .mx-10
+                  %a.text-dark.hover-primary.fw-bold{href: "#"} Mayra Sibley
+                  %p.text-muted.fs-12.mb-0 40 seconds
+              .cm-msg-text
+                Nice to meet you Anne.
+                %br>/
+                How can i help you?
+          / chat-log
+        .chat-input
+          %form
+            %input#chat-input{placeholder: "Send a message...", type: "text"}/
+            %button#chat-submit.chat-submit{type: "submit"}
+              %span.icon-Send.fs-22
+    / Page Content overlay
+    / Vendor JS
+    %script{src: "/admin/main/js/vendors.min.js"}
+    %script{src: "/admin/main/js/pages/chat-popup.js"}
+    %script{src: "/admin/assets/icons/feather-icons/feather.min.js"}
+    %script{src: "/admin/assets/vendor_components/datatable/datatables.min.js"}
+    %script{src: "/admin/main/js/pages/data-table.js"}
+    / Crypto Admin App
+    %script{src: "/admin/main/js/template.js"}
+  / Mirrored from crypto-admin-templates.multipurposethemes.com/sass/bs5/main/members_list.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 11 Oct 2022 15:08:40 GMT

@@ -42,4 +42,8 @@ class User < ApplicationRecord
       Rails.application.secrets.secret_key_base
     )
   end
+
+  def name
+    "#{first_name} #{last_name}"
+  end
 end

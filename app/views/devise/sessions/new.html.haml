@@ -1,0 +1,72 @@
+!!!
+%html{lang: "en"}
+  / Mirrored from crypto-admin-templates.multipurposethemes.com/sass/bs5/main/auth_login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 11 Oct 2022 15:10:21 GMT
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{charset: "utf-8"}/
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
+    %meta{content: "", name: "description"}/
+    %meta{content: "", name: "author"}/
+    %link{href: "https://crypto-admin-templates.multipurposethemes.com/sass/bs5/images/favicon.ico", rel: "icon"}/
+    %title Talents Verse
+    / Vendors Style
+    %link{href: "/admin/main/css/vendors_css.css", rel: "stylesheet"}/
+    / Style
+    %link{href: "/admin/main/css/style.css", rel: "stylesheet"}/
+    %link{href: "/admin/main/css/skin_color.css", rel: "stylesheet"}/
+  %body.hold-transition.theme-primary.bg-img{style: "background-image: url(../images/auth-bg/bg-1.jpg)"}
+    .container.h-p100
+      .row.align-items-center.justify-content-md-center.h-p100
+        .col-12
+          .row.justify-content-center.g-0
+            .col-lg-5.col-md-5.col-12
+              .bg-white.rounded10.shadow-lg
+                .content-top-agile.p-20.pb-0
+                  %h2.text-primary Let's Get Started
+                  %p.mb-0 Sign in to continue to Talents Verse.
+                .p-40
+                  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+                    .form-group
+                      .input-group.mb-3
+                        %span.input-group-text.bg-transparent
+                          %i.ti-user
+                        = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control ps-15 bg-transparent"
+                    .form-group
+                      .input-group.mb-3
+                        %span.input-group-text.bg-transparent
+                          %i.ti-lock
+                        = f.password_field :password, autocomplete: "current-password", class: "form-control ps-15 bg-transparent"
+                    .row
+                      .col-6
+                        .checkbox
+                          %input#basic_checkbox_1{type: "checkbox"}/
+                          %label{for: "basic_checkbox_1"} Remember Me
+                      / /.col
+                      .col-6
+                        .fog-pwd.text-end
+                          %a.hover-warning{href: "javascript:void(0)"}
+                            %i.ion.ion-locked
+                            Forgot pwd?
+                          %br/
+                      / /.col
+                      .col-12.text-center
+                        = f.submit "SIGN IN", class: "btn btn-danger mt-10"
+                      / /.col
+                  .text-center
+                    %p.mt-15.mb-0
+                      Don't have an account?
+                      = link_to "Sign up", new_registration_path(resource_name), class: 'text-warning ms-5'
+              .text-center
+                %p.mt-20.text-white - Sign With -
+                %p.gap-items-2.mb-20
+                  %a.btn.btn-social-icon.btn-round.btn-facebook{href: "#"}
+                    %i.fa.fa-facebook
+                  %a.btn.btn-social-icon.btn-round.btn-twitter{href: "#"}
+                    %i.fa.fa-twitter
+                  %a.btn.btn-social-icon.btn-round.btn-instagram{href: "#"}
+                    %i.fa.fa-instagram
+    / Vendor JS
+    %script{src: "/admin/main/js/vendors.min.js"}
+    %script{src: "/admin/main/js/pages/chat-popup.js"}
+    %script{src: "/admin/assets/icons/feather-icons/feather.min.js"}

@@ -1,30 +1,53 @@
-- if user_signed_in? && current_user.admin?
+.content-wrapper
   .container-full
+    / Content Header (Page header)
+    .content-header
+      .d-flex.align-items-center
+        .me-auto
+          %h4.page-title Members List
+          .d-inline-block.align-items-center
+            %nav
+              %ol.breadcrumb
+                %li.breadcrumb-item
+                  %a{href: "#"}
+                    %i.mdi.mdi-home-outline
+                %li.breadcrumb-item{"aria-current" => "page"} Members
+                %li.breadcrumb-item.active{"aria-current" => "page"} Members List
+    / Main content
     %section.content
       .row
         .col-12
           .box
-            .box-header.with-border
-              %h4.box-title Users
-            .box-body.no-padding
+            .box-body
               .table-responsive
-              %table
-                %thead
-                  %tr
-                    %th Email
-                    %th First Name
-                    %th Last Name
-                    %th Username
-                    %th Mobile
-                    %th Daily News
-                    %th Actions
-                %tbody
-                  - @users.each do |user|
+                %table#example5.table.table-hover
+                  %thead.d-none
                     %tr
-                      %td= user.email
-                      %td= user.first_name
-                      %td= user.last_name
-                      %td= user.username
-                      %td= user.mobile
-                      %td= user.daily_news
-                      %td= link_to 'Show', user_path(user.id)
+                      %th
+                      %th
+                      %th
+                      %th
+                      %th
+                  %tbody
+                    - @users.each do |user|
+                      %tr
+                        %td.w-20
+                          %i.fa.fa-square-o.pt-15
+                        %td.w-20
+                          %i.fa.fa-star.text-primary
+                        %td.w-60
+                          %a.avatar.avatar-lg.status-success{href: "#"}
+                            %img{alt: "...", src: "/admin/images/avatar/1.jpg"}/
+                        %td.w-300
+                          %p.mb-0
+                            %a{href: "#"}
+                              %strong
+                                = user.name
+                            %small.sidetitle
+                              = user.email
+                          %p.mb-0
+                            = user.username
+                        %td
+                          %nav.nav.mt-2
+                            = link_to user_path(user.id), class: 'nav-link' do
+                              %i.fa.fa-facebook

@@ -1,3 +1,19 @@
+IP: 185.25.164.82 (login via SSH)
+User: root
+Password: THS12345
+
+ssh root@185.25.164.82
+
+
+RAILS_ENV=production bundle exec rails assets:precompile
+
+
+sudo passenger-config restart-app
+
+
+=========================================
+
+
 05/08/2022
 
 api 1 :
@@ -100,11 +116,7 @@ https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/apac
 
 
 ------------------
-IP: 185.25.164.82 (login via SSH)
-User: root
-Password: THS12345
 
-ssh root@185.25.164.82
 
 -----
 
@@ -314,3 +326,5 @@ userid/posts/post-id/
 - postid-datetime-blr
 
 same for profile
+
+user_id/profiles/user_id-datetime-display-image.extension

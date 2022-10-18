@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root to: 'demos#index'
 
-  devise_for :users
+  devise_for :users, path: 'admin'
+
   resources :users
   resources :posts
   resources :categories
