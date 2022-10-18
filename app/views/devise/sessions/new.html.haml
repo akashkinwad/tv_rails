@@ -15,7 +15,8 @@
     / Style
     %link{href: "/admin/main/css/style.css", rel: "stylesheet"}/
     %link{href: "/admin/main/css/skin_color.css", rel: "stylesheet"}/
-  %body.hold-transition.theme-primary.bg-img{style: "background-image: url(../images/auth-bg/bg-1.jpg)"}
+    = javascript_importmap_tags
+  %body.hold-transition.theme-primary.bg-img{style: "background-image: url(images/auth-bg/bg-1.jpg)"}
     .container.h-p100
       .row.align-items-center.justify-content-md-center.h-p100
         .col-12
