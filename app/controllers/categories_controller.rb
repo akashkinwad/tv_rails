@@ -83,7 +83,8 @@ class CategoriesController < ApplicationController
 
     def authenticate_admin
       unless current_user.admin?
-        redirect_to root_path, notice: 'You are not authorized to perform this action'
+        sign_out(current_user)
+        redirect_to new_user_session_path, notice: 'You are not authorized to perform this action'
       end
     end
 

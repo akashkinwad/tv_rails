@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'demos#index'
+  root to: 'users#index'
 
   devise_for :users, path: 'admin'
 

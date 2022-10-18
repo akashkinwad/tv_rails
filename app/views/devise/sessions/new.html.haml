@@ -1,6 +1,5 @@
 !!!
 %html{lang: "en"}
-  / Mirrored from crypto-admin-templates.multipurposethemes.com/sass/bs5/main/auth_login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 11 Oct 2022 15:10:21 GMT
   %head
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{charset: "utf-8"}/
@@ -28,6 +27,7 @@
                   %p.mb-0 Sign in to continue to Talents Verse.
                 .p-40
                   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+                    = render "devise/shared/error_messages", resource: resource
                     .form-group
                       .input-group.mb-3
                         %span.input-group-text.bg-transparent
