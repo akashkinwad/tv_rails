@@ -21,7 +21,7 @@
           / Profile Image
           .box
             .box-body.box-profile
-              %img.rounded.img-fluid.mx-auto.d-block.max-w-150{alt: "User profile picture", src: "#{@user.image_url}"}/
+              %img.rounded.img-fluid.mx-auto.d-block.max-w-150{alt: "User profile picture", src: "#{@user.image_url ? @user.image_url : '/admin/images/card/1.jpg'}"}/
               %h3.profile-username.text-center.my-10
                 = @user.name
               %h4.text-center.mt-0
@@ -51,9 +51,6 @@
                     %h5.media.media-single.p-15
                       %i.fa.fa-arrow-circle-o-right.me-10
                       %span.title Deposit
-                    %h5.media.media-single.p-15
-                      %i.fa.fa-arrow-circle-o-right.me-10
-                      %span.title Reports
                     %h5.media.media-single.p-15
                       %i.fa.fa-arrow-circle-o-right.me-10
                       %span.title Services
@@ -105,17 +102,6 @@
                           %span.text-danger Johen Doe
                       %p.text-end.pull-right
                         %span.badge.badge-sm.badge-danger.mb-10 sell
-                        = succeed "0.12458921" do
-                          %br/
-                    %h5.media.media-single.py-10.px-0.w-p100.justify-content-between
-                      %p
-                        %i.fa.fa-circle.text-success.pe-10.fs-12>
-                        Deal number 1548
-                        %span.subtitle.ps-20.mt-10
-                          by
-                          %span.text-success Johen Doe
-                      %p.text-end.pull-right
-                        %span.badge.badge-sm.badge-success.mb-10 sell
                         = succeed "0.12458921" do
                           %br/
             / /.box-body
@@ -215,5 +201,81 @@
               / /.row
             / /.box-body
           / /.box
+      .row.fx-element-overlay
+        .col-12
+          .card
+            .card-header
+              %h4.card-title Profile Image
+        .col-md-12.col-lg-4
+          .box
+            .fx-card-item
+              .fx-card-avatar.fx-overlay-1
+                %img{alt: "user", src: "#{@user.image_url ? @user.image_url : '/admin/images/card/1.jpg'}"}/
+                .fx-overlay
+                  %ul.fx-info
+                    %li
+                      %a.btn.default.btn-outline.image-popup-vertical-fit{href: "#{@user.image_url}"}
+                        %i.ion-search
+                    %li
+                      %a.btn.default.btn-outline{href: "javascript:void(0);"}
+                        %i.ion-link
+              .fx-card-content
+                %h3.box-title Maical Luka
+                %small Managing Director
+                %br/
+          / /.box
+
+      .row.fx-element-overlay
+        .col-12
+          .card
+            .card-header
+              %h4.card-title Posts
+      .row
+        - @posts.each do |post|
+          .col-6.col-md-6.col-lg-4.col-xl-3
+            .box.box-body.pull-up
+              .flexbox.align-items-center
+                %label.toggler.toggler-yellow
+                  %input{checked: "checked", type: "checkbox"}/
+                  %i.fa.fa-star
+                .dropdown
+                  %a{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", href: "#"}
+                    %i.ion-android-more-vertical
+                  .dropdown-menu.dropdown-menu-end
+                    = link_to user_path(post.user_id), class: 'dropdown-item' do
+                      %i.fa.fa-fw.fa-user
+                      User Profile
+                    %a.dropdown-item{href: "#"}
+                      %i.fa.fa-fw.fa-comments
+                      Messages
+                    %a.dropdown-item{href: "#"}
+                      %i.fa.fa-fw.fa-phone
+                      Call
+                    .dropdown-divider
+                    %a.dropdown-item{href: "#"}
+                      %i.fa.fa-fw.fa-remove
+                      Remove
+              .pt-3
+                %img.rounded.my-10{alt: "", src: "#{post.url ? post.url : '/admin/images/card/1.jpg'}"}/
+                %h3.m-0
+                  %a{href: "#"}
+                    = post.title
+                %span
+                  = @user.name
+                .bt-1.py-10.mt-10
+                  %p.mb-0
+                    = post.hashtag
+                .bt-1.py-10.mt-10
+                  %p.mb-0
+                    = post.description
+                .mt-1
+                  %a.btn.btn-icon-rounded.btn-facebook{href: "#", target: "_blank"}
+                    %i.fa.fa-facebook
+                  %a.btn.btn-icon-rounded.btn-twitter{href: "#", target: "_blank"}
+                    %i.fa.fa-twitter
+                  %a.btn.btn-icon-rounded.btn-instagram{href: "#", target: "_blank"}
+                    %i.fa.fa-instagram
+                  %a.btn.btn-icon-rounded.btn-vimeo{href: "#", target: "_blank"}
+                    %i.fa.fa-vimeo
     / /.content
 / /.content-wrapper

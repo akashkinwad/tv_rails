@@ -1,29 +1,65 @@
-- if user_signed_in? && current_user.admin?
+.content-wrapper
   .container-full
+    / Content Header (Page header)
+    .content-header
+      .d-flex.align-items-center
+        .me-auto
+          %h4.page-title Posts Grid
+          .d-inline-block.align-items-center
+            %nav
+              %ol.breadcrumb
+                %li.breadcrumb-item
+                  %a{href: "#"}
+                    %i.mdi.mdi-home-outline
+                %li.breadcrumb-item{"aria-current" => "page"} Posts
+                %li.breadcrumb-item.active{"aria-current" => "page"} Posts Grid
+    / Main content
     %section.content
       .row
-        .col-12
-          .box
-            .box-header.with-border
-              %h4.box-title Posts
-            .box-body.no-padding
-              .table-responsive
-              %table
-                %thead
-                  %tr
-                    %th Title
-                    %th Description
-                    %th Category
-                    %th Hashtags
-                    %th Attachment
-                    %th Actions
-                %tbody
-                  - @posts.each do |post|
-                    %tr
-                      %td= post.title
-                      %td= post.description
-                      %td= post.category
-                      %td= post.hastag
-                      %td
-                        %img{src: post.url, width: '50', height: '50'}
-                      %td= link_to 'Show', post_path(post.id)
+        - @posts.each do |post|
+          .col-6.col-md-6.col-lg-4.col-xl-3
+            .box.box-body.pull-up
+              .flexbox.align-items-center
+                %label.toggler.toggler-yellow
+                  %input{checked: "checked", type: "checkbox"}/
+                  %i.fa.fa-star
+                .dropdown
+                  %a{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", href: "#"}
+                    %i.ion-android-more-vertical
+                  .dropdown-menu.dropdown-menu-end
+                    = link_to user_path(post.user_id), class: 'dropdown-item' do
+                      %i.fa.fa-fw.fa-user
+                      User Profile
+                    %a.dropdown-item{href: "#"}
+                      %i.fa.fa-fw.fa-comments
+                      Messages
+                    %a.dropdown-item{href: "#"}
+                      %i.fa.fa-fw.fa-phone
+                      Call
+                    .dropdown-divider
+                    %a.dropdown-item{href: "#"}
+                      %i.fa.fa-fw.fa-remove
+                      Remove
+              .pt-3
+                %img.rounded.my-10{alt: "", src: "#{post.url ? post.url : '/admin/images/card/1.jpg'}"}/
+                %h3.m-0
+                  %a{href: "#"}
+                    = post.title
+                %span
+                  = post.user.name
+                .bt-1.py-10.mt-10
+                  %p.mb-0
+                    = post.hashtag
+                .bt-1.py-10.mt-10
+                  %p.mb-0
+                    = post.description
+                .mt-1
+                  %a.btn.btn-icon-rounded.btn-facebook{href: "#", target: "_blank"}
+                    %i.fa.fa-facebook
+                  %a.btn.btn-icon-rounded.btn-twitter{href: "#", target: "_blank"}
+                    %i.fa.fa-twitter
+                  %a.btn.btn-icon-rounded.btn-instagram{href: "#", target: "_blank"}
+                    %i.fa.fa-instagram
+                  %a.btn.btn-icon-rounded.btn-vimeo{href: "#", target: "_blank"}
+                    %i.fa.fa-vimeo
+    / /.content
