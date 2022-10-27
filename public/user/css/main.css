@@ -1,0 +1,1536 @@
+
+.heading{
+    font-weight: 600;
+    font-size: 30px;
+}
+.left-line{
+    background: rgb(255,0,61);
+    background: linear-gradient(to left, #ffa439 0%, rgba(255, 0, 61, .22) 50%, rgba(255, 0, 61, 0) 100%);
+    height: 5px;
+    /* max-width: 300px; */
+    border-radius: 5px;
+}
+.right-line{
+    background: rgb(255,0,61);
+    background: linear-gradient(to right, #ffa439 0%, rgba(255, 0, 61, .22) 50%, rgba(255, 0, 61, 0) 100%);
+    height: 5px;
+    /* max-width: 300px; */
+    border-radius: 5px;
+}
+
+.bg-1{
+    background-image: url('../img/default/Talentum-bg.png');
+    background-repeat: no-repeat;
+    background-size: 380px auto;
+    background-position: left top;
+
+}
+.bg-2{
+    background-image: url('../img/default/bg-2.png');
+    background-repeat: repeat;
+    background-size: 140% auto;
+}
+.bg-2-overlay{
+    position: relative;
+    z-index: 0;
+}
+.bg-2-overlay::before{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: -1;
+}
+.bg-light-1{
+    background-color: rgba(233 233 233 / 27%);
+}
+.title-1 p{
+    font-size: 30px;
+}
+.title-1 p span{
+    font-weight: 600;
+}
+.desc-1 p{
+    font-size: 18px;
+    line-height: 22px;
+}
+/* Main Slider START */
+.SL_Box{
+    width: 100%;
+    height: 280px;
+    background: #eee;
+    /* border: 2px solid rgb(151, 205, 255); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 40px;
+    box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.25);
+    /* transition: width 0.1s linear; */
+}
+.SL_Box span,
+.SL_Box strong{
+    font-size: 14px;
+}
+.slider-Outer .slick-track{
+    display: flex;
+    align-items: center;
+}
+.slider-Outer .slick-center .SL_Box{
+    width: 260px;
+    height: 320px;
+}
+
+.text-box{padding: 0.75rem 1rem !important;}
+.slider-Outer .slick-center .text-box{padding: 1rem !important;}
+
+.slider-Outer .slick-track{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.slider-Outer .slick-slide {
+    margin-left:15px;
+}
+
+.slider-Outer .slick-list {
+    margin-left:-15px;
+}
+
+.slider-Outer .slick-prev:before, 
+.slider-Outer .slick-next:before{
+    background: #FF003D;
+    background: -webkit-linear-gradient(to bottom, #FF003D 0%, #FFA439 100%);
+    background: -moz-linear-gradient(to bottom, #FF003D 0%, #FFA439 100%);
+    background: linear-gradient(to bottom, #FF003D 0%, #FFA439 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 40px;
+}
+.slider-Outer .slick-next {right: -5px;}
+.slider-Outer .slick-prev {left: -5px;}
+
+.img-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    background-color: #FFFA83;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+}
+.img-box img{
+    width: calc(100% - 40px);
+}
+.text-box {
+    background-color: #fff;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    box-shadow: 0px -4px 12px -4px #bdbdbd;
+}
+.SL_Box .like-icon{
+    width: 18px;
+    height: 16px;
+    margin-left: 3px;
+}
+/* Main Slider CLOSE */
+
+
+.MPlace-item{
+    width: 320px;
+}
+.MPlace-outer .MPlace-img{
+    width: auto;
+    height: 80px;
+}
+/* .MPlace-outer .get-started-img{
+    width: 65px;
+    height: auto;
+} */
+
+.category-item img{
+    width: 200px;
+    height: auto;
+}
+.category-item{
+    /* box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.25); */
+}
+
+.TC-outer{
+    max-width: 1230px;
+}
+.TC-item{
+    width: 360px;
+    height: 280px;
+    box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+}
+.TC-details{
+    line-height: 16px;
+}
+.TC-img img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: top center;
+}
+
+@media (max-width: 888px) {
+    
+    .TC-outer .TC-item{
+        margin-right: 15px !important;
+    }
+    .TC-outer .TC-item:nth-child(2n+2){
+        margin-right: 0 !important;
+    }
+}
+
+@media (max-width: 620px) {
+    .TC-outer .TC-item{
+        margin-right: 0 !important;
+    }
+    .TC-outer{
+        flex-direction: column !important;
+    }
+}
+
+.banner-1{
+    height: 380px;
+    background: rgb(236,43,39);
+    background: linear-gradient(90deg, rgba(236,43,39,1) 0%, rgba(255,64,59,1) 34%, rgba(255,108,59,1) 63%, rgba(255,161,57,1) 100%);
+    margin-top: 80px;
+}
+@media (min-width: 1200px) {
+    .banner-1 .SL_Box{
+        width: 320px;
+        height: 380px;
+        margin-top: -70px;
+    }
+}
+
+.banner-1-heading > span{
+    color: #fff;
+    font-size: 50px;
+    font-weight: 900;
+}
+
+.heading-2{
+    color: #fff;
+    font-size: 30px;
+    font-weight: 900;
+}
+.banner-1-box span{
+    color: #fff;
+    font-size: 16px;
+}
+
+@media (min-width: 1280px) {
+    .banner-1-box{
+        width: 420px;
+    }
+    .banner-1-heading{
+        margin-bottom: 35px;
+    }
+}
+
+.banner-1-img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #84D3FF;
+}
+
+.banner-1-box{
+    border: 5px solid #fff;
+    border-radius: 20px;
+}
+.btn-outer-1{
+    margin-top:10px !important;
+}
+.closeIcon{
+    position: absolute;
+    right: 10px;
+    top: 23px;
+}
+.closeIcon img{
+    height: 25px !important;
+    transform: rotate(180deg);
+    cursor: pointer;
+}
+.mob-menu .logo-img{
+    height: 41px;
+}
+.amt-select{
+    width:120px !important;
+}
+/* ----responsive css---- */
+@media all and (max-width:600px){
+    .BrowseInner{
+        position: relative;
+    }
+    .sideFilter{
+        position: absolute !important;
+        background-color: #fff;
+        bottom: 0px;
+        top: 0px;
+    }
+    .browseOurNft .SL_Box{
+        width:calc(100% - 20px) !important;
+        height:auto !important;
+    }
+    .BrowseBoxOuter{
+        width:100% !important;
+    }
+    .BrowseBoxOuter{
+        margin-bottom:20px !important;
+    }
+    .create_view .input-grp{
+        font-size: 14px !important;
+        height: 45px !important;
+    }
+    .create_view .input-grup .SL_Box{
+        width:100% !important;
+    }
+    .head_most{
+        margin-top:0px !important;
+    }
+    .TC-outerMob-view .TC-item{
+        width:100%;
+    }
+    .footer-link{
+        display: inherit !important;
+        text-align: center;
+        font-size: 15px !important;
+        justify-content: center;
+    }
+
+    .talenVerseOuter{
+        width: calc(100% - 30px) !important;
+    }
+    .tVerse-img{
+        width: 130px !important;
+        height: 130px !important;
+    }
+    .heading-3{
+        font-size: 28px !important;
+    }
+    .sp-label{
+        font-size: 16px !important;
+        line-height: 20px !important;
+    }
+    .tText , .spNum-label{
+        font-size: 16px !important;
+    }
+    .tVerseCheck-img{
+        right: 9px !important;
+        bottom: 15px !important;
+        height: 24px !important;
+    }
+    .tInnerImg {
+        height: 20px !important;
+    }
+    #tab-content .moreBox .SL_Outer_Box{
+        width: calc(100% - 30px) !important;
+    }
+    .tsContainer .rightSection{
+        position: absolute !important;
+        background-color: #fff;
+        width: 300px !important;
+        right: -304px;
+        box-shadow: -6px 0px 16px -9px rgb(0 0 0 / 25%);
+        bottom:0px;
+        top:0px;
+        height:initial !important;
+        -webkit-transition: width 0.3s;
+        transition: width 0.3s;
+    }
+    .tsContainer-inner{
+        overflow: hidden;
+    }
+    .SL_Outer_Box .SL_Box{
+        min-height:220px;
+    }
+    .leftMainContainer{
+        padding-left:0px !important;
+    }
+    
+}
+@media all and (max-width:424px){
+    .banner-1-img{
+        width: 90px;
+        height: 90px;
+    }
+    .heading-2{
+        font-size: 22px;
+    }
+    .BrowseInner .sideFilter{
+        width: 245px;
+    }
+    .sideFilterInner .seatch-box .search-label{
+        width: 210px;
+    }
+    .type-label{
+        display:none;
+    }
+    .type-img{
+        margin-right:0px !important;
+    }
+    .type-btn{
+        display:flex;
+        justify-content: center;
+    }
+    .settingIcn{
+        right: -62px !important;
+    }
+    .settingIcn img {
+        width: 33px !important;
+        height: 33px !important;
+    }
+    .tVerse-img{
+        width: 90px !important;
+        height: 90px !important;
+    }
+    .sp-label{
+        font-size: 12px !important;
+    }
+    .heading-3{
+        font-size: 24px !important;
+        margin-bottom:0px !important;
+    }
+    .pr-lable{
+        font-size: 35px !important;
+    }
+    .pr-img{
+        width: 54px !important;
+    }
+    .cp-label{
+        font-size: 19px !important;
+    }
+    .prNum {
+        font-size: 16px !important;
+    }
+    .avgPr-label {
+        font-size: 25px !important;
+    }
+
+}
+@media all and (min-width:601px){
+    .filterDiv{
+        display:none;
+    }
+}
+@media all and (min-width:769px){
+    .TC-outerMob-view{
+        display:none !important;
+    }
+}
+@media all and (max-width:769px){
+    .TC-outerDesk-view{
+        display:none !important;
+    }
+    .price-grp{
+        width:100% !important;
+    }
+}
+@media all and (max-width:768px){
+   
+    .banner-1{
+        margin-top:0px;
+        display: block !important;
+        height: 100%;
+        padding: 20px 0px;
+    }
+    .banner-1 .SL_Box{
+        width: calc(100% - 40px);
+        margin: auto;
+        height: auto !important;
+    }
+    .banner-1-left{
+        align-items:center !important;
+    }
+    .banner-1-heading{
+        height: auto;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .banner-1-heading > span{
+        font-size: 40px;
+    }
+    .banner-1-right{
+        align-items:center !important;
+    }
+    .rightSection{
+        width:300px !important;
+    }
+    #tab-content .lessBox .SL_Outer_Box{
+        width: calc(100% - 30px) !important;
+    }
+    #tab-content .moreBox .SL_Outer_Box{
+        width: calc(50% - 30px)!important;
+    }
+    .openFiltertop{
+        right:0px !important;
+    }
+    
+}
+@media all and (max-width:990px){
+    .mob-menu{
+        position: fixed;
+        left: -500px;
+        bottom: 0px;
+        top:0px;
+        background-color: #Fff;
+        width: 100%;
+        z-index: 10000;
+        width: 300px;
+        /* transition: width 0.6s !important; */
+        padding-left: 10px;
+        transition: ease 0.3s all !important;
+    }
+    .mob-menu .menu-item{
+        justify-content: flex-start !important;
+        padding: 10px 10px !important;
+        width: 100%;
+        border-bottom: 2px solid #a5a5a56b;
+    }
+    .mob-menu .menu-item.active span, .mob-menu .menu-item:hover span{
+        width: 100%;
+    }
+    .mob-menu .menu-item.active, .mob-menu .menu-item:hover{
+        border-color: #ff7b39;
+    }
+    .mob-menu .menu-item.active span:after{
+        display:none;
+    }
+    .mob-menu .logo-container{
+        padding: 10px 0px 10px 10px;
+        box-shadow: 0px 4px 4px -4px #bdbdbd;
+    }
+    .ShowMenu{
+        left:0px;
+        transition: width 0.3s;
+    }
+}
+@media all and (min-width:991px){
+    .mob-menu{
+        display:none;
+    }
+}
+/* background: linear-gradient(to right, #FF003D 0%, #FFA439 100%); */
+@media all and (max-width:1023px){
+    .create-sec{
+        flex-direction: column-reverse;
+    }
+    .create-left , .create-right{
+        width:calc(100% - 30px);
+        margin:auto;
+    }
+    .create-right .heading-outer{
+        margin-top:0px !important;
+    }
+    .create-left .input-grup{
+        width:100%;
+    }
+    .create_view .input-grup .SL_Box{
+        /* width:100% !important; */
+        margin:auto !important
+    }
+    .text-box-left{
+        align-items: start !important;
+    }
+    #tabNav{
+        flex-wrap: nowrap;
+        margin-bottom:25px;
+    }
+    .tsmenu-items{
+        flex-direction: column;
+    }
+}
+@media all and (max-width:768px) and (min-width:600px){
+    .banner-1 .SL_Box {
+        width: 390px;
+        margin: auto;
+        height: 420px !important;
+    }
+}
+@media all and (max-width:1300px){
+    .BrowseBox{
+        width: calc(33% - 25px) !important;
+    }
+    .hideFilter .BrowseBox{
+        width: calc(25% - 25px) !important;
+    }
+    .lessBox .SL_Outer_Box{
+        width: calc(50% - 30px) !important;
+    }
+    .moreBox .SL_Outer_Box {
+        width: calc(33% - 30px)!important;
+    }
+    .leftMainContainer .SL_Outer_Box .SL_Box{
+        min-height: 210px;
+    }
+}
+@media all and (max-width:769px){
+    .BrowseBox{
+        width: calc(100% - 25px) !important;
+    }
+    .hideFilter .BrowseBox{
+        width: calc(50% - 25px) !important;
+    }
+    .settingIcn{
+        padding:8px 16px !important
+    }
+    .settingIcn img{
+        height:43px !important;
+    }
+    .settingIcn img{
+        -webkit-animation:spin 4s linear infinite;
+        -moz-animation:spin 4s linear infinite;
+        animation:spin 4s linear infinite;
+    }
+    @keyframes spin { 
+        100% { 
+            -webkit-transform: rotate(360deg); 
+            transform:rotate(360deg); 
+        } 
+    }
+}
+@media all and (max-width:600px){
+    .BrowseBox{
+        width: calc(100% - 25px) !important;
+    }
+    .hideFilter .BrowseBox{
+        width: calc(100% - 25px) !important;
+    }
+}
+/* ---- responsive css---- */
+
+
+/* ------Price slider style----- */
+
+
+.price-range-slider {
+    width: 100%;
+    float: left;
+    padding: 10px 5px;
+  }
+  .price-range-slider .range-value {
+    margin: 0;
+  }
+  .price-range-slider .range-value input {
+    width: 100%;
+    background: none;
+    color: #000;
+    font-size: 16px;
+    font-weight: initial;
+    box-shadow: none;
+    border: none;
+    margin: 20px 0 20px 0;
+  }
+  .price-range-slider .range-bar {
+    border: none;
+    background: #8D8D8D;
+    height: 5px;
+    width: 96%;
+    margin-left: 8px;
+  }
+  .price-range-slider .range-bar .ui-slider-range {
+    background: rgb(247,141,55);
+    background: linear-gradient(135deg, rgba(247,141,55,1) 0%, rgba(255,8,61,1) 100%);
+  }
+  .price-range-slider .range-bar .ui-slider-handle {
+    border: none;
+    border-radius: 25px;
+    background: #fff;
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+    height: 17px;
+    width: 17px;
+    top: -0.52em;
+    cursor: pointer;
+  }
+  .price-range-slider .range-bar .ui-slider-handle + span {
+    background: #fff;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  /*--- /.price-range-slider ---*/
+
+/* Main Slider START */
+.slider-2-container .SL_Box{
+    /* width: 260px;
+    height: 320px; */
+}
+.img-box{
+    border: 2px solid #ec2b27;
+    border-bottom: none;
+}
+.browseOurNft .SL_Box{
+    /* width: 301px;
+    height: 360px; */
+    /* width: 289px;
+    height: 360px; */
+    width: auto;
+    height: auto;
+}
+.BrowseBox{
+    margin-bottom: 25px;
+    margin-left:20px;
+}
+.BrowseBoxOuter{
+    width: calc(100% - 276px);
+}
+.sideFilter{
+    width: 340px;
+    box-shadow:10px -4px 10px -5px rgb(0 0 0 / 25%);
+    left:0px;
+    -webkit-transition: width 0.3s;
+    transition: width 0.3s;
+}
+.seatch-box .search-label{
+    width: 300px;
+}
+.settingIcn{
+    top:0;
+    right:-70px;
+    background-color: #fff;
+    box-shadow: 11px -2px 12px -6px rgb(0 0 0 / 25%);
+    padding: 12px 15px;
+    border-radius: 0px 40px 40px 0px;
+    cursor: pointer;
+}
+.settingIcn img{
+    width: 40px;
+    height: 40px;
+}
+.hideFilter .sideFilter{
+    left:0px;
+    -webkit-transition: width 0.3s;
+    transition: width 0.3s;
+    width: 0;
+    padding:0px !important;
+}
+.hideFilter .sideFilterInner{
+    display:none;
+}
+.hideFilter .BrowseBoxOuter{
+    width:100%;
+}
+.BrowseBox{
+    width: calc(25% - 25px);
+}
+.hideFilter .BrowseBox{
+    width: calc(20% - 25px);
+}
+.color-3{
+    background: linear-gradient(to right, #FF003D 0%, #FFA439 23%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.side-label{
+    font-size: 18px;
+    font-weight: 500;
+}
+.select-filed{
+    box-shadow: 0px 4px 4px 0 rgb(0 0 0 / 25%);
+    height: 45px;
+    border-radius: 45px;
+    padding: 0 15px;
+    border:0px;
+    font-size: 14px;
+    color: #7c7979;
+    font-size: 17px;
+    font-weight: 500;
+}
+.form-select:focus{
+    border-color:initial;
+    box-shadow:0px 4px 4px 0 rgb(0 0 0 / 25%);
+}
+.toggle_sec{
+    background-color: #EAEAEA;
+    border-radius: 30px;
+}
+.t-btn{
+    padding: 2px 20px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    /* font-size: 16px; */
+}
+.type-btn{
+    padding: 7px 20px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+}
+.toggle_sec .active{
+    background-color:#fff;
+    box-shadow: 0px 2px 2px 0 rgb(0 0 0 / 24%);
+}
+.toggle_sec .left-btn.active{
+    /* box-shadow: 0px 4px 4px 0 rgb(0 0 0 / 12%); */
+    border-radius: 30px 0px 0px 30px;
+}
+.toggle_sec .right-btn.active{
+    /* box-shadow: 0px 4px 4px 0 rgb(0 0 0 / 12%); */
+    border-radius: 0px 30px 30px 0px;
+}
+.type-img img{
+    height:30px;
+}
+.fu-images img{
+    width: 45px;
+    height: 45px;
+    margin: 0px 3px;
+    border: 2px solid red;
+    padding: 6px;
+    border-radius: 50%;
+}
+.multirange.ghost{
+    width:100%;
+}
+
+
+
+
+
+
+.create_view{
+    /* min-height: calc(100vh - 196px); */
+}
+.input-grp{
+    height: 45px;
+    border-radius: 45px;
+    padding: 0 15px;
+    width: 100%;
+    background-color: #EAEAEA;
+}
+.input-field{
+    border: none;
+    outline: none;
+    text-indent: 10px;
+    background-color: #EAEAEA;
+}
+.discription-sec{
+    max-height: 100px;
+    min-height: 100px;
+    width: 100%;
+    border-radius: 20px;
+    padding: 15px 15px;
+}
+textarea {
+resize: none;
+}
+.input-grp.select-filed{
+    padding: 0px 27px;
+    box-shadow: none;
+}
+.tltm-select{
+    padding: 0px 11px !important;
+    width: 110px;
+}
+.fee-label{
+    font-weight:500;
+    font-size:16px;
+    background: linear-gradient(to right, #FF003D 0%, #FFA439 10%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.mint-btn{
+    font-size:20px;
+    padding-top: 0px;
+    padding-bottom: 0px
+}
+.input-grup .SL_Box {
+    width: 301px;
+    height: 360px;
+}
+.input-grup .img-box{
+    background-color:#fff;
+    overflow:hidden;
+}
+.input-grup .img-box img{
+    height: auto;
+    width: 150px;
+}
+.uploadedImg .file-upload{
+    display:none !important;
+}
+.uploadedImg .uploadedfile{
+    /* width: calc(100% - 40px);
+    height: 381px; */
+    width: calc(100% - 0px);
+    /* height: 410px; */
+    height:100%;
+}
+.uploadedfile{
+    display:none;
+}
+.uploadedImg .uploadedfile{
+    display:block;
+}
+.uploadedfile img{
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover;
+}
+.upload-text{
+    font-size: 20px !important;
+    line-height: 27px;
+    margin: 15px 0px; 
+    font-weight: 400;
+}
+.create-label{
+    font-size:40px;
+}
+.create_view .input-field{
+    background-color:#f1f1f1;
+    font-size: 18px;
+    font-weight:400;
+}
+.create_view .input-grp{
+    background-color:#f1f1f1;
+    font-size: 16px;
+    font-weight: 400;
+    height: 50px;
+}
+.create_view .input-grup .SL_Box{
+    width: 440px;
+    height: 582px;
+}
+.create_view .input-grup .SL_Box .text-box{
+    height: 130px;
+    align-items: start;
+    padding: 30px !important;
+}
+.create_view .input-grup .SL_Box span, .create_view .input-grup .SL_Box strong{
+    font-size: 18px;
+    color: #A1A1A1;
+}
+
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+  }
+  .mostView .SL_Box{
+    height:auto;
+  }
+  .overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    display: none;
+}
+
+
+
+/* ========profile css====== */
+.profile-sec{
+    height:auto;
+    background-image: url('../img/default/profile-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.talenVerseOuter{
+    width: 500px;
+    height: auto;
+    background-color: #fff;
+    border-radius: 20px;
+}
+.tVerse-img{
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background-color: #84D3FF;
+}
+.tVerseCheck-img{
+    position: absolute;
+    right: 19px;
+    bottom: 4px;
+    height: 30px;
+}
+.sp-label{
+    font-weight: 500;
+    font-size: 19px;
+    line-height:17px;
+}
+.spNum-label{
+    font-size:24px;
+}
+.heading-3{
+    font-size: 39px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+.tInnerImg{
+    height:30px;
+}
+.tText{
+    font-weight: 500;
+    font-size: 25px;
+}
+.tJoinText{
+    font-size: 14px;
+}
+.tsContainer{
+    /* height:600px; */
+}
+.rightSection{
+    width:400px;
+    height:600px !important;
+}
+.filterDiv img{
+    height:25px;
+}
+.filterDiv{
+    background-color: #fff;
+    box-shadow: -9px 5px 16px -7px rgb(0 0 0 / 25%);
+    padding: 10px 15px;
+    border-radius: 40px 0px 0px 40px;
+    left: -52px;
+    top: 55px;
+}
+.bt-4{
+    border-top: 4px solid;
+    border-image: linear-gradient(to right, #ff003d, #ffa439)1;
+}
+.tsmenu-items .menu-item.active span, .tsmenu-items .menu-item:hover span{
+    background: inherit !important;
+    -webkit-text-fill-color: inherit;
+}
+.closeBtn{
+    cursor:pointer;
+}
+.filterHead{
+    font-weight: bold;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #000;
+}
+.crs-pointer{
+    cursor: pointer;
+}
+.flitericon{
+    width:30px;
+    padding: 0px 2px;
+}
+.filterIcn{
+    padding: 6px;
+    border-radius: 6px;
+}
+.tsSelect{
+    border: 5px solid;
+    border-image: linear-gradient(to right, #ff003d, #ffa439)1;
+}
+.SL_Outer_Box{
+    margin: 15px 15px;
+}
+.moreBox .SL_Outer_Box{
+    width: calc(25% - 30px);
+}
+.lessBox .SL_Outer_Box{
+    width: calc(33% - 30px);
+}
+.SL_Outer_Box .SL_Box{
+    height:auto;
+}
+.filterSelectOuter{
+    border-bottom: 4px solid;
+    border-image: linear-gradient(to right, #ff003d, #ffa439)1;
+}
+.fPrice{
+    font-weight:600;
+    font-size:20px;
+    background: linear-gradient(to bottom, #FF003D 0%, #FFA439 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.price-grp{
+    width: 130px;
+    height: 45px;
+    border-radius: 45px;
+    padding: 0 15px;
+    background-color: #F6F6F6;
+}
+.price-grp input{
+    text-align:center;
+    background-color: #F6F6F6;
+}
+.price-grp input::-webkit-outer-spin-button,
+.price-grp input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.priceTo{
+    font-size: 19px;
+}
+.filterselectOuter{
+    background: linear-gradient(to right, #FF003D 0%, #FFA439 100%);
+    padding: 4px;
+    border-radius: 45px;
+}
+.filterselectOuter select , .filterselectOuter select:focus{
+    box-shadow: none;
+}
+#tab-content{
+    min-height:600px;
+}
+
+
+
+.nft_section{
+    height: calc(100vh - 148px);
+}
+.LeftSlider{
+    width:55%;
+}
+.LeftSlider{
+    height: calc(100vh - 148px);
+    background-color: #FFFA83;
+}
+.NftSlider-2{
+    height:100%;;
+}
+.Nft_img{
+    height: auto;
+    width: 100%;
+}
+.Nft_img img{
+    /* width: 100%;
+    height: auto; */
+    /* margin: auto; */
+    width: auto;
+    height: 100%;
+    margin: auto;
+}
+.LeftSlider .slick-track{
+  padding:0px;  
+}
+.LeftSlider .slick-list{
+  margin:0px !important;
+  width:100% !important;
+}
+.LeftSlider .slider-Outer .slick-next{
+    right: 50px;
+}
+.LeftSlider .slider-Outer .slick-prev{
+    left:42px;
+}
+.LeftSlider .slider-Outer .slick-slide{
+    /* margin-left:0px !important; */
+    width:initial;
+}
+.LeftSlider .slick-prev, .LeftSlider .slick-next{
+    background:rgb(255 255 255 / 0%) !important;
+}
+.LeftSlider .slick-track, .LeftSlider .slick-list, .LeftSlider .slick-slide div{
+    height: 100%;
+}
+.RightContent{
+    width: 45%;
+    height: calc(100vh - 148px);
+    overflow: hidden;
+    overflow-y: scroll;
+}
+.modHead{
+    height:auto;
+    min-height:100px;
+    background-image: url('../img/default/nft_bg.png');
+}
+.modLabel{
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 58px;
+}
+.md_bottom{
+    font-size: 31px;
+    font-weight: 400;
+}
+.md_bottom img{
+    height:50px;
+}
+.graph_sec{
+    height:277px;
+    width: 100%;
+    background-image: url(../img/default/graph1.png);
+    background-repeat: no-repeat;
+    position: relative;
+    background-position: center;
+    background-size: contain;
+}
+.graph_prg{
+    position: absolute;
+    background-image: url(../img/default/graph2.png);
+    background-repeat: no-repeat;
+    left: 1px;
+    right: 0px;
+    width: 100%;
+    height: 276px;
+    bottom: -19px;
+    background-position: center;
+    background-size: contain;
+}
+.graph_line{
+    position: absolute;
+    background-image: url(../img/default/graph3.png);
+    background-repeat: no-repeat;
+    left: 1px;
+    right: 0px;
+    width: 100%;
+    height: 260px;
+    bottom:5px;
+    background-position: center;
+    background-size: contain;
+}
+.abt-label{
+    font-weight:700;
+    font-size:45px;
+}
+.about_Sec p{
+    font-size: 24px;
+    font-weight:400;
+}
+.by-5{
+    border-top: 5px solid;
+    border-bottom: 5px solid;
+    border-image: linear-gradient(to right, #ff003d, #ffa439)1;
+}
+.cp-label{
+    font-size:30px;
+    font-weight: 700;
+    color: #B3B3B3;
+}
+.pr-lable{
+    font-size: 68px;
+    font-weight: 700;
+}
+.avg-label{
+    font-size:27px;
+    font-weight: 700;
+    color: #B3B3B3;
+}
+.pr-img{
+    width: 100px;
+    object-fit: cover;
+}
+.avgPr-label{
+    font-size:35px;
+    font-weight: 700;
+}
+.prNum{
+    font-size:27px;
+    font-weight: 300;
+}
+.avgPrImg{
+    width: 41px;
+}
+.timerStatus{
+    font-size: 32px;
+    font-weight: 700;
+}
+.mod-btn{
+    font-size:18px;
+    margin-top:7px;
+}
+.scImg{
+    position: relative;
+    background-image: url(../img/default/roundImg.png);
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.scImg img{
+ 
+}
+.scNum{
+    position: absolute;
+    bottom: -47px;
+    font-size: 18px;
+}
+.modBox{
+    width: calc(33.33% - 25px);
+    margin-bottom: 25px;
+    margin-left: 20px;
+}
+.cl-label{
+    font-size: 38px;
+    font-weight: 700;
+}
+.modBox .SL_Box{
+    height: auto;
+}
+
+@media all and (max-width:1600px){
+    .pr-lable{
+        font-size: 47px;
+    }
+    .pr-img{
+        width: 70px;
+    }
+    .cp-label{
+        font-size: 25px;
+    }
+    .avg-label{
+        font-size: 23px;
+    }
+    .avgPr-label{
+        font-size: 30px;
+    }
+    .prNum{
+        font-size: 20px;
+    }
+    .timerStatus{
+        font-size: 25px;
+    }
+    .nft_section .TC-item{
+        width: calc(50% - 20px);
+        height: auto;
+        margin: 10px !important;
+        min-height: 245px;
+    }
+
+    
+}
+@media all and (max-width:1400px){
+    .LeftSlider{
+        width: 52%;
+    }
+    .RightContent{
+        width: 48%;
+    }
+    .mod-btn{
+        font-size: 14px;
+    }
+    .scImg{
+        width: 45px;
+        height: 45px;
+    }
+    .scImg img{
+        width: 20px;
+    }
+    .about_Sec p{
+        font-size: 20px;
+    }
+    .graph_line{
+        height: 270px;
+    }
+    .graph_prg{
+        height: 250px;
+    }
+    .graph_sec{
+        height: 246px;
+    }
+    .modBox{
+        width: calc(50% - 20px);
+        margin-bottom: 18px !important;
+        margin: 10px;
+    }
+    .modBox .SL_Box{
+        height: auto;
+    }
+    
+
+
+}
+@media all and (max-width:1024px){
+    .priceStatusOuter{
+        flex-direction: column;
+        align-items: center !important;
+    }
+    .btnOuterSection{
+        flex-direction: column;
+    }
+    .nft_section .btn-outer-1{
+        margin: 0px 0px 15px 0px !important;
+    }
+    .cl-label{
+        font-size: 28px;
+    }
+    .nft_section .TC-item{
+        min-height: 211px;
+    }
+    
+}
+@media all and (min-width:769px){
+    .mobBox{
+        display:none;
+    }
+}
+@media all and (max-width:768px){
+    .nft_sectionInner{
+        flex-direction: column;
+    }
+    .Nft_img img{
+        width: auto;
+        height: 100%;
+        margin: auto;
+    }
+
+    .deskBox{
+        display:none !important;
+    }
+    .LeftSlider{
+        width: 100%;
+        height:auto;
+    }
+    .RightContent{
+        width:100%;
+        height:auto;
+        overflow:inherit;
+        overflow-y: auto;
+    }
+    .Nft_img img{
+        width: calc(100% - 40px);
+    }
+    .LeftSlider .slider-Outer .slick-prev {
+        left: 20px;
+    }
+    .LeftSlider .slider-Outer .slick-next{
+        right: 20px;
+    }
+    .nft_section .TC-item{
+        width:100%;
+        margin: 0px !important;
+    }
+    .simiOuter{
+        padding: 15px !important;
+        margin-top: 15px;
+    }
+    .mb-padding{
+        padding:15px !important;
+    }
+    .nft_section{
+        height:auto;
+    }
+    
+   
+
+}
+@media all and (max-width:768px) and (min-width:600px){
+    .btnOuterSection {
+        flex-direction: inherit;
+        justify-content: space-evenly !important;
+    }
+    .btn-outer-1{
+        flex-direction: row!important;
+    }
+    .mod-btn{
+        margin-bottom: 0px !important;
+        margin-right: 16px;
+    }
+    .nft_section .btn-outer-1{
+        margin:0px !important;
+        margin-top: 15px !important;
+    }
+}
+@media all and (max-width:600px){
+    .cl-label{
+        font-size:24px;
+    }
+    .graph_sec{
+        height: 196px;
+    }
+    .graph_prg{
+        height: 218px;
+    }
+    .graph_line{
+        height: 205px;
+    }
+    .abt-label{
+        font-size: 35px;
+    }
+    .modLabel{
+        font-size: 37px;
+        line-height: 40px;
+    }
+    .md_bottom{
+        font-size: 18px;
+    }
+    .md_bottom span{
+        margin-right:5px !important;
+    }
+    .about_Sec p{
+        text-align:justify;
+    }
+    .modHead{
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+    }
+
+}
+@media all and (max-width:800px) and (min-width:601px){
+    .graphOuter{
+        margin-top: 30px;
+    }
+    .graph_sec {
+        height: 222px !important;
+    }
+    .graph_prg {
+        height: 192px !important;
+        bottom:0px;
+    }
+    .graph_line {
+        height: 215px !important;
+    }
+}
+@media all and (max-width:1200px) and (min-width:769px){
+    .Nft_img img{
+        width: 100%;
+        height: auto;
+        margin: auto;
+    }
+}
+.slider-1.slider-Outer .slick-slide{
+    width: inherit !important
+}
+.setShare{
+    /* padding: 11px; */
+    border-radius: 14px;
+    width: auto;
+    background-color: #fff;
+    right: 50px;
+    bottom: 24px;
+    padding: 0px;
+}
+.setShareicon{
+    width: 50px;
+    padding: 10px 15px;
+}
+@media all and (max-width:769px){
+    .profile-sec{
+        flex-direction: column;
+    }
+    .setShare{
+        right: 0;
+        bottom: -13px;
+        position: inherit !important;
+    }
+}

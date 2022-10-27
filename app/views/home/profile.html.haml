@@ -1,0 +1,253 @@
+!!!
+%html{lang: "en"}
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{charset: "UTF-8"}/
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+    %link{href: "/user/css/bootstrap.min.css", rel: "stylesheet"}/
+    %link{href: "/user/css/main.css", rel: "stylesheet"}/
+    %link{href: "/user/css/common.css", rel: "stylesheet"}/
+    %link{href: "/user/fonts/fonts.css", rel: "stylesheet"}/
+    %link{href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css", rel: "stylesheet"}/
+    %link{href: "/user/slider/slick.css", rel: "stylesheet"}/
+    %link{href: "/user/slider/slick-theme.css", rel: "stylesheet"}/
+    %title TalentsVerse
+  %body
+    .overlay
+    %header
+      .container-fluid.d-flex.mt-1
+        .menu-toggler{onclick: "ShowMenu()"}
+          %img{src: "/user/img/default/menu.png"}/
+        .logo-container
+          %a{href: "/"}
+            %img.logo-img{alt: "logo", src: "/user/img/default/Logo.png"}/
+        .search-container.d-flex.justify-content-center.align-items-center.flex-1
+          .seatch-box
+            %label.d-flex.justify-content-start.align-items-center{for: "search"}
+              %img{src: "/user/img/default/search-Icon.png"}/
+              %input#search.search-input.w-100{placeholder: "Browse the Marketplace...", type: "text"}/
+        .top-menu.d-flex.flex-1.justify-content-end.align-items-center
+          .menu-items.h-100.d-none.d-lg-flex.justify-content-center.align-items-center
+            %a.menu-item.px-2.px-xl-3{href: "/home/explore", class: "#{params[:page]=='explore' ? 'active' : ''}"}
+              %span Explore
+            %a.menu-item.px-2.px-xl-3{href: "/home/stats", class: "#{params[:page]=='stats' ? 'active' : ''}"}
+              %span Stats
+            %a.menu-item.px-2.px-xl-3{href: "/home/profile", class: "#{params[:page]=='profile' ? 'active' : ''}"}
+              %span Resources
+            %a.menu-item.px-2.px-xl-3.me-3.me-xl-5{href: "/home/create", class: "#{params[:page]=='create' ? 'active' : ''}"}
+              %span Create
+          .menu-icons.d-flex.justify-content-center.align-items-center
+            .user-icon.me-4
+              %img{alt: "", src: "/user/img/default/Profile-Icon.png"}/
+            .wallet-icon
+              %img{alt: "", src: "/user/img/default/Wallet-Icon.png"}/
+        .mob-menu
+          .logo-container.d-flex.mob-logo.position-relative
+            %a{href: "#link-1"}
+              %img.logo-img{alt: "logo", src: "/user/img/default/Logo.png"}/
+            .closeIcon{onclick: "closeMenu()"}
+              %img.logo-img{alt: "logo", src: "/user/img/default/right-arrow.png"}/
+          .menu-items
+            %a.menu-item.active.px-2.px-xl-3{href: "/home/explore"}
+              %span Explore
+            %a.menu-item.px-2.px-xl-3{href: "/home/stats"}
+              %span Stats
+            %a.menu-item.px-2.px-xl-3{href: "/home/profile"}
+              %span Resources
+            %a.menu-item.px-2.px-xl-3.me-3.me-xl-5{href: "/home/create"}
+              %span Create
+    %section.profile_view
+      .container-fluid.mt-2
+        .row.profile-sec.py-4.d-flex.justify-content-center.align-items-center.position-relative
+          .talenVerseOuter.d-flex.p-4
+            .position-relative
+              %img.tVerse-img{src: "/user/img/default/img-1.png"}/
+              %img.tVerseCheck-img{src: "/user/img/default/checkImg.png"}/
+            .tVerseRigh.flex-1.d-flex.flex-column.align-items-start.ps-4
+              .d-flex.w-100.sp-label.justify-content-between
+                %span Sport | Diverse
+                %span.color-2.fw-bold.spNum-label #156
+              .text-start.heading-3.mb-4.color-2 Talentsverse
+              .text-start.d-flex.mb-2.mt-2
+                %img.tInnerImg.me-2{src: "/user/img/default/vector1.png"}/
+                .tText 0x494e...561j
+              .d-flex.w-100.justify-content-between
+                %span.tJoinText Joined | March 2022
+          .setShare.d-flex.border.position-absolute
+            %img.crs-pointer.setShareicon.border-end.pe-2{alt: "", src: "/user/img/default/setting.png"}/
+            %img.crs-pointer.setShareicon.ps-2{alt: "", src: "/user/img/default/share.png"}/
+    %section.tsContainer.bt-4
+      .d-flex.h-100.position-relative.tsContainer-inner
+        .leftSection.flex-1.border-end
+          .tsmenu-items.menu-items.d-flex.justify-content-between.align-items-center.py-3
+            #tabNav.d-flex.justify-content-center.align-items-center.nav
+              .nav-item
+                %a.menu-item.nav-link.active.px-2.px-xl-3{href: "#Collected"}
+                  %span Collected
+              .nav-item
+                %a.menu-item.nav-link.px-2.px-xl-3{href: "#Created"}
+                  %span Created
+              .nav-item
+                %a.menu-item.nav-link.px-2.px-xl-3{href: "#Favorited"}
+                  %span Favorited
+              .nav-item
+                %a.menu-item.nav-link.px-2.px-xl-3.me-3.me-xl-5{href: "#Hidden"}
+                  %span Hidden
+            .d-flex.justify-content-center.align-items-center
+              %a.menu-item.px-2.px-xl-3{href: "#link-2"}
+                %span Activity
+              %a.menu-item.px-2.px-xl-3{href: "#link-3"}
+                %span Offers
+              %a.menu-item.px-2.px-xl-3{href: "#link-4"}
+                %span Listings
+              %a.menu-item.ps-2.ps-xl-3
+                %img.closeBtn.tInnerImg.me-2{src: "/user/img/default/closeBtn.png"}/
+          #tab-content
+            .tab-container
+              .leftMainContainer.d-flex.flex-wrap.mt-2.moreBox.ps-2.pb-3
+                .SL_Outer_Box
+                  .SL_Box
+                    .img-box
+                      %img{src: "/user/img/default/img-1.png"}/
+                    .text-box.w-100.d-flex.justify-content-between
+                      .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
+                        %span.name-1 Talinhos
+                        %strong.name-2 Moderator
+                        %strong.name-3 #001
+                      .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
+                        %span.name-4 654
+                        %span.name-5.d-flex.align-items-center
+                          16,320
+                          %img.like-icon{src: "/user/img/default/like.png"}/
+                .SL_Outer_Box
+                  .SL_Box
+                    .img-box
+                      %img{src: "/user/img/default/img-1.png"}/
+                    .text-box.w-100.d-flex.justify-content-between
+                      .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
+                        %span.name-1 Talinhos
+                        %strong.name-2 Moderator
+                        %strong.name-3 #001
+                      .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
+                        %span.name-4 654
+                        %span.name-5.d-flex.align-items-center
+                          16,320
+                          %img.like-icon{src: "/user/img/default/like.png"}/
+                .SL_Outer_Box
+                  .SL_Box
+                    .img-box
+                      %img{src: "/user/img/default/img-1.png"}/
+                    .text-box.w-100.d-flex.justify-content-between
+                      .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
+                        %span.name-1 Talinhos
+                        %strong.name-2 Moderator
+                        %strong.name-3 #001
+                      .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
+                        %span.name-4 654
+                        %span.name-5.d-flex.align-items-center
+                          16,320
+                          %img.like-icon{src: "/user/img/default/like.png"}/
+                .SL_Outer_Box
+                  .SL_Box
+                    .img-box
+                      %img{src: "/user/img/default/img-1.png"}/
+                    .text-box.w-100.d-flex.justify-content-between
+                      .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
+                        %span.name-1 Talinhos
+                        %strong.name-2 Moderator
+                        %strong.name-3 #001
+                      .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
+                        %span.name-4 654
+                        %span.name-5.d-flex.align-items-center
+                          16,320
+                          %img.like-icon{src: "/user/img/default/like.png"}/
+                .SL_Outer_Box
+                  .SL_Box
+                    .img-box
+                      %img{src: "/user/img/default/img-1.png"}/
+                    .text-box.w-100.d-flex.justify-content-between
+                      .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
+                        %span.name-1 Talinhos
+                        %strong.name-2 Moderator
+                        %strong.name-3 #001
+                      .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
+                        %span.name-4 654
+                        %span.name-5.d-flex.align-items-center
+                          16,320
+                          %img.like-icon{src: "/user/img/default/like.png"}/
+                .SL_Outer_Box
+                  .SL_Box
+                    .img-box
+                      %img{src: "/user/img/default/img-1.png"}/
+                    .text-box.w-100.d-flex.justify-content-between
+                      .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
+                        %span.name-1 Talinhos
+                        %strong.name-2 Moderator
+                        %strong.name-3 #001
+                      .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
+                        %span.name-4 654
+                        %span.name-5.d-flex.align-items-center
+                          16,320
+                          %img.like-icon{src: "/user/img/default/like.png"}/
+            .tab-container
+        .rightSection.position-relative.h-100.py-3
+          .d-flex.justify-content-between.align-items-center.position-relative.mb-4.px-3
+            .showFilter.filterDiv.position-absolute
+              %img.crs-pointer.showMoreBox{alt: "", src: "/user/img/default/filter.png"}/
+            .filterHead Filter
+            .filterIcn.d-flex.border
+              %img.crs-pointer.flitericon.border-end.pe-2.showMoreBox{alt: "", src: "/user/img/default/Small-Icon.svg"}/
+              %img.crs-pointer.flitericon.ps-2.showLessBox{alt: "", src: "/user/img/default/Big-Icon.svg"}/
+          .py-2.filterSelectOuter
+            .my-3.px-4
+              .filterselectOuter
+                %select.form-select.select-filed{"aria-label" => "Default select example"}
+                  %option{selected: "selected"} Most Recent
+                  %option{value: "1"} One
+                  %option{value: "2"} Two
+                  %option{value: "3"} Three
+            .my-3.px-4
+              .filterselectOuter
+                %select.form-select.select-filed{"aria-label" => "Default select example"}
+                  %option{selected: "selected"} Status
+                  %option{value: "1"} One
+                  %option{value: "2"} Two
+                  %option{value: "3"} Three
+            .my-3.px-4
+              .filterselectOuter
+                %select.form-select.select-filed{"aria-label" => "Default select example"}
+                  %option{selected: "selected"} Chains
+                  %option{value: "1"} One
+                  %option{value: "2"} Two
+                  %option{value: "3"} Three
+          .filterPrice.pt-4.pb-2.px-4.px-lg-5.px-xl-5
+            .fPrice Price
+            .d-flex.align-items-center.justify-content-even
+              .text-center
+                %div Min
+                .price-grp.d-flex.justify-content-start.align-items-center
+                  %input.input-field.w-100{id: "", placeholder: "", type: "number"}/
+              .mx-3.mt-4.priceTo to
+              .text-center
+                %div Max
+                .price-grp.d-flex.justify-content-start.align-items-center
+                  %input.input-field.w-100{id: "", placeholder: "", type: "number"}/
+    %footer.bg-color-2.p-3
+      .d-flex.flex-wrap.justify-content-center.align-items-center
+        %a.footer-link.text-white{href: "#footer-1"} Link 1
+        %a.footer-link.text-white{href: "#footer-2"} Link 2
+        %a.footer-link.text-white{href: "#footer-3"} Link 3
+        %a.footer-img-link.text-white{href: "#footer-7"}
+          %img.footer-img{src: "/user/img/default/footer-logo.png"}/
+        %a.footer-link.text-white{href: "#footer-4"} Link 4
+        %a.footer-link.text-white{href: "#footer-5"} Link 5
+        %a.footer-link.text-white{href: "#footer-6"} Link 6
+    / Main Script Files START
+    %script{src: "/user/js/jquery.js"}
+    %script{src: "/user/js/bootstrap.min.js"}
+    %script{src: "/user/js/bootstrap.bundle.min.js"}
+    %script{src: "/user/slider/slick.js"}
+    %script{src: "/user/slider/slider-setting.js"}
+    %script{src: "/user/js/main.js"}
+    / Main Script Files END

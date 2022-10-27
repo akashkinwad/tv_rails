@@ -1,0 +1,79 @@
+!!!
+%html{lang: "en"}
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{charset: "UTF-8"}/
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+    %link{href: "/user/css/bootstrap.min.css", rel: "stylesheet"}/
+    %link{href: "/user/css/main.css", rel: "stylesheet"}/
+    %link{href: "/user/css/common.css", rel: "stylesheet"}/
+    %link{href: "/user/fonts/fonts.css", rel: "stylesheet"}/
+    %link{href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css", rel: "stylesheet"}/
+    %link{href: "/user/slider/slick.css", rel: "stylesheet"}/
+    %link{href: "/user/slider/slick-theme.css", rel: "stylesheet"}/
+    %title
+      = params[:action].titleize
+  %body
+    .overlay
+    %header
+      .container-fluid.d-flex.mt-1
+        .menu-toggler{onclick: "ShowMenu()"}
+          %img{src: "/user/img/default/menu.png"}/
+        .logo-container
+          %a{href: "/"}
+            %img.logo-img{alt: "logo", src: "/user/img/default/Logo.png"}/
+        .search-container.d-flex.justify-content-center.align-items-center.flex-1
+          .seatch-box
+            %label.d-flex.justify-content-start.align-items-center{for: "search"}
+              %img{src: "/user/img/default/search-Icon.png"}/
+              %input#search.search-input.w-100{placeholder: "Browse the Marketplace...", type: "text"}/
+        .top-menu.d-flex.flex-1.justify-content-end.align-items-center
+          .menu-items.h-100.d-none.d-lg-flex.justify-content-center.align-items-center
+            %a.menu-item.px-2.px-xl-3{href: "/explore", class: "#{params[:action]=='explore' ? 'active' : ''}"}
+              %span Explore
+            %a.menu-item.px-2.px-xl-3{href: "/stats", class: "#{params[:action]=='stats' ? 'active' : ''}"}
+              %span Stats
+            %a.menu-item.px-2.px-xl-3{href: "/profile", class: "#{params[:action]=='profile' ? 'active' : ''}"}
+              %span Resources
+            %a.menu-item.px-2.px-xl-3.me-3.me-xl-5{href: "/create", class: "#{params[:action]=='create' ? 'active' : ''}"}
+              %span Create
+          .menu-icons.d-flex.justify-content-center.align-items-center
+            .user-icon.me-4
+              %img{alt: "", src: "/user/img/default/Profile-Icon.png"}/
+            .wallet-icon
+              %img{alt: "", src: "/user/img/default/Wallet-Icon.png"}/
+        .mob-menu
+          .logo-container.d-flex.mob-logo.position-relative
+            %a{href: "#link-1"}
+              %img.logo-img{alt: "logo", src: "/user/img/default/Logo.png"}/
+            .closeIcon{onclick: "closeMenu()"}
+              %img.logo-img{alt: "logo", src: "/user/img/default/right-arrow.png"}/
+          .menu-items
+            %a.menu-item.active.px-2.px-xl-3{href: "/explore"}
+              %span Explore
+            %a.menu-item.px-2.px-xl-3{href: "/stats"}
+              %span Stats
+            %a.menu-item.px-2.px-xl-3{href: "/profile"}
+              %span Resources
+            %a.menu-item.px-2.px-xl-3.me-3.me-xl-5{href: "/create"}
+              %span Create
+    = yield
+    %footer.bg-color-2.p-3
+      .d-flex.flex-wrap.justify-content-center.align-items-center
+        %a.footer-link.text-white{href: "#footer-1"} Link 1
+        %a.footer-link.text-white{href: "#footer-2"} Link 2
+        %a.footer-link.text-white{href: "#footer-3"} Link 3
+        %a.footer-img-link.text-white{href: "#footer-7"}
+          %img.footer-img{src: "/user/img/default/footer-logo.png"}/
+        %a.footer-link.text-white{href: "#footer-4"} Link 4
+        %a.footer-link.text-white{href: "#footer-5"} Link 5
+        %a.footer-link.text-white{href: "#footer-6"} Link 6
+    / Main Script Files START
+    %script{src: "/user/js/jquery.js"}
+    %script{src: "/user/js/bootstrap.min.js"}
+    %script{src: "/user/js/bootstrap.bundle.min.js"}
+    %script{src: "/user/slider/slick.js"}
+    %script{src: "/user/slider/slider-setting.js"}
+    %script{src: "/user/js/main.js"}
+    / Main Script Files END

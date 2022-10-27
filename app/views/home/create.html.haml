@@ -1,0 +1,158 @@
+!!!
+%html{lang: "en"}
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{charset: "UTF-8"}/
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+    %link{href: "/user/css/bootstrap.min.css", rel: "stylesheet"}/
+    %link{href: "/user/css/main.css", rel: "stylesheet"}/
+    %link{href: "/user/css/common.css", rel: "stylesheet"}/
+    %link{href: "/user/fonts/fonts.css", rel: "stylesheet"}/
+    %link{href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css", rel: "stylesheet"}/
+    %link{href: "/user/slider/slick.css", rel: "stylesheet"}/
+    %link{href: "/user/slider/slick-theme.css", rel: "stylesheet"}/
+    %title TalentsVerse
+  %body
+    .overlay
+    %header
+      .container-fluid.d-flex.mt-1
+        .menu-toggler{onclick: "ShowMenu()"}
+          %img{src: "/user/img/default/menu.png"}/
+        .logo-container
+          %a{href: "/"}
+            %img.logo-img{alt: "logo", src: "/user/img/default/Logo.png"}/
+        .search-container.d-flex.justify-content-center.align-items-center.flex-1
+          .seatch-box
+            %label.d-flex.justify-content-start.align-items-center{for: "search"}
+              %img{src: "/user/img/default/search-Icon.png"}/
+              %input#search.search-input.w-100{placeholder: "Browse the Marketplace...", type: "text"}/
+        .top-menu.d-flex.flex-1.justify-content-end.align-items-center
+          .menu-items.h-100.d-none.d-lg-flex.justify-content-center.align-items-center
+            %a.menu-item.px-2.px-xl-3{href: "/home/explore", class: "#{params[:page]=='explore' ? 'active' : ''}"}
+              %span Explore
+            %a.menu-item.px-2.px-xl-3{href: "/home/stats", class: "#{params[:page]=='stats' ? 'active' : ''}"}
+              %span Stats
+            %a.menu-item.px-2.px-xl-3{href: "/home/profile", class: "#{params[:page]=='profile' ? 'active' : ''}"}
+              %span Resources
+            %a.menu-item.px-2.px-xl-3.me-3.me-xl-5{href: "/home/create", class: "#{params[:page]=='create' ? 'active' : ''}"}
+              %span Create
+          .menu-icons.d-flex.justify-content-center.align-items-center
+            .user-icon.me-4
+              %img{alt: "", src: "/user/img/default/Profile-Icon.png"}/
+            .wallet-icon
+              %img{alt: "", src: "/user/img/default/Wallet-Icon.png"}/
+        .mob-menu
+          .logo-container.d-flex.mob-logo.position-relative
+            %a{href: "#link-1"}
+              %img.logo-img{alt: "logo", src: "/user/img/default/Logo.png"}/
+            .closeIcon{onclick: "closeMenu()"}
+              %img.logo-img{alt: "logo", src: "/user/img/default/right-arrow.png"}/
+          .menu-items
+            %a.menu-item.active.px-2.px-xl-3{href: "/home/explore"}
+              %span Explore
+            %a.menu-item.px-2.px-xl-3{href: "/home/stats"}
+              %span Stats
+            %a.menu-item.px-2.px-xl-3{href: "/home/profile"}
+              %span Resources
+            %a.menu-item.px-2.px-xl-3.me-3.me-xl-5{href: "/home/create"}
+              %span Create
+    %section.create_view
+      .container.my-4.mb-5
+        .row.create-sec
+          .col-6.create-left.d-flex.justify-content-center.align-items-start
+            .input-grup
+              / <label for="myFile">Upload an <br> image/video(drag and drop)</label>
+              .SL_Box.btn-file.uploadedOuter
+                .img-box.d-flex.flex-column.text-center
+                  .file-upload.d-flex.flex-column.text-center.align-items-center
+                    %img{src: "/user/img/default/vector.png"}/
+                    %span.color-2.fw-5.upload-text
+                      Upload an
+                      %br/
+                      image/video(drag and drop)
+                  .uploadedfile
+                    %img#myFile{src: ""}/
+                  %input{onchange: "readURL(this);", type: "file"}/
+                .text-box.w-100.d-flex.justify-content-between.align-items-start
+                  .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
+                    %span.name-1 Categories
+                    %strong.name-2 Title
+                  .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
+                    %span.name-4 Price
+          .col-6.create-right
+            %section.heading-outer.d-flex.justify-content-center.align-items-center.mt-0.px-lg-5.mb-3
+              %span.left-line.flex-1
+              %span.heading.px-3
+                %span.color-2.create-label Create a NFT
+              %span.right-line.flex-1
+            %section
+              %form{action: ""}
+                .input-group.mb-4
+                  .input-grp.d-flex.justify-content-start.align-items-center
+                    %input.input-field.w-100{id: "", placeholder: "Title...", type: "text"}/
+                .input-group.mb-4
+                  %textarea#description.input-field.discription-sec{name: "description", placeholder: "Description...", size: "14"}
+                .input-group.mb-4
+                  .input-grp.d-flex.justify-content-start.align-items-center
+                    %input.input-field.w-100{id: "", placeholder: "#Keywords...", type: "text"}/
+                .input-group.mb-5.d-flex.justify-content-between
+                  .flex-1.mx-2.ms-0
+                    %select.form-select.input-grp.select-filed{"aria-label" => "Default select example"}
+                      %option{selected: "selected"} Category 1
+                      %option{value: "1"} One
+                      %option{value: "2"} Two
+                      %option{value: "3"} Three
+                  .flex-1.mx-2
+                    %select.form-select.input-grp.select-filed{"aria-label" => "Default select example"}
+                      %option{selected: "selected"} Category 2
+                      %option{value: "1"} One
+                      %option{value: "2"} Two
+                      %option{value: "3"} Three
+                  .flex-1.mx-2.me-0
+                    %select.form-select.input-grp.select-filed{"aria-label" => "Default select example"}
+                      %option{selected: "selected"} Category 3
+                      %option{value: "1"} One
+                      %option{value: "2"} Two
+                      %option{value: "3"} Three
+                .mb-3
+                  .d-flex
+                    .input-group
+                      .input-grp.d-flex.justify-content-start.align-items-center
+                        %div
+                          %select.form-select.input-grp.select-filed.tltm-select{"aria-label" => "Default select example"}
+                            %option{selected: "selected"} TLTM
+                            %option{value: "1"} One
+                            %option{value: "2"} Two
+                            %option{value: "3"} Three
+                        %div
+                          %input.input-field.w-100{id: "", placeholder: "Price...", type: "text"}/
+                    .flex-1.mx-2.me-0
+                      %select.amt-select.form-select.input-grp.select-filed{"aria-label" => "Default select example"}
+                        %option{selected: "selected"} Amount
+                        %option{value: "1"} One
+                        %option{value: "2"} Two
+                        %option{value: "3"} Three
+                  .fee-label.m-2
+                    %i Service Fee 1.5%
+                .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-center.align-items-center
+                  %a.btn.px-5.btn-primary.bg-color-2.br-style-1.mint-btn.mb-3.mb-lg-0.me-lg-3.fw-6{href: "#"} Mint NFT
+    %footer.bg-color-2.p-3
+      .d-flex.flex-wrap.justify-content-center.align-items-center
+        %a.footer-link.text-white{href: "#footer-1"} Link 1
+        %a.footer-link.text-white{href: "#footer-2"} Link 2
+        %a.footer-link.text-white{href: "#footer-3"} Link 3
+        %a.footer-img-link.text-white{href: "#footer-7"}
+          %img.footer-img{src: "/user/img/default/footer-logo.png"}/
+        %a.footer-link.text-white{href: "#footer-4"} Link 4
+        %a.footer-link.text-white{href: "#footer-5"} Link 5
+        %a.footer-link.text-white{href: "#footer-6"} Link 6
+    / Main Script Files START
+    %script{src: "/user/js/jquery.js"}
+    %script{src: "/user/js/bootstrap.min.js"}
+    %script{src: "/user/js/bootstrap.bundle.min.js"}
+    %script{src: "/user/slider/slick.js"}
+    %script{src: "/user/slider/slider-setting.js"}
+    %script{src: "/user/js/main.js"}
+    / Main Script Files END
+

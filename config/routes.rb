@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  root to: 'users#index'
+  root to: 'home#home'
 
   devise_for :users, path: 'admin'
+
+  get "/home/*page" => "home#show"
 
   resources :users
   resources :posts
