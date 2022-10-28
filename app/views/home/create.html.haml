@@ -36,8 +36,7 @@
             %a.menu-item.px-2.px-xl-3{href: "/home/create", class: "#{params[:page]=='create' ? 'active' : ''}"}
               %span Create
             - if user_signed_in?
-              = link_to destroy_user_session_path, class: 'menu-item px-2 px-xl-3 me-3 me-xl-5', method: :delete, data: { turbo_method: :delete } do
-                %span Logout
+              = button_to 'Logout', destroy_user_session_path, class: 'menu-item px-2 px-xl-3 me-3 me-xl-5', method: :delete, data: { turbo_method: :delete }
           .menu-icons.d-flex.justify-content-center.align-items-center
             .user-icon.me-4
               %a{href: "/home/profile"}
@@ -60,8 +59,7 @@
             %a.menu-item.px-2.px-xl-3{href: "/home/create"}
               %span Create
             - if user_signed_in?
-              = link_to destroy_user_session_path, class: 'menu-item px-2 px-xl-3 me-3 me-xl-5', method: :delete, data: { turbo_method: :delete } do
-                %span Logout
+              = button_to 'Logout', destroy_user_session_path, class: 'menu-item px-2 px-xl-3 me-3 me-xl-5', method: :delete, data: { turbo_method: :delete }
     %section.create_view
       .container.my-4.mb-5
         .row.create-sec
