@@ -1,7 +1,6 @@
-class CategoriesController < ApplicationController
+class Admin::CategoriesController < ApplicationController
   include UploadToS3
-  before_action :authenticate_user!
-  before_action :authenticate_admin
+  before_action :authenticate_admin!
   before_action :set_category, only: %i[ show edit update destroy ]
 
   # GET /categories or /categories.json
@@ -79,13 +78,6 @@ class CategoriesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def category_params
       params.require(:category).permit(:name, :thumbnail_url, :thumbnail)
-    end
-
-    def authenticate_admin
-      unless current_user.admin?
-        sign_out(current_user)
-        redirect_to new_user_session_path, notice: 'You are not authorized to perform this action'
-      end
     end
 
     def upload_and_set_attr(file)

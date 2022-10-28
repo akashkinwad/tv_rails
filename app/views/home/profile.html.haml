@@ -33,13 +33,15 @@
               %span Explore
             %a.menu-item.px-2.px-xl-3{href: "/home/stats", class: "#{params[:page]=='stats' ? 'active' : ''}"}
               %span Stats
-            %a.menu-item.px-2.px-xl-3{href: "/home/profile", class: "#{params[:page]=='profile' ? 'active' : ''}"}
-              %span Resources
-            %a.menu-item.px-2.px-xl-3.me-3.me-xl-5{href: "/home/create", class: "#{params[:page]=='create' ? 'active' : ''}"}
+            %a.menu-item.px-2.px-xl-3{href: "/home/create", class: "#{params[:page]=='create' ? 'active' : ''}"}
               %span Create
+            - if user_signed_in?
+              = link_to destroy_user_session_path, class: 'menu-item px-2 px-xl-3 me-3 me-xl-5', method: :delete, data: { turbo_method: :delete } do
+                %span Logout
           .menu-icons.d-flex.justify-content-center.align-items-center
             .user-icon.me-4
-              %img{alt: "", src: "/user/img/default/Profile-Icon.png"}/
+              %a{href: "/home/profile"}
+                %img{alt: "", src: "/user/img/default/Profile-Icon.png"}/
             .wallet-icon
               %img{alt: "", src: "/user/img/default/Wallet-Icon.png"}/
         .mob-menu
@@ -54,9 +56,12 @@
             %a.menu-item.px-2.px-xl-3{href: "/home/stats"}
               %span Stats
             %a.menu-item.px-2.px-xl-3{href: "/home/profile"}
-              %span Resources
-            %a.menu-item.px-2.px-xl-3.me-3.me-xl-5{href: "/home/create"}
+              %span Profile
+            %a.menu-item.px-2.px-xl-3{href: "/home/create"}
               %span Create
+            - if user_signed_in?
+              = link_to destroy_user_session_path, class: 'menu-item px-2 px-xl-3 me-3 me-xl-5', method: :delete, data: { turbo_method: :delete } do
+                %span Logout
     %section.profile_view
       .container-fluid.mt-2
         .row.profile-sec.py-4.d-flex.justify-content-center.align-items-center.position-relative

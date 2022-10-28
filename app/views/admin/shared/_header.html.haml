@@ -105,9 +105,9 @@
                 %i.ti-settings.text-muted.me-2
                 Settings
               .dropdown-divider
-              = link_to destroy_user_session_path, class: 'dropdown-item', method: :delete, data: { turbo_method: :delete } do
+              = link_to destroy_admin_session_path, class: 'dropdown-item', method: :delete, data: { turbo_method: :delete } do
                 %i.ti-lock.text-muted.me-2
-                Logout
+                Logout Admin
         / Control Sidebar Toggle Button
         %li
           %a.waves-effect.waves-light.btn-primary-light{"data-toggle" => "control-sidebar", href: "#", title: "Setting"}

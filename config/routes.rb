@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
+  devise_for :admins
+  devise_for :users
+
   root to: 'home#home'
 
-  devise_for :users, path: 'admin'
+  namespace :admin do
+    resources :users
+    resources :posts
+    resources :categories
+  end
 
   get "/home/*page" => "home#show"
-
-  resources :users
-  resources :posts
-  resources :categories
 
   # API routes
   namespace :api, defaults: { format: :json } do
