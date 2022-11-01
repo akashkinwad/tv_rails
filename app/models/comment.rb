@@ -15,6 +15,8 @@ class Comment < ApplicationRecord
 
   validate :reply_to_comment, if: :parent_id
 
+  scope :only_parents, -> { where(parent_id: nil) }
+
   private
 
   def reply_to_comment

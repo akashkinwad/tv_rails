@@ -2,9 +2,7 @@ module Api
   module V1
     class UsersController < ApiController
 
-      def show
-        render json: current_user, status: :ok
-      end
+      def show;end
 
       def update
         upload_and_set_attr(:blr_image, params[:user][:blr_image], 'blur-image')

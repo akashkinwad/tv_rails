@@ -4,8 +4,7 @@ module Api
       before_action :find_post
 
       def index
-        comments = @post.comments
-        render json: comments
+        @comments = @post.parent_comments.includes(:user, replies: [:replies, :user])
       end
 
       def create

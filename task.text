@@ -333,3 +333,40 @@ user_id/profiles/user_id-datetime-display-image.extension
 --------------------------------
 
 https://www.driftingruby.com/episodes/multiple-resources-with-devise
+
+
+----------------------------------------
+
+
+comment
+  - id
+  - user_id
+  - user_name
+  - profile_img
+  - replies
+    - replies
+
+-----------------------------------------------------
+
+post/1/comments
+
+---------------
+
+post
+  is_following
+  likes count
+
+  remove comments
+----------------
+
+profile
+- followers_count
+- following_count
+
+-----
+
+list api
+
+user_id, username, profile_image_url
+
+--------------
