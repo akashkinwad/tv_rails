@@ -7,8 +7,7 @@ class Post < ApplicationRecord
   def render_json
     {
       post: attributes.merge(likes: likes.count),
-      user: user,
-      comments: comments
+      user: user
     }
   end
 
