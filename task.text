@@ -353,7 +353,10 @@ post/1/comments
 ---------------
 
 post
-  is_following
+  is_liked
+  user:
+    is_followed
+
   likes count
 
   remove comments
@@ -370,3 +373,4 @@ list api
 user_id, username, profile_image_url
 
 --------------
+

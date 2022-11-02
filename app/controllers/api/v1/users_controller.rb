@@ -61,6 +61,32 @@ module Api
         end
       end
 
+      def followers
+        @user = User.find(params[:id])
+        if @user
+          @followers = @user.followers
+        else
+          render json: {
+            messages: 'User not found',
+            is_success: false,
+            data: {}
+          }, status: :unprocessable_entity
+        end
+      end
+
+      def following
+        @user = User.find(params[:id])
+        if @user
+          @followings = @user.followees
+        else
+          render json: {
+            messages: 'User not found',
+            is_success: false,
+            data: {}
+          }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def user_params

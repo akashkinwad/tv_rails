@@ -40,6 +40,8 @@ Rails.application.routes.draw do
           patch :update_profile, to: 'users#update'
           post :follow
           post :unfollow
+          get :followers
+          get :following
         end
       end
 
