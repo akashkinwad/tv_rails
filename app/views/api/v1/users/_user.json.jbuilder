@@ -11,7 +11,6 @@ json.extract! user,:id,
                    :image_url,
                    :video_url,
                    :mobile_otp,
-                   :email_otp,
                    :otp_sent_at,
                    :blr_image
 json.followers_count current_user.follower_ids.count
