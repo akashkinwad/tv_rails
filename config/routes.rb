@@ -42,6 +42,7 @@ Rails.application.routes.draw do
           post :unfollow
           get :followers
           get :following
+          get :details
         end
       end
 

@@ -24,7 +24,7 @@ module Api
       def dislike
         like = current_user.likes.find_by(likeable: @likeable)
 
-        if like.destroy
+        if like && like.destroy
           render json: {
             messages: 'Disliked post',
             is_success: true,
@@ -32,9 +32,9 @@ module Api
           }, status: :ok
         else
           render json: {
-            messages: like.errors.full_messages.first,
+            messages: like ? like.errors.full_messages.first : 'You have not liked a post',
             is_success: false,
-            data: { like: like }
+            data: {}
           }, status: :unprocessable_entity
         end
       end

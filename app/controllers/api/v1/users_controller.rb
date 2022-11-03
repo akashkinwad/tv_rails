@@ -62,7 +62,7 @@ module Api
       end
 
       def followers
-        @user = User.find(params[:id])
+        @user = User.find_by(id: params[:id])
         if @user
           @followers = @user.followers
         else
@@ -75,9 +75,23 @@ module Api
       end
 
       def following
-        @user = User.find(params[:id])
+        @user = User.find_by(id: params[:id])
         if @user
           @followings = @user.followees
+        else
+          render json: {
+            messages: 'User not found',
+            is_success: false,
+            data: {}
+          }, status: :unprocessable_entity
+        end
+      end
+
+      def details
+        @user = User.find_by(id: params[:id])
+        if @user
+          @is_following = current_user.followees.include?(@user)
+          @posts = @user.posts if @is_following
         else
           render json: {
             messages: 'User not found',

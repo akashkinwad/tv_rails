@@ -8,4 +8,6 @@ json.user do
   json.blr_image user.blr_image
   json.video_url user.video_url
   json.is_followed user.following_users.where(follower_id: current_user.id).exists?
+  json.followers_count user.following_users.count
+  json.following_count user.followed_users.count
 end
