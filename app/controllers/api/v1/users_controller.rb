@@ -27,7 +27,8 @@ module Api
       def follow
         @user = User.find(params[:id])
 
-        if current_user.followees << @user
+        if !current_user.followees.include?(@user)
+          current_user.followees << @user
           render json: {
             messages: 'You have followed user successfully',
             is_success: true,
@@ -35,7 +36,7 @@ module Api
           }, status: :ok
         else
           render json: {
-            messages: current_user.errors.full_messages.first,
+            messages: current_user.errors.full_messages.first || 'User already Followed',
             is_success: false,
             data: {}
           }, status: :unprocessable_entity
@@ -54,7 +55,7 @@ module Api
           }, status: :ok
         else
           render json: {
-            messages: followed_user.present? ? current_user.errors.full_messages.first : 'User not found',
+            messages: followed_user.present? ? current_user.errors.full_messages.first : 'You are not following to User',
             is_success: false,
             data: {}
           }, status: :unprocessable_entity
