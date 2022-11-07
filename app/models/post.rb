@@ -4,12 +4,7 @@ class Post < ApplicationRecord
   has_many :parent_comments, -> { only_parents }, class_name: 'Comment'
   has_many :likes, as: :likeable, dependent: :destroy
 
-  def render_json
-    {
-      post: attributes.merge(likes: likes.count),
-      user: user
-    }
-  end
+  validates :url, :title, presence: true
 
   def to_json
     attributes.merge(likes: likes.count)

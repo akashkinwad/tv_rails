@@ -91,7 +91,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_28_151921) do
     t.string "image_url"
     t.string "video_url"
     t.string "mobile_otp"
-    t.string "email_otp"
     t.datetime "otp_sent_at"
     t.integer "role", default: 0
     t.string "blr_image"
