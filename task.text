@@ -374,3 +374,9 @@ user_id, username, profile_image_url
 
 --------------
 
+
+git remote set-url origin git@bitbucket.org-define:talentsversehq10/tv_rails.git
+
+git remote set-url origin git@github.com:akashkinwad/tv_rails.git
+
+--------------------------------------

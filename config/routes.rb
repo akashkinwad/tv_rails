@@ -43,6 +43,7 @@ Rails.application.routes.draw do
           get :followers
           get :following
           get :details
+          get :posts
         end
       end
 

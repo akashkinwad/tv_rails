@@ -90,6 +90,17 @@ module Api
 
       def details
         @user = User.find_by(id: params[:id])
+        unless @user
+          render json: {
+            messages: 'User not found',
+            is_success: false,
+            data: {}
+          }, status: :unprocessable_entity
+        end
+      end
+
+      def posts
+        @user = User.find_by(id: params[:id])
         if @user
           @is_following = current_user.followees.include?(@user)
           @posts = @user.posts if @is_following
