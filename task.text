@@ -380,3 +380,10 @@ git remote set-url origin git@bitbucket.org-define:talentsversehq10/tv_rails.git
 git remote set-url origin git@github.com:akashkinwad/tv_rails.git
 
 --------------------------------------
+
+Battle
+
+- creator_post_id
+- remix_post_id
+- creator_user_id
+- remix_user_id

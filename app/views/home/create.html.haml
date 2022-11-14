@@ -69,7 +69,7 @@
               .SL_Box.btn-file.uploadedOuter
                 .img-box.d-flex.flex-column.text-center
                   .file-upload.d-flex.flex-column.text-center.align-items-center
-                    %img{src: "/user/img/default/vector.png"}/
+                    %img{src: "/user/img/default/Vector.png"}/
                     %span.color-2.fw-5.upload-text
                       Upload an
                       %br/
@@ -139,7 +139,7 @@
                   .fee-label.m-2
                     %i Service Fee 1.5%
                 .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-center.align-items-center
-                  %a.btn.px-5.btn-primary.bg-color-2.br-style-1.mint-btn.mb-3.mb-lg-0.me-lg-3.fw-6{href: "#"} Mint NFT
+                  %a.btn.px-5.btn-primary.bg-color-2.br-style-1.mint-btn.mb-3.mb-lg-0.me-lg-3.fw-6#mintNft Mint NFT
     %footer.bg-color-2.p-3
       .d-flex.flex-wrap.justify-content-center.align-items-center
         %a.footer-link.text-white{href: "#footer-1"} Link 1
@@ -164,7 +164,35 @@
     %script{src: "https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"}
     / Main Script Files END
 :javascript
-  var web3Provider = window.web3.currentProvider;
+  if (window.ethereum) {
+    var web3Provider = window.ethereum;
+    try {
+      window.ethereum.enable();
+    } catch (error) {
+      console.error("User denied account access")
+    }
+  }
+  else if (window.web3) {
+    var web3Provider = window.web3.currentProvider;
+  }
+  else {
+    var web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+  }
+
   var web3 = new Web3(web3Provider);
-  console.log(web3);
-  alert(web3);
+
+  if (Web3.givenProvider) {
+    let provider = (new Web3(Web3.givenProvider)).eth;
+  } else {
+    let provider = undefined;
+  }
+
+  $('#mintNft').click(function(){
+    if (web3Provider) {
+      let accounts = web3Provider.getAccounts();
+
+      currentAccount = accounts[0];
+
+      return currentAccount;
+    }
+  });
