@@ -188,11 +188,49 @@
   }
 
   $('#mintNft').click(function(){
-    if (web3Provider) {
-      let accounts = web3Provider.getAccounts();
+    mintNft('dummy');
+  });
+
+  async function getAccount() {
+    if (provider) {
+      let accounts = await provider.getAccounts();
 
       currentAccount = accounts[0];
 
       return currentAccount;
     }
-  });
+  }
+
+  async function requestAccount() {
+    if (provider) {
+      let accounts = await provider.requestAccounts();
+
+      currentAccount = accounts[0];
+
+      return currentAccount;
+    }
+  }
+
+  async function getNativeBalance(ofAddress) {
+    return provider.getBalance(ofAddress);
+  }
+
+  async function getBalance(tokenAddress, ofAddress) {
+    let tokenContract = new provider.Contract(basicTokenAbi, tokenAddress);
+
+    return tokenContract.methods.balanceOf(ofAddress).call();
+  }
+
+  async function fromWei(wei) {
+    return Web3.utils.fromWei(wei);
+  }
+
+  async function toWei(number) {
+      return Web3.utils.toWei(number.toString());
+  }
+
+  async function mintNft(toAddress) {
+    if (currentAccount) {
+      return nftContract.methods.mint(toAddress, "0").send({from: currentAccount});
+    }
+  }
