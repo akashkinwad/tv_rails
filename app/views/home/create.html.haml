@@ -139,6 +139,10 @@
                   .fee-label.m-2
                     %i Service Fee 1.5%
                 .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-center.align-items-center
+                  %a.btn.px-5.btn-primary.bg-color-2.br-style-1.mint-btn.mb-3.mb-lg-0.me-lg-3.fw-6#requestAccount Request Account
+                .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-center.align-items-center
+                  %a.btn.px-5.btn-primary.bg-color-2.br-style-1.mint-btn.mb-3.mb-lg-0.me-lg-3.fw-6#getAccount Get Account
+                .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-center.align-items-center
                   %a.btn.px-5.btn-primary.bg-color-2.br-style-1.mint-btn.mb-3.mb-lg-0.me-lg-3.fw-6#mintNft Mint NFT
     %footer.bg-color-2.p-3
       .d-flex.flex-wrap.justify-content-center.align-items-center
@@ -164,25 +168,402 @@
     %script{src: "https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"}
     / Main Script Files END
 :javascript
+  const marketplaceAbi = null;
+  const paymentTokenAbi = null;
+  const nftAbi = [
+      {
+          "inputs":[
+              {
+                  "internalType":"string",
+                  "name":"name_",
+                  "type":"string"
+              },
+              {
+                  "internalType":"string",
+                  "name":"symbol_",
+                  "type":"string"
+              }
+          ],
+          "stateMutability":"nonpayable",
+          "type":"constructor"
+      },
+      {
+          "anonymous":false,
+          "inputs":[
+              {
+                  "indexed":true,
+                  "internalType":"address",
+                  "name":"owner",
+                  "type":"address"
+              },
+              {
+                  "indexed":true,
+                  "internalType":"address",
+                  "name":"approved",
+                  "type":"address"
+              },
+              {
+                  "indexed":true,
+                  "internalType":"uint256",
+                  "name":"tokenId",
+                  "type":"uint256"
+              }
+          ],
+          "name":"Approval",
+          "type":"event"
+      },
+      {
+          "anonymous":false,
+          "inputs":[
+              {
+                  "indexed":true,
+                  "internalType":"address",
+                  "name":"owner",
+                  "type":"address"
+              },
+              {
+                  "indexed":true,
+                  "internalType":"address",
+                  "name":"operator",
+                  "type":"address"
+              },
+              {
+                  "indexed":false,
+                  "internalType":"bool",
+                  "name":"approved",
+                  "type":"bool"
+              }
+          ],
+          "name":"ApprovalForAll",
+          "type":"event"
+      },
+      {
+          "anonymous":false,
+          "inputs":[
+              {
+                  "indexed":true,
+                  "internalType":"address",
+                  "name":"from",
+                  "type":"address"
+              },
+              {
+                  "indexed":true,
+                  "internalType":"address",
+                  "name":"to",
+                  "type":"address"
+              },
+              {
+                  "indexed":true,
+                  "internalType":"uint256",
+                  "name":"tokenId",
+                  "type":"uint256"
+              }
+          ],
+          "name":"Transfer",
+          "type":"event"
+      },
+      {
+          "inputs":[
+              {
+                  "internalType":"address",
+                  "name":"to",
+                  "type":"address"
+              },
+              {
+                  "internalType":"uint256",
+                  "name":"tokenId",
+                  "type":"uint256"
+              }
+          ],
+          "name":"approve",
+          "outputs":[
+
+          ],
+          "stateMutability":"nonpayable",
+          "type":"function"
+      },
+      {
+          "inputs":[
+              {
+                  "internalType":"address",
+                  "name":"owner",
+                  "type":"address"
+              }
+          ],
+          "name":"balanceOf",
+          "outputs":[
+              {
+                  "internalType":"uint256",
+                  "name":"",
+                  "type":"uint256"
+              }
+          ],
+          "stateMutability":"view",
+          "type":"function"
+      },
+      {
+          "inputs":[
+              {
+                  "internalType":"uint256",
+                  "name":"tokenId",
+                  "type":"uint256"
+              }
+          ],
+          "name":"getApproved",
+          "outputs":[
+              {
+                  "internalType":"address",
+                  "name":"",
+                  "type":"address"
+              }
+          ],
+          "stateMutability":"view",
+          "type":"function"
+      },
+      {
+          "inputs":[
+              {
+                  "internalType":"address",
+                  "name":"owner",
+                  "type":"address"
+              },
+              {
+                  "internalType":"address",
+                  "name":"operator",
+                  "type":"address"
+              }
+          ],
+          "name":"isApprovedForAll",
+          "outputs":[
+              {
+                  "internalType":"bool",
+                  "name":"",
+                  "type":"bool"
+              }
+          ],
+          "stateMutability":"view",
+          "type":"function"
+      },
+      {
+          "inputs":[
+              {
+                  "internalType":"address",
+                  "name":"to",
+                  "type":"address"
+              },
+              {
+                  "internalType":"uint256",
+                  "name":"tokenId",
+                  "type":"uint256"
+              }
+          ],
+          "name":"mint",
+          "outputs":[
+
+          ],
+          "stateMutability":"nonpayable",
+          "type":"function"
+      },
+      {
+          "inputs":[
+
+          ],
+          "name":"name",
+          "outputs":[
+              {
+                  "internalType":"string",
+                  "name":"",
+                  "type":"string"
+              }
+          ],
+          "stateMutability":"view",
+          "type":"function"
+      },
+      {
+          "inputs":[
+              {
+                  "internalType":"uint256",
+                  "name":"tokenId",
+                  "type":"uint256"
+              }
+          ],
+          "name":"ownerOf",
+          "outputs":[
+              {
+                  "internalType":"address",
+                  "name":"",
+                  "type":"address"
+              }
+          ],
+          "stateMutability":"view",
+          "type":"function"
+      },
+      {
+          "inputs":[
+              {
+                  "internalType":"address",
+                  "name":"from",
+                  "type":"address"
+              },
+              {
+                  "internalType":"address",
+                  "name":"to",
+                  "type":"address"
+              },
+              {
+                  "internalType":"uint256",
+                  "name":"tokenId",
+                  "type":"uint256"
+              }
+          ],
+          "name":"safeTransferFrom",
+          "outputs":[
+
+          ],
+          "stateMutability":"nonpayable",
+          "type":"function"
+      },
+      {
+          "inputs":[
+              {
+                  "internalType":"address",
+                  "name":"from",
+                  "type":"address"
+              },
+              {
+                  "internalType":"address",
+                  "name":"to",
+                  "type":"address"
+              },
+              {
+                  "internalType":"uint256",
+                  "name":"tokenId",
+                  "type":"uint256"
+              },
+              {
+                  "internalType":"bytes",
+                  "name":"data",
+                  "type":"bytes"
+              }
+          ],
+          "name":"safeTransferFrom",
+          "outputs":[
+
+          ],
+          "stateMutability":"nonpayable",
+          "type":"function"
+      },
+      {
+          "inputs":[
+              {
+                  "internalType":"address",
+                  "name":"operator",
+                  "type":"address"
+              },
+              {
+                  "internalType":"bool",
+                  "name":"approved",
+                  "type":"bool"
+              }
+          ],
+          "name":"setApprovalForAll",
+          "outputs":[
+
+          ],
+          "stateMutability":"nonpayable",
+          "type":"function"
+      },
+      {
+          "inputs":[
+              {
+                  "internalType":"bytes4",
+                  "name":"interfaceId",
+                  "type":"bytes4"
+              }
+          ],
+          "name":"supportsInterface",
+          "outputs":[
+              {
+                  "internalType":"bool",
+                  "name":"",
+                  "type":"bool"
+              }
+          ],
+          "stateMutability":"view",
+          "type":"function"
+      },
+      {
+          "inputs":[
+
+          ],
+          "name":"symbol",
+          "outputs":[
+              {
+                  "internalType":"string",
+                  "name":"",
+                  "type":"string"
+              }
+          ],
+          "stateMutability":"view",
+          "type":"function"
+      },
+      {
+          "inputs":[
+              {
+                  "internalType":"uint256",
+                  "name":"tokenId",
+                  "type":"uint256"
+              }
+          ],
+          "name":"tokenURI",
+          "outputs":[
+              {
+                  "internalType":"string",
+                  "name":"",
+                  "type":"string"
+              }
+          ],
+          "stateMutability":"view",
+          "type":"function"
+      },
+      {
+          "inputs":[
+              {
+                  "internalType":"address",
+                  "name":"from",
+                  "type":"address"
+              },
+              {
+                  "internalType":"address",
+                  "name":"to",
+                  "type":"address"
+              },
+              {
+                  "internalType":"uint256",
+                  "name":"tokenId",
+                  "type":"uint256"
+              }
+          ],
+          "name":"transferFrom",
+          "outputs":[
+
+          ],
+          "stateMutability":"nonpayable",
+          "type":"function"
+      }
+  ]
+
   const marketPlaceAddress = "0xb5863aC3a747bFa37eEd4AAd84acec69723E954D";
   const nftAddress = "0x5Cdd8F41618D06C5BC6164B14786ADc7481F1A6E";
   const paymentTokenAddress = "0x39E77C8Bc081F20a7AA3a6027Db438FB5DAA1Aa0";
 
-  if (Web3.givenProvider) {
-    let provider = (new Web3(Web3.givenProvider)).eth;
-  } else {
-    let provider = undefined;
-  }
+  let provider = (new Web3(Web3.givenProvider)).eth;
 
-  const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
   const nftContract = new provider.Contract(nftAbi, nftAddress);
-  const paymentTokenContract = new provider.Contract(paymentTokenAbi, paymentTokenAddress);
+  // const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
+  // const paymentTokenContract = new provider.Contract(paymentTokenAbi, paymentTokenAddress);
 
   let currentAccount = undefined;
-
-  $('#mintNft').click(function(){
-    mintNft('dummy');
-  });
 
   async function getAccount() {
     if (provider) {
@@ -227,3 +608,15 @@
       return nftContract.methods.mint(toAddress, "0").send({from: currentAccount});
     }
   }
+
+  $('#requestAccount').click(function(){
+    requestAccount();
+  });
+
+  $('#getAccount').click(function(){
+    getAccount();
+  });
+
+  $('#mintNft').click(function(){
+    mintNft('dummy');
+  });
