@@ -423,6 +423,9 @@ create database gv_talent_production;
 create user gvpostgres with encrypted password 'postgres';
 grant all privileges on database gv_talent_production to gvpostgres;
 
+
+sudo systemctl restart postgresql
+
 ----------------------------------
 
 # SQLite. Versions 3.8.0 and up are supported.
