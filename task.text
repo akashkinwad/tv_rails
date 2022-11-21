@@ -426,6 +426,18 @@ grant all privileges on database gv_talent_production to gvpostgres;
 
 sudo systemctl restart postgresql
 
+
+sudo apt install libpq-dev
+sudo yum install postgresql-devel
+sudo zypper in postgresql-devel
+sudo pacman -S postgresql-libs
+
+
+
+/usr/pgsql-13/bin/pg_ctl -D /var/lib/pgsql/13/data -l logfile start
+
+
+gem install pg -v '1.2.3' --source 'https://rubygems.org/'
 ----------------------------------
 
 # SQLite. Versions 3.8.0 and up are supported.
@@ -453,3 +465,8 @@ test:
 production:
   <<: *default
   database: db/gv_talent_production.sqlite3
+
+==========================================
+
+
+Admin : admin@talentsverse.com
