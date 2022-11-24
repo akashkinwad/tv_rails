@@ -1,0 +1,160 @@
+%section.banner-1.d-flex.justify-content-center.align-items-center.mb-4
+  .banner-1-left.h-100.flex-1.d-flex.flex-column.justify-content-start.align-items-end
+    .banner-1-heading.pe-lg-5.pt-lg-5
+      %span
+        Top NFT of
+        %br/
+        the week
+  .banner-1-middle
+    .SL_Box
+      .img-box
+        %img{src: "/user/img/default/img-1.png"}/
+      .text-box.w-100.d-flex.justify-content-between
+        .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
+          %span.name-1 Talinhos
+          %strong.name-2 Moderator
+          %strong.name-3 #001
+        .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
+          %span.name-4 654
+          %span.name-5.d-flex.align-items-center
+            16,320
+            %img.like-icon{src: "/user/img/default/like.png"}/
+  .banner-1-right.h-100.flex-1.d-flex.flex-column.justify-content-end.align-items-start
+    .banner-1-heading.ps-lg-5
+      %span By
+      .banner-1-box.d-flex.p-3
+        %img.banner-1-img{src: "/user/img/default/img-2.png"}/
+        .flex-1.d-flex.flex-column.justify-content-center.align-items-start.ps-4
+          .d-flex.w-100.justify-content-between
+            %span Sport | Diverse
+            %span #156
+          .text-start.heading-2.mb-3 Talentsverse
+          .d-flex.w-100.justify-content-between
+            %span Joined | March 2022
+%section.mostView
+  .container.my-5
+    .row
+      .col-12.col-xl-9.offset-xl-1.col-xxl-8.offset-xxl-2
+        %section.heading-outer.head_most.d-flex.justify-content-center.align-items-center.mt-5.px-lg-5
+          %span.left-line.flex-1
+          %span.heading.px-3
+            %span.color-2 Most Viewed
+          %span.right-line.flex-1
+  .container-fluid.my-3.slider-2-container
+    .slider-2.slider-Outer
+      - @nft_posts.each do |nft_post|
+        %div
+          .SL_Box
+            = link_to user_nft_post_url(nft_post) do
+              .img-box
+                %img{src: "#{nft_post.attachment_url}"}/
+            .text-box.w-100.d-flex.justify-content-between
+              .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
+                %span.name-1
+                  = nft_post.title
+                %strong.name-2
+                  = nft_post.category
+                %strong.name-3 #001
+              .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
+                %span.name-4
+                  = nft_post.listing_price
+                %span.name-5.d-flex.align-items-center
+                  16,320
+                  %img.like-icon{src: "/user/img/default/like.png"}/
+    .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-end.align-items-center.mt-1
+      %a.btn.px-5.btn-primary.bg-color-2.br-style-1.mb-3.mb-lg-0.fw-6{href: "#link-6"} View All
+%section.browseOurNft
+  .container.mb-5
+    .row
+      .col-12.col-xl-9.offset-xl-1.col-xxl-8.offset-xxl-2
+        %section.heading-outer.d-flex.justify-content-center.align-items-center.px-lg-5
+          %span.left-line.flex-1
+          %span.heading.px-3
+            %span.color-2 Browse our NFTs
+          %span.right-line.flex-1
+  .BrowseInner
+    .container-fluid.d-flex
+      .sideFilter.position-relative.py-3.px-3
+        .settingIcn.position-absolute
+          %img{alt: "", src: "/user/img/default/setting.png"}/
+        .sideFilterInner
+          .filterSearchBox.mb-3
+            .seatch-box
+              %label.d-flex.justify-content-start.align-items-center.search-label{for: "search"}
+                %input#search.search-input.w-100{placeholder: "Keywords...", type: "text"}/
+                %img{src: "/user/img/default/search-Icon.png"}/
+          .mb-5
+            .d-flex.justify-content-between.align-items-center
+              .color-2.side-label
+                Price Range
+              .d-flex.align-items-center.toggle_sec
+                .left-btn.t-btn.active
+                  %span.color-2 TLTM
+                .right-btn.t-btn
+                  %span.color-2 USD
+            .d-flex.align-item-center.mt-3.w-100
+              / <input class="" type="range" multiple value="0,100" />
+              .price-range-slider
+                #slider-range.range-bar
+          .mb-5
+            .side-label.color-3.mb-2
+              Sorting
+            %div
+              %select.form-select.select-filed{"aria-label" => "Default select example"}
+                %option{selected: "selected"} Most Recent
+                %option{value: "1"} One
+                %option{value: "2"} Two
+                %option{value: "3"} Three
+          .mb-4
+            .side-label.color-3.mb-2
+              Categories
+            .mb-2
+              %select.form-select.select-filed{"aria-label" => "Default select example"}
+                %option{selected: "selected"} All
+                %option{value: "1"} One
+                %option{value: "2"} Two
+                %option{value: "3"} Three
+          .mb-5
+            .d-flex
+              .fu-images
+                %img{src: "/user/img/default/vector2.png"}/
+              .fu-images
+                %img{src: "/user/img/default/vector3.png"}/
+              .fu-images
+                %img{src: "/user/img/default/music.png"}/
+          .mb-5.justify-content-between.align-items-center
+            .color-3.side-label.mb-2
+              Type
+            .d-flex.align-items-center.toggle_sec
+              .left-btn.type-btn.active
+                %span.color-2.d-flex.align-items-center
+                  %span.type-img.me-3
+                    %img{src: "/user/img/default/image.png"}/
+                  %span.type-label
+                    %i IMAGES
+              .right-btn.type-btn
+                %span.color-2.d-flex.align-items-center
+                  %span.type-img.me-3
+                    %img{src: "/user/img/default/video.png"}/
+                  %span.type-label
+                    %i VIDEOS
+      .BrowseBoxOuter.mb-5.d-flex.flex-wrap
+        - @nft_posts.each do |nft_post|
+          .BrowseBox
+            .SL_Box
+              = link_to user_nft_post_url(nft_post) do
+                .img-box
+                  %img{src: "#{nft_post.attachment_url}"}/
+              .text-box.w-100.d-flex.justify-content-between
+                .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
+                  %span.name-1
+                    = nft_post.title
+                  %strong.name-2
+                    = nft_post.category
+                  %strong.name-3 #001
+                .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
+                  %span.name-4
+                    = nft_post.listing_price
+                  %span.name-5.d-flex.align-items-center
+                    16,320
+                    %img.like-icon{src: "/user/img/default/like.png"}/

@@ -1,0 +1,66 @@
+%section.create_view
+  .container.my-4.mb-5
+    = form_for ([:user, @nft_post]) do |f|
+      .row.create-sec
+        - if @nft_post.errors.any?
+          #error_explanation
+            %h2= "#{pluralize(@nft_post.errors.count, "error")} prohibited this category from being saved:"
+            %ul
+              - @nft_post.errors.full_messages.each do |message|
+                %li= message
+
+        .col-6.create-left.d-flex.justify-content-center.align-items-start
+          .input-grup
+            / <label for="myFile">Upload an <br> image/video(drag and drop)</label>
+            .SL_Box.btn-file.uploadedOuter
+              .img-box.d-flex.flex-column.text-center
+                .file-upload.d-flex.flex-column.text-center.align-items-center
+                  %img{src: "/user/img/default/Vector.png"}/
+                  %span.color-2.fw-5.upload-text
+                    Upload an
+                    %br/
+                    image/video(drag and drop)
+                .uploadedfile
+                  %img#myFile{src: ""}/
+                = f.file_field :attachment, onchange: "readURL(this)"
+              .text-box.w-100.d-flex.justify-content-between.align-items-start
+                .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
+                  %span.name-1 Categories
+                  %strong.name-2 Title
+                .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
+                  %span.name-4 Price
+        .col-6.create-right
+          %section.heading-outer.d-flex.justify-content-center.align-items-center.mt-0.px-lg-5.mb-3
+            %span.left-line.flex-1
+            %span.heading.px-3
+              %span.color-2.create-label Create a NFT
+            %span.right-line.flex-1
+          %section
+            %form{action: ""}
+              .input-group.mb-4
+                .input-grp.d-flex.justify-content-start.align-items-center
+                  = f.text_field :title, placeholder: 'Title...', class: 'input-field w-100'
+                  / %input.input-field.w-100{id: "", placeholder: "Title...", type: "text"}/
+              .input-group.mb-4
+                = f.text_area :description, placeholder: 'Description...', class: 'input-field discription-sec'
+              .input-group.mb-4
+                .input-grp.d-flex.justify-content-start.align-items-center
+                  = f.text_field :hashtags, placeholder: '#Keywords...', class: 'input-field w-100'
+              .input-group.mb-5.d-flex.justify-content-between
+                .input-grp.d-flex.justify-content-start.align-items-center
+                  = f.text_field :category, placeholder: 'Category...', class: 'input-field w-100'
+              .mb-3
+                .d-flex
+                  .input-group
+                    .input-grp.d-flex.justify-content-start.align-items-center
+                      %div
+                        %select.form-select.input-grp.select-filed.tltm-select{"aria-label" => "Default select example"}
+                          %option{selected: "selected"} TLTM
+                      %div
+                        = f.text_field :listing_price, placeholder: 'Price...', class: 'input-field w-100'
+                  .flex-1.mx-2.me-0
+                    = f.text_field :quantity, placeholder: 'Quantity', class: 'amt-select input-grp select-filed'
+                .fee-label.m-2
+                  %i Service Fee 1.5%
+              .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-center.align-items-center
+                = f.submit 'Save', class: 'btn px-5 btn-primary bg-color-2 br-style-1 mint-btn mb-3 mb-lg-0 me-lg-3 fw-6'

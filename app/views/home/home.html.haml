@@ -12,8 +12,7 @@
     %link{href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css", rel: "stylesheet"}/
     %link{href: "/user/slider/slick.css", rel: "stylesheet"}/
     %link{href: "/user/slider/slick-theme.css", rel: "stylesheet"}/
-    %title
-      = params[:action].titleize
+    %title TalentsVerse
   %body
     .overlay
     %header
@@ -30,11 +29,9 @@
               %input#search.search-input.w-100{placeholder: "Browse the Marketplace...", type: "text"}/
         .top-menu.d-flex.flex-1.justify-content-end.align-items-center
           .menu-items.h-100.d-none.d-lg-flex.justify-content-center.align-items-center
-            %a.menu-item.px-2.px-xl-3{href: "home/explore", class: "#{params[:page]=='explore' ? 'active' : ''}"}
+            %a.menu-item.px-2.px-xl-3{href: "user/nft_posts/explore", class: "#{params[:page]=='explore' ? 'active' : ''}"}
               %span Explore
-            %a.menu-item.px-2.px-xl-3{href: "home/stats", class: "#{params[:page]=='stats' ? 'active' : ''}"}
-              %span Stats
-            %a.menu-item.px-2.px-xl-3{href: "/home/create", class: "#{params[:page]=='create' ? 'active' : ''}"}
+            %a.menu-item.px-2.px-xl-3{href: "user/nft_posts/create", class: "#{params[:page]=='create' ? 'active' : ''}"}
               %span Create
             - if user_signed_in?
               = button_to 'Logout', destroy_user_session_path, class: 'menu-item px-2 px-xl-3 me-3 me-xl-5', method: :delete, data: { turbo_method: :delete }
@@ -274,7 +271,7 @@
                   = succeed "through" do
                     %br/
                 .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-end.align-items-center
-                  %a.btn.px-5.btn-primary.bg-color-2.br-style-1.mb-3.mb-lg-0.me-lg-3.fw-6{href: "/home/explore"} Explore NFTs
+                  %a.btn.px-5.btn-primary.bg-color-2.br-style-1.mb-3.mb-lg-0.me-lg-3.fw-6{href: "/user/nft_posts/explore"} Explore NFTs
                   %a.btn.px-5.btn-outline-primary.bg-white.br-style-2.fw-6{href: "#link-7"}
                     %span.color-2 Try Our App!
       .container.my-5

@@ -410,11 +410,6 @@ https://grow-api.memeland.com/token/metadata/1.json
 =========================
 
 
-sudo -i -u postgres
-
-psql
-
-
 sudo -u postgres psql
 
 
@@ -470,3 +465,29 @@ production:
 
 
 Admin : admin@talentsverse.com
+
+==========================================
+
+nft_account
+
+1. When upload image - upload to S3
+2.
+
+1. user login
+2. connect metamask wallet
+  . request account
+  . get account
+  - wallent address -> store accountid in users table
+3. create page
+  . upload image
+  nft table
+    - user_id
+    - title
+    - description
+    - keywwords
+    - category
+    - listing price
+    - quantity
+    - {} #json
+    - stauts => draft, pending, success
+    - token_uri

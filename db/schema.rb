@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_28_151921) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_24_135526) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_28_151921) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "nft_posts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.text "description"
+    t.string "category"
+    t.text "hashtags"
+    t.decimal "listing_price"
+    t.integer "quantity"
+    t.string "status"
+    t.string "token_uri"
+    t.string "attachment_url"
+    t.string "content_type"
+    t.string "extension"
+    t.jsonb "details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_nft_posts_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -97,6 +116,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_28_151921) do
     t.datetime "otp_sent_at"
     t.integer "role", default: 0
     t.string "blr_image"
+    t.string "nft_account"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -104,5 +124,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_28_151921) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "users"
+  add_foreign_key "nft_posts", "users"
   add_foreign_key "posts", "users"
 end
