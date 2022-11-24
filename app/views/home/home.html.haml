@@ -31,7 +31,7 @@
           .menu-items.h-100.d-none.d-lg-flex.justify-content-center.align-items-center
             %a.menu-item.px-2.px-xl-3{href: "user/nft_posts/explore", class: "#{params[:page]=='explore' ? 'active' : ''}"}
               %span Explore
-            %a.menu-item.px-2.px-xl-3{href: "user/nft_posts/create", class: "#{params[:page]=='create' ? 'active' : ''}"}
+            %a.menu-item.px-2.px-xl-3{href: "user/nft_posts/new", class: "#{params[:page]=='create' ? 'new' : ''}"}
               %span Create
             - if user_signed_in?
               = button_to 'Logout', destroy_user_session_path, class: 'menu-item px-2 px-xl-3 me-3 me-xl-5', method: :delete, data: { turbo_method: :delete }
