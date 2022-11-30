@@ -16,3 +16,50 @@ else if (window.web3) {
 else {
   var web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
 }
+
+
+
+async function fetchJson() {
+  try {
+    var data = await fetch(url);
+    var marketplaceAbi = await data.json();
+    console.log('marketplaceAbi ====>', marketplaceAbi);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+fetchJson();
+
+const url = "/user/json/marketplace.json";
+
+const fetchJson = async () => {
+  try {
+    const data = await fetch(url);
+    const response = await data.json();
+    console.log('response====>', response);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+fetchJson();
+
+$(document).ready(function () {
+  $.ajax({
+    url: url,
+    type: 'GET',
+    dataType: 'json',
+    success: function (code, statut) {
+      for (let i in code) {
+        console.log(i)
+      }
+    }
+  });
+});
+
+
+// https://flaviocopes.com/how-to-return-result-asynchronous-function/
+// https://javascript.plainenglish.io/async-await-javascript-5038668ec6eb
+
+
