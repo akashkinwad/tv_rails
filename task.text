@@ -374,6 +374,7 @@ user_id, username, profile_image_url
 
 --------------
 
+ssh root@185.25.164.82
 
 git remote set-url origin git@bitbucket.org-define:talentsversehq10/tv_rails.git
 
@@ -497,3 +498,6 @@ nft_account
 https://stackoverflow.com/questions/19706046/how-to-read-an-external-local-json-file-in-javascript
 
 https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON
+
+
+https://github.com/akashkinwad/tv_rails/commit/b2574623145e38743c0af0d42c39bb13bc14ccad#diff-f3d695a5df4de3e5b670a41886d9f23f586780f49e8ab2f8eb3c2762a3655080

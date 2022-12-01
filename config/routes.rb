@@ -59,6 +59,7 @@ Rails.application.routes.draw do
         resources :comments
       end
       resources :feeds, only: :index
+      resources :nft_posts, only: [:index, :show]
       resources :likes, only: [] do
         collection do
           post :like
