@@ -78,7 +78,6 @@
 
   // let provider = (new Web3(Web3.givenProvider)).eth;
 
-
   const setMarketplaceAbi = async () => {
     try {
       var data = await fetch(url);
@@ -98,17 +97,17 @@
       const nftId = '15792089237316195423570985008687907853269984665640564039457584007913129639935';
 
       return marketPlaceContract.methods.createOfferWithVoucher(
-        '0xdd30359425f5d0952ea3b90e99ea851755002289',
-        '0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3',
-        '12',
-        '1',
-        '1',
-        '10',
-        Date.now(),
-        '1',
-        'this is test',
-        'sig'
-      )
+        ['0x1a3275748E520B9C117290329F150E67B182EfF7'],
+        ['0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3'],
+        ['12'],
+        ['1'],
+        ['1'],
+        ['10'],
+        ['1111111111'],
+        ['1'],
+        ['0x74f37eefa8dbdc8a1566cabb0965bb43c36cb51322c29a04d4c9fb01f7044b1d'],
+        ['0x28a06624a3e6429864365707d2896037af5fa756d540823a54d14292b74df2225fed4bba4ade8c21afd3089534a19bf6949bc2b910433c184aff941bbe9953f51b']
+      ).send({from: '0x1a3275748E520B9C117290329F150E67B182EfF7'})
     } catch (error) {
       console.log(error);
     }
@@ -131,8 +130,23 @@
     }
   };
 
-  // setMarketplaceAbi();
+  setMarketplaceAbi();
 
-  $('#createOfferWithVoucher').click(function(){
-    createOfferWithVoucher();
+  // createOfferWithVoucher();
+
+  //$('#createOfferWithVoucher').click(function(){
+  //  createOfferWithVoucher();
+  //});
+
+  $(document).ready(function () {
+    $.ajax({
+      url: url,
+      type: 'GET',
+      dataType: 'json',
+      success: function (code, statut) {
+        for (let i in code) {
+          console.log(i)
+        }
+      }
+    });
   });

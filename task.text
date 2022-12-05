@@ -501,3 +501,30 @@ https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON
 
 
 https://github.com/akashkinwad/tv_rails/commit/b2574623145e38743c0af0d42c39bb13bc14ccad#diff-f3d695a5df4de3e5b670a41886d9f23f586780f49e8ab2f8eb3c2762a3655080
+
+
+=================
+
+
+curl --header “Content-Type:application/json” -d {\“creator\“:\0x1a3275748E520B9C117290329F150E67B182EfF7\“,\“nftContract\“:\“0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3\“,\“id\“:\“12\“,\“offerAmount\“:\“1\“,\“startPrice\“:\“1\“,\“endPrice\“:\“10\“,\“endTime\“:\“1111111111\“,\“maxSupply\“:\“1\“} 104.248.251.208/signNft
+
+
+curl --location --request POST '104.248.251.208/signNft' \
+--header 'Content-Type: application/json' \
+--form 'creator="0x1a3275748E520B9C117290329F150E67B182EfF7"' \
+--form 'nftContract="0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3"' \
+--form 'id="12"' \
+--form 'offerAmount="1"' \
+--form 'startPrice="1"' \
+--form 'endPrice="1"' \
+--form 'endTime="1111111111"' \
+--form 'maxSupply="1"'
+
+
+
+curl --location --request POST '104.248.251.208/signNft?creator=0x1a3275748E520B9C117290329F150E67B182EfF7&nftContract=0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3&id=12&offerAmount=1&startPrice=1&endPrice=1&endTime=1111111111&maxSupply=1'
+
+creator=0x1a3275748E520B9C117290329F150E67B182EfF7&nftContract=0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3&id=12&offerAmount=1&startPrice=1&endPrice=1&endTime=1111111111&maxSupply=1
+
+
+{"creator": "0xdd30359425f5d0952ea3b90e99ea851755002289","nftContract": "0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3","id": "12","offerAmount": "1","startPrice": "1","endPrice": "10","endTime": "1111111111","maxSupply": "1"}
