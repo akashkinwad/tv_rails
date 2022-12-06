@@ -44,7 +44,6 @@ class Admin::CategoriesController < ApplicationController
       file = category_params.dig(:thumbnail)
       folder_path = "#{Rails.env}/categories/#{@category.id}/#{Time.now.to_i}-#{file.original_filename}"
       upload_object = upload_to_s3(file, folder_path)
-      binding.pry
       params[:category][:thumbnail_url] = upload_object.public_url
       params[:category].delete(:thumbnail)
     end

@@ -5,8 +5,6 @@
     %meta{charset: "UTF-8"}/
     %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
     %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
-    = csrf_meta_tags
-    = csp_meta_tag
     %link{href: "/user/css/bootstrap.min.css", rel: "stylesheet"}/
     %link{href: "/user/css/main.css", rel: "stylesheet"}/
     %link{href: "/user/css/common.css", rel: "stylesheet"}/
@@ -15,21 +13,64 @@
     %link{href: "/user/slider/slick.css", rel: "stylesheet"}/
     %link{href: "/user/slider/slick-theme.css", rel: "stylesheet"}/
     %title TalentsVerse
+    %script{src: "/user/js/jquery.js"}
+    %script{src: "https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"}
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
   %body
     .overlay
     = render partial: 'user/shared/header'
     = yield
     = render partial: 'user/shared/footer'
     / Main Script Files START
-    %script{src: "/user/js/jquery.js"}
     %script{src: "/user/js/bootstrap.min.js"}
     %script{src: "/user/js/bootstrap.bundle.min.js"}
     %script{src: "/user/slider/slick.js"}
     %script{src: "/user/slider/slider-setting.js"}
     %script{src: "/user/js/main.js"}
-    %script{src: "/user/json/marketPlaceAbi.json"}
-    %script{src: "/user/json/basicToken.json"}
-    %script{src: "/user/json/nft.json"}
-    %script{src: "/user/json/token.json"}
-    %script{src: "https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"}
     / Main Script Files END
+:javascript
+  let provider = (new Web3(Web3.givenProvider)).eth;
+  let currentAccount = undefined;
+
+  async function getAccount() {
+    if (provider) {
+      let accounts = await provider.getAccounts();
+      currentAccount = accounts[0];
+      console.log('currentAccount =>', currentAccount);
+      updateNftAccountId(currentAccount)
+      return currentAccount;
+    }
+  };
+
+  async function requestAccount() {
+    if (provider) {
+      let accounts = await provider.requestAccounts();
+      currentAccount = accounts[0];
+      return currentAccount;
+    }
+  };
+
+  function updateNftAccountId(nft_account_id) {
+    var data = { nft_account_id: nft_account_id };
+
+    $.ajax({
+      url: `/users/${user_id}`,
+      type: 'PUT',
+      data: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': token
+      },
+      dataType: 'json',
+      success: function (user, status) {
+        alert('Successfully Synced to NFT');
+      }
+    });
+  }
+
+  $('.wallet-icon').click(function(){
+    getAccount();
+  });
+

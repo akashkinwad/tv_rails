@@ -528,3 +528,13 @@ creator=0x1a3275748E520B9C117290329F150E67B182EfF7&nftContract=0x8076c74c5e3f585
 
 
 {"creator": "0xdd30359425f5d0952ea3b90e99ea851755002289","nftContract": "0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3","id": "12","offerAmount": "1","startPrice": "1","endPrice": "10","endTime": "1111111111","maxSupply": "1"}
+
+==========================
+
+wallet_address
+
+wallet click => update address
+
+save => sign nft & create voucher
+
+sign NFT api

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :users, only: [:update]
 
   get "/home/*page" => "home#show"
 
@@ -60,6 +61,11 @@ Rails.application.routes.draw do
       end
       resources :feeds, only: :index
       resources :nft_posts, only: [:index, :show]
+      resources :nfts, only: [] do
+        collection do
+          post :sign_nft
+        end
+      end
       resources :likes, only: [] do
         collection do
           post :like
