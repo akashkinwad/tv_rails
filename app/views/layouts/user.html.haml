@@ -52,8 +52,8 @@
     }
   };
 
-  function updateNftAccountId(nft_account_id) {
-    var data = { nft_account_id: nft_account_id };
+  function updateNftAccountId(wallet_address) {
+    var data = { wallet_address: wallet_address };
 
     $.ajax({
       url: `/users/${user_id}`,

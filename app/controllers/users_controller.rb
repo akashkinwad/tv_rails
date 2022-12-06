@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       :last_name,
       :daily_news,
       :nft_account,
-      :nft_account_id,
+      :wallet_address,
       :nft_details
     )
   end

@@ -122,6 +122,7 @@ module Api
           :daily_news,
           :image_url,
           :video_url,
+          :wallet_address
         )
       end
 

@@ -31,7 +31,7 @@ class SignNft
 
   # def data
   #   {
-  #     creator: @user.nft_account_id,
+  #     creator: @user.wallet_address,
   #     nftContract: nft_contract,
   #     id: 12,
   #     offerAmount: 10,
