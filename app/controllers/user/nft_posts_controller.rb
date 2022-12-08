@@ -29,6 +29,8 @@ class User::NftPostsController < ApplicationController
     @nft_post = NftPost.find_by(id: params[:id])
   end
 
+  def mobile_nft;end
+
   private
     def set_category
       @category = Category.find(params[:id])

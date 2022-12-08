@@ -21,7 +21,8 @@
           %a{href: user_signed_in? ? '/home/profile' : '/users/sign_in'}
             %img{alt: "", src: "/user/img/default/Profile-Icon.png"}/
         .wallet-icon
-          %img{alt: "", src: "/user/img/default/Wallet-Icon.png"}/
+          %a{href: 'javascript:void(0)', id: 'wallet-icon'}
+            %img{alt: "", src: "/user/img/default/Wallet-Icon.png"}/
     .mob-menu
       .logo-container.d-flex.mob-logo.position-relative
         %a{href: "#link-1"}

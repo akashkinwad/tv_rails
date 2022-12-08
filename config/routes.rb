@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :nft_posts do
       collection do
         get :explore
+        get :mobile_nft
       end
     end
   end

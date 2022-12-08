@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
     if resource.class.to_s == 'Admin'
       admin_users_path
     else
-      root_path
+      new_user_nft_post_path
     end
   end
 end

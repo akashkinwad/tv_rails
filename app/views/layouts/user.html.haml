@@ -32,7 +32,7 @@
     / Main Script Files END
 :javascript
   let provider = (new Web3(Web3.givenProvider)).eth;
-  let currentAccount = undefined;
+  var currentAccount = undefined;
 
   async function getAccount() {
     if (provider) {
@@ -70,7 +70,10 @@
     });
   }
 
-  $('.wallet-icon').click(function(){
-    getAccount();
+  $('#wallet-icon').click(function(){
+    if(typeof currentAccount === 'undefined'){
+      requestAccount();
+    } else {
+      getAccount();
+    }
   });
-

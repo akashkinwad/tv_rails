@@ -6,7 +6,7 @@ module Api
       def sign_nft
         service = SignNft.new(params['nft'].to_json)
         response = service.generate_signature
-        render json: response
+        render json: response.merge(url: mobile_nft_user_nft_posts_path)
       end
 
     end
