@@ -1,0 +1,101 @@
+%section.mostView
+  .container.my-5
+    .row
+      .col-12.col-xl-9.offset-xl-1.col-xxl-8.offset-xxl-2
+        %section.heading-outer.head_most.d-flex.justify-content-center.align-items-center.mt-5.px-lg-5
+          %span.left-line.flex-1
+          %span.heading.px-3
+            %span.color-2 Most Viewed
+          %span.right-line.flex-1
+
+:javascript
+  var token = $('meta[name=csrf-token]').attr('content');
+  var user_id = "#{current_user.id}";
+
+  const url = "/user/json/marketPlaceAbi.json";
+  const marketPlaceAddress = "0xb5863aC3a747bFa37eEd4AAd84acec69723E954D";
+  const nftAddress = "0x5Cdd8F41618D06C5BC6164B14786ADc7481F1A6E";
+  const paymentTokenAddress = "0x39E77C8Bc081F20a7AA3a6027Db438FB5DAA1Aa0";
+  const nftContract = '0xa5399a1EE519F12A95E86766168308bda2aF82F1';
+  const walletId = "#{current_user.wallet_address}";
+
+  let marketplaceAbi = undefined;
+  let offerWithVoucher = '';
+  let signature = '';
+  let hashMessage = '';
+
+  var signNft = {
+    "url": "/api/v1/nfts/sign_nft",
+    "method": "POST",
+    "timeout": 0,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "data": JSON.stringify({
+      "creator": walletId,
+      "nftContract": nftContract,
+      "id": "30",
+      "offerAmount": "1",
+      "startPrice": "1",
+      "endPrice": "10",
+      "endTime": "1111111111",
+      "maxSupply": "1"
+    }),
+  };
+
+  const setMarketplaceAbi = async () => {
+    try {
+      var data = await fetch(url);
+      marketplaceAbi = await data.json();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const callSignNft = async () => {
+    try {
+      $.ajax(signNft).done(function (response) {
+        signature = response['signature'];
+        hashMessage = response['hashMessage'];
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const createOfferWithVoucher = async () => {
+    try {
+      var marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
+
+      offerWithVoucher = marketPlaceContract.methods.createOfferWithVoucher(
+        [walletId],
+        [nftContract],
+        ['30'],
+        ['1'],
+        ['1'],
+        ['10'],
+        ['1111111111'],
+        ['1'],
+        [hashMessage],
+        [signature]
+      ).send({ from: walletId })
+
+      console.log('offerWithVoucher =>', offerWithVoucher);
+    } catch (error) {
+      console.log('Error in createOfferWithVoucher =>', error);
+    }
+  };
+
+  setMarketplaceAbi();
+
+  callSignNft();
+
+  function mobileNftConfirm() {
+    if (confirm("Are you sure?") == true) {
+      createOfferWithVoucher();
+    }
+  }
+
+  $(window).bind("load", function() {
+     mobileNftConfirm();
+  });
