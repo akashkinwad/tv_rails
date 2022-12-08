@@ -75,7 +75,7 @@
   const marketPlaceAddress = "0xb5863aC3a747bFa37eEd4AAd84acec69723E954D";
   const nftAddress = "0x5Cdd8F41618D06C5BC6164B14786ADc7481F1A6E";
   const paymentTokenAddress = "0x39E77C8Bc081F20a7AA3a6027Db438FB5DAA1Aa0";
-  const nftContract = '0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3';
+  const nftContract = '0xa5399a1EE519F12A95E86766168308bda2aF82F1';
   const walletId = "#{current_user.wallet_address}";
 
   let marketplaceAbi = undefined;
@@ -93,10 +93,10 @@
     "data": JSON.stringify({
       "creator": walletId,
       "nftContract": nftContract,
-      "id": "12",
+      "id": "30",
       "offerAmount": "1",
       "startPrice": "1",
-      "endPrice": "1",
+      "endPrice": "10",
       "endTime": "1111111111",
       "maxSupply": "1"
     }),
@@ -129,10 +129,10 @@
       offerWithVoucher = marketPlaceContract.methods.createOfferWithVoucher(
         [walletId],
         [nftContract],
-        ['12'],
+        ['30'],
         ['1'],
         ['1'],
-        ['1'],
+        ['10'],
         ['1111111111'],
         ['1'],
         [hashMessage],
