@@ -2,7 +2,9 @@ class SignNft
   attr_reader :data, :nft_contract
 
   def initialize(data)
-    @data = JSON.parse(data)
+    data = JSON.parse(data)
+    data['id'] = SignNftRequest.last.count
+    @data = data
     @nft_contract = '0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3'
   end
 
@@ -24,7 +26,8 @@ class SignNft
     request.body = JSON.dump(data)
 
     response = http.request(request)
-    JSON.parse(response.read_body)
+    body = JSON.parse(response.read_body)
+    body.merge('nftId' => data['id'])
   end
 
   private

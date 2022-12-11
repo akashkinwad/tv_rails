@@ -1,6 +1,9 @@
 class User::NftPostsController < ApplicationController
-  include UploadToS3
   layout 'user'
+
+  include UploadToS3
+
+  skip_before_action :verify_authenticity_token
   before_action :authenticate_user!
 
   def new
@@ -15,8 +18,11 @@ class User::NftPostsController < ApplicationController
         upload_and_set_attr(nft_post_params.dig(:attachment))
 
         format.html { redirect_to user_nft_post_url(@nft_post), notice: "Post was successfully created." }
+        format.json { render json: @nft_post, status: :created }
+        format.js   { render :new, status: :created }
       else
         format.html { render :new, status: :unprocessable_entity }
+        format.js { render json: @nft_post.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -45,7 +51,8 @@ class User::NftPostsController < ApplicationController
         :listing_price,
         :quantity,
         :attachment,
-        :attachment_url
+        :attachment_url,
+        :details
       )
     end
 

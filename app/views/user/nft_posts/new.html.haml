@@ -1,6 +1,6 @@
 %section.create_view
   .container.my-4.mb-5
-    = form_for ([:user, @nft_post]) do |f|
+    = form_for [:user, @nft_post], remote: true do |f|
       .row.create-sec
         - if @nft_post.errors.any?
           #error_explanation
@@ -63,92 +63,110 @@
                 .fee-label.m-2
                   %i Service Fee 1.5%
               .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-center.align-items-center
-                = f.submit 'Save', class: 'btn px-5 btn-primary bg-color-2 br-style-1 mint-btn mb-3 mb-lg-0 me-lg-3 fw-6'
-              .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-center.align-items-center
-                %a.btn.px-5.btn-primary.bg-color-2.br-style-1.mint-btn.mb-3.mb-lg-0.me-lg-3.fw-6#createOfferWithVoucher createOfferWithVoucher
+                %a.btn.px-5.btn-primary.bg-color-2.br-style-1.mint-btn.mb-3.mb-lg-0.me-lg-3.fw-6#createOfferWithVoucher Save
 
 :javascript
   var token = $('meta[name=csrf-token]').attr('content');
   var user_id = "#{current_user.id}";
 
-  const url = "/user/json/marketPlaceAbi.json";
-  const marketPlaceAddress = "0xb5863aC3a747bFa37eEd4AAd84acec69723E954D";
-  const nftAddress = "0x5Cdd8F41618D06C5BC6164B14786ADc7481F1A6E";
+  const marketPlaceAddress = "0x7aE5B2215Cb8330753Ec60a126778643A6499Bc0";
+  const nftAddress = "0xa5399a1EE519F12A95E86766168308bda2aF82F1";
   const paymentTokenAddress = "0x39E77C8Bc081F20a7AA3a6027Db438FB5DAA1Aa0";
+
   const nftContract = '0xa5399a1EE519F12A95E86766168308bda2aF82F1';
   const walletId = "#{current_user.wallet_address}";
 
   let marketplaceAbi = undefined;
-  let offerWithVoucher = '';
-  let signature = '';
-  let hashMessage = '';
-
-  var signNft = {
-    "url": "/api/v1/nfts/sign_nft",
-    "method": "POST",
-    "timeout": 0,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "data": JSON.stringify({
-      "creator": walletId,
-      "nftContract": nftContract,
-      "id": "30",
-      "offerAmount": "1",
-      "startPrice": "1",
-      "endPrice": "10",
-      "endTime": "1111111111",
-      "maxSupply": "1"
-    }),
-  };
 
   const setMarketplaceAbi = async () => {
     try {
-      var data = await fetch(url);
+      var data = await fetch('/user/json/marketPlaceAbi.json');
       marketplaceAbi = await data.json();
+
+      return marketplaceAbi
     } catch (error) {
       console.log(error);
     }
   };
 
-  const callSignNft = async () => {
-    try {
-      $.ajax(signNft).done(function (response) {
-        signature = response['signature'];
-        hashMessage = response['hashMessage'];
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  async function toWei(number) {
+    return Web3.utils.toWei(number.toString());
+  }
 
-  const createOfferWithVoucher = async () => {
-    try {
-      var marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
+  async function createOfferWithVoucherNew(nftId, offerAmount, startPrice, targetPrice, offerEnd) {
+    const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
 
-      offerWithVoucher = marketPlaceContract.methods.createOfferWithVoucher(
-        [walletId],
-        [nftContract],
-        ['30'],
-        ['1'],
-        ['1'],
-        ['10'],
-        ['1111111111'],
-        ['1'],
-        [hashMessage],
-        [signature]
-      ).send({ from: walletId })
+    let weiStartPrice = await toWei(startPrice);
+    let weiTargetPrice = await toWei(targetPrice);
+    let unixDate = Math.floor(offerEnd.getTime() / 1000);
+    let maxSupply = 10;
 
-      console.log('offerWithVoucher =>', offerWithVoucher);
-    } catch (error) {
-      console.log('Error in createOfferWithVoucher =>', error);
-    }
-  };
+    let response = await fetch('/api/v1/nfts/sign_nft', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        creator: currentAccount,
+        nftContract: nftAddress,
+        id: nftId,
+        offerAmount: offerAmount,
+        startPrice: weiStartPrice,
+        endPrice: weiTargetPrice,
+        endTime: unixDate,
+        maxSupply: maxSupply
+      })
+    });
+
+    let json = await response.json();
+
+    return marketPlaceContract.methods.createOfferWithVoucher(
+      [currentAccount],
+      [nftAddress],
+      [json.nftId],
+      [offerAmount],
+      [weiStartPrice],
+      [weiTargetPrice],
+      [unixDate],
+      [maxSupply],
+      [json.hashMessage],
+      [json.signature]
+    ).send({from: currentAccount});
+  }
 
   setMarketplaceAbi();
 
-  callSignNft();
+  async function submitForm() {
+    var d = new Date();
+    const response = await createOfferWithVoucherNew(158, 10, 1, 1, d);
+
+    var formData = new FormData($('#new_nft_post')[0]);
+    var action = $(this).attr('action');
+
+    formData.append('nft_post[details]', JSON.stringify(response));
+
+    $.ajax({
+      url: '/user/nft_posts',
+      method: 'POST',
+      headers: {
+        'X-CSRF-Token': token
+      },
+      data: formData,
+      processData: false,
+      contentType: false,
+      dataType: 'json',
+      success:function(data, textStatus, jqXHR){
+        $("#new_nft_post")[0].reset();
+        alert('Post was successfully created.')
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        alert('error');
+      }
+    });
+  }
 
   $('#createOfferWithVoucher').click(function(){
-    createOfferWithVoucher();
+    submitForm()
   });
