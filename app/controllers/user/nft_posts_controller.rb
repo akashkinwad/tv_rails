@@ -52,7 +52,11 @@ class User::NftPostsController < ApplicationController
         :quantity,
         :attachment,
         :attachment_url,
-        :details
+        :details,
+        :start_price,
+        :target_price,
+        :end_date,
+        :nft_id
       )
     end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_11_035518) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_11_090455) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,6 +78,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_035518) do
     t.jsonb "details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "start_price"
+    t.decimal "target_price"
+    t.datetime "end_date"
+    t.integer "nft_id"
     t.index ["user_id"], name: "index_nft_posts_on_user_id"
   end
 
