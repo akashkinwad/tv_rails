@@ -68,24 +68,20 @@
                   .input-group.mx-2.me-0
                     .input-grp.d-flex.justify-content-start.align-items-center
                       = f.text_field :target_price, placeholder: 'Target Price', class: 'input-field w-100', required: true
+              .mb-3
+                .d-flex
+                  .input-group
+                    .fee-label.m-3
+                      %i Select End Date
 
-              .input-group.mb-4
-                .input-grp.d-flex.justify-content-start.align-items-center
-                  = f.datetime_local_field :end_date, class: 'input-field w-100', required: true
+                  .input-group.mb-4
+                    .input-grp.d-flex.justify-content-start.align-items-center
+                      = f.datetime_local_field :end_date, class: 'input-field w-100', required: true
 
               .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-center.align-items-center
                 %a.btn.px-5.btn-primary.bg-color-2.br-style-1.mint-btn.mb-3.mb-lg-0.me-lg-3.fw-6#createOfferWithVoucher Save
 
 :javascript
-  var token = $('meta[name=csrf-token]').attr('content');
-  var user_id = "#{current_user.id}";
-
-  const marketPlaceAddress = "0x7aE5B2215Cb8330753Ec60a126778643A6499Bc0";
-  const nftAddress = "0xa5399a1EE519F12A95E86766168308bda2aF82F1";
-  const paymentTokenAddress = "0x39E77C8Bc081F20a7AA3a6027Db438FB5DAA1Aa0";
-
-  const nftContract = '0xa5399a1EE519F12A95E86766168308bda2aF82F1';
-  const walletId = "#{current_user.wallet_address}";
 
   let marketplaceAbi = undefined;
 
@@ -99,10 +95,6 @@
       console.log(error);
     }
   };
-
-  async function toWei(number) {
-    return Web3.utils.toWei(number.toString());
-  }
 
   async function createOfferWithVoucherNew(nftId, offerAmount, startPrice, targetPrice, offerEnd) {
     const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);

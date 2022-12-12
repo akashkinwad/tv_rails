@@ -31,8 +31,22 @@
     %script{src: "/user/js/main.js"}
     / Main Script Files END
 :javascript
+  var token = $('meta[name=csrf-token]').attr('content');
+  var user_id = "#{current_user.id}";
+
+  const marketPlaceAddress = "0x7aE5B2215Cb8330753Ec60a126778643A6499Bc0";
+  const nftAddress = "0xa5399a1EE519F12A95E86766168308bda2aF82F1";
+  const paymentTokenAddress = "0x39E77C8Bc081F20a7AA3a6027Db438FB5DAA1Aa0";
+
+  const nftContract = '0xa5399a1EE519F12A95E86766168308bda2aF82F1';
+  const walletId = "#{current_user.wallet_address}";
+
   let provider = (new Web3(Web3.givenProvider)).eth;
   var currentAccount = undefined;
+
+  async function toWei(number) {
+    return Web3.utils.toWei(number.toString());
+  }
 
   async function getAccount() {
     if (provider) {

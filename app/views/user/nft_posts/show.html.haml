@@ -10,15 +10,16 @@
       %div
         .modHead.py-4.px-4
           .modLabel
-            \#001
+            = @nft_post.nft_id
             %br/
-            Moderator
+            = @nft_post.title
           .d-flex.mt-3.align-items-center.justify-content-between
             .md_bottom
               %span.me-3
                 %img{alt: "", src: "/user/img/default/moderate-img.png"}/
-              by Talentsverse
-            .md_bottom Talinhos Collection
+              = "by #{@nft_post.user.name || @nft_post.user.email} "
+            .md_bottom
+              = @nft_post.category
         .pt-5.py-4.px-4.mb-padding.graphOuter
           .graph_sec
             .graph_prg
@@ -36,24 +37,30 @@
                 = @nft_post.listing_price
             .ms-3.me-4
               %img.pr-img{alt: "", src: "/user/img/default/prImg.png"}/
-            %div
-              %p.m-0.avg-label avg price
-              %p.m-0.avgPr-label.color-2.ms-3
-                16,3
-                %span
-                  %img.avgPrImg{alt: "", src: "/user/img/default/prImg.png"}/
-              %p.m-0.prNum (124,648 USD)
-          .timerStatus
-            %span 21
-            \:
-            %span 53
-            \:
-            %span 04
+            .pricSec
+              %p.m-0.cp-label Start Price
+              %p.m-0.pr-lable.color-2
+                = @nft_post.start_price
+            .ms-3.me-4
+              %img.pr-img{alt: "", src: "/user/img/default/prImg.png"}/
+            .pricSec
+              %p.m-0.cp-label Target Price
+              %p.m-0.pr-lable.color-2
+                = @nft_post.target_price
+
+        .priceStatusOuter.mb-padding.pt-3.py-3.px-4.by-5.d-flex.align-items-end.justify-content-between
+          .priceStatus.d-flex
+            .pricSec
+              %p.m-0.cp-label Offer End Time
+              %p.m-0.pr-lable.timerStatus
+                = @nft_post.listing_price
+
         .pt-3.py-3.px-4.mb-padding
           .btnOuterSection.d-flex.justify-content-between.align-items-center
             .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-start.align-items-center
               %a.btn.px-5.py-2.mod-btn.btn-primary.bg-color-2.br-style-1.mb-3.mb-lg-0.me-lg-3.fw-6{href: "#link-6"} Buy now
-              %a.btn.px-5.py-2.mod-btn.btn-outline-primary.bg-white.br-style-2.fw-6{href: "#link-7"}
+
+              = link_to new_user_offer_path, { remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn px-5 py-2 mod-btn btn-outline-primary bg-white br-style-2 fw-6' } do
                 %span.color-2 Make Offer
             .btnsOuter.d-flex
               .scImg.d-flex.justify-content-center.align-items-center.me-4
@@ -107,176 +114,7 @@
                     %span.name-5.d-flex.align-items-center
                       16,320
                       %img.like-icon{src: "/user/img/default/like.png"}/
-            .modBox
-              .SL_Box
-                .img-box
-                  %img{src: "/user/img/default/img-1.png"}/
-                .text-box.w-100.d-flex.justify-content-between
-                  .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
-                    %span.name-1 Talinhos
-                    %strong.name-2 Moderator
-                    %strong.name-3 #001
-                  .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
-                    %span.name-4 654
-                    %span.name-5.d-flex.align-items-center
-                      16,320
-                      %img.like-icon{src: "/user/img/default/like.png"}/
-            .modBox
-              .SL_Box
-                .img-box
-                  %img{src: "/user/img/default/img-1.png"}/
-                .text-box.w-100.d-flex.justify-content-between
-                  .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
-                    %span.name-1 Talinhos
-                    %strong.name-2 Moderator
-                    %strong.name-3 #001
-                  .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
-                    %span.name-4 654
-                    %span.name-5.d-flex.align-items-center
-                      16,320
-                      %img.like-icon{src: "/user/img/default/like.png"}/
-            .modBox
-              .SL_Box
-                .img-box
-                  %img{src: "/user/img/default/img-1.png"}/
-                .text-box.w-100.d-flex.justify-content-between
-                  .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
-                    %span.name-1 Talinhos
-                    %strong.name-2 Moderator
-                    %strong.name-3 #001
-                  .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
-                    %span.name-4 654
-                    %span.name-5.d-flex.align-items-center
-                      16,320
-                      %img.like-icon{src: "/user/img/default/like.png"}/
-            .modBox
-              .SL_Box
-                .img-box
-                  %img{src: "/user/img/default/img-1.png"}/
-                .text-box.w-100.d-flex.justify-content-between
-                  .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
-                    %span.name-1 Talinhos
-                    %strong.name-2 Moderator
-                    %strong.name-3 #001
-                  .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
-                    %span.name-4 654
-                    %span.name-5.d-flex.align-items-center
-                      16,320
-                      %img.like-icon{src: "/user/img/default/like.png"}/
-            .modBox
-              .SL_Box
-                .img-box
-                  %img{src: "/user/img/default/img-1.png"}/
-                .text-box.w-100.d-flex.justify-content-between
-                  .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
-                    %span.name-1 Talinhos
-                    %strong.name-2 Moderator
-                    %strong.name-3 #001
-                  .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
-                    %span.name-4 654
-                    %span.name-5.d-flex.align-items-center
-                      16,320
-                      %img.like-icon{src: "/user/img/default/like.png"}/
-            .modBox
-              .SL_Box
-                .img-box
-                  %img{src: "/user/img/default/img-1.png"}/
-                .text-box.w-100.d-flex.justify-content-between
-                  .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
-                    %span.name-1 Talinhos
-                    %strong.name-2 Moderator
-                    %strong.name-3 #001
-                  .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
-                    %span.name-4 654
-                    %span.name-5.d-flex.align-items-center
-                      16,320
-                      %img.like-icon{src: "/user/img/default/like.png"}/
-          .NFTslider-2-container.mobBox
-            .NFTslider-2.slider-Outer
-              %div
-                .SL_Box
-                  .img-box
-                    %img{src: "/user/img/default/img-1.png"}/
-                  .text-box.w-100.d-flex.justify-content-between
-                    .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
-                      %span.name-1 Talinhos
-                      %strong.name-2 Moderator
-                      %strong.name-3 #001
-                    .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
-                      %span.name-4 654
-                      %span.name-5.d-flex.align-items-center
-                        16,320
-                        %img.like-icon{src: "/user/img/default/like.png"}/
-              %div
-                .SL_Box
-                  .img-box
-                    %img{src: "/user/img/default/img-1.png"}/
-                  .text-box.w-100.d-flex.justify-content-between
-                    .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
-                      %span.name-1 Talinhos
-                      %strong.name-2 Moderator
-                      %strong.name-3 #001
-                    .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
-                      %span.name-4 654
-                      %span.name-5.d-flex.align-items-center
-                        16,320
-                        %img.like-icon{src: "/user/img/default/like.png"}/
-              %div
-                .SL_Box
-                  .img-box
-                    %img{src: "/user/img/default/img-1.png"}/
-                  .text-box.w-100.d-flex.justify-content-between
-                    .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
-                      %span.name-1 Talinhos
-                      %strong.name-2 Moderator
-                      %strong.name-3 #001
-                    .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
-                      %span.name-4 654
-                      %span.name-5.d-flex.align-items-center
-                        16,320
-                        %img.like-icon{src: "/user/img/default/like.png"}/
-              %div
-                .SL_Box
-                  .img-box
-                    %img{src: "/user/img/default/img-1.png"}/
-                  .text-box.w-100.d-flex.justify-content-between
-                    .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
-                      %span.name-1 Talinhos
-                      %strong.name-2 Moderator
-                      %strong.name-3 #001
-                    .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
-                      %span.name-4 654
-                      %span.name-5.d-flex.align-items-center
-                        16,320
-                        %img.like-icon{src: "/user/img/default/like.png"}/
-              %div
-                .SL_Box
-                  .img-box
-                    %img{src: "/user/img/default/img-1.png"}/
-                  .text-box.w-100.d-flex.justify-content-between
-                    .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
-                      %span.name-1 Talinhos
-                      %strong.name-2 Moderator
-                      %strong.name-3 #001
-                    .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
-                      %span.name-4 654
-                      %span.name-5.d-flex.align-items-center
-                        16,320
-                        %img.like-icon{src: "/user/img/default/like.png"}/
-              %div
-                .SL_Box
-                  .img-box
-                    %img{src: "/user/img/default/img-1.png"}/
-                  .text-box.w-100.d-flex.justify-content-between
-                    .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
-                      %span.name-1 Talinhos
-                      %strong.name-2 Moderator
-                      %strong.name-3 #001
-                    .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
-                      %span.name-4 654
-                      %span.name-5.d-flex.align-items-center
-                        16,320
-                        %img.like-icon{src: "/user/img/default/like.png"}/
+
         .pt-3.pt-3.px-4.simiOuter.mb-padding
           .color-2.cl-label Other Collections by Talentsverse
           .TC-outer.flex-wrap.d-flex.flex-row.justify-content-center.align-items-center.mt-4.mx-auto.TC-outerDesk-view
@@ -310,200 +148,101 @@
                   %small.flex-1.text-center 16,547 Views
                   %span.flex-1.text-center.color-2.fs-18 ...
                   %small.flex-1.text-center 1,414 Likes
-            .TC-item.d-flex.flex-column.align-items-between.me-md-4.mb-3.mb-lg-4
-              .TC-img
-                %img{src: "/user/img/default/trading.png"}/
-              .TC-details-outer.h-100.d-flex.flex-column.justify-content-between
-                .TC-details.d-flex.flex-column
-                  .TC-1.d-flex.flex-column.justify-content-center.align-items-center.pt-3
-                    %p.mb-0.fs-18
-                      %strong Talinhos
-                    %p.mb-0.fs-18.mt-1
-                      %span Diverse
-                .TC-details.d-flex.flex-row.justify-content-center.align-items-center.pt-3.pb-3.pb-xl-4
-                  %small.flex-1.text-center 16,547 Views
-                  %span.flex-1.text-center.color-2.fs-18 ...
-                  %small.flex-1.text-center 1,414 Likes
-            .TC-item.d-flex.flex-column.align-items-between.me-md-4.mb-3.mb-lg-4
-              .TC-img
-                %img{src: "/user/img/default/trading.png"}/
-              .TC-details-outer.h-100.d-flex.flex-column.justify-content-between
-                .TC-details.d-flex.flex-column
-                  .TC-1.d-flex.flex-column.justify-content-center.align-items-center.pt-3
-                    %p.mb-0.fs-18
-                      %strong Talinhos
-                    %p.mb-0
-                      %small by
-                    %p.mb-0.fs-18
-                      %span Talentsverse
-                .TC-details.d-flex.flex-row.justify-content-center.align-items-center.pt-3.pb-3.pb-xl-4
-                  %small.flex-1.text-center 16,547 Views
-                  %span.flex-1.text-center.color-2.fs-18 ...
-                  %small.flex-1.text-center 1,414 Likes
-            .TC-item.d-flex.flex-column.align-items-between.me-md-4.mb-3.mb-lg-4
-              .TC-img
-                %img{src: "/user/img/default/trading.png"}/
-              .TC-details-outer.h-100.d-flex.flex-column.justify-content-between
-                .TC-details.d-flex.flex-column
-                  .TC-1.d-flex.flex-column.justify-content-center.align-items-center.pt-3
-                    %p.mb-0.fs-18
-                      %strong Talinhos
-                    %p.mb-0.fs-18.mt-1
-                      %span Diverse
-                .TC-details.d-flex.flex-row.justify-content-center.align-items-center.pt-3.pb-3.pb-xl-4
-                  %small.flex-1.text-center 16,547 Views
-                  %span.flex-1.text-center.color-2.fs-18 ...
-                  %small.flex-1.text-center 1,414 Likes
-            .TC-item.d-flex.flex-column.align-items-between.mb-3.mb-lg-4
-              .TC-img
-                %img{src: "/user/img/default/trading.png"}/
-              .TC-details-outer.h-100.d-flex.flex-column.justify-content-between
-                .TC-details.d-flex.flex-column
-                  .TC-1.d-flex.flex-column.justify-content-center.align-items-center.pt-3
-                    %p.mb-0.fs-18
-                      %strong Talinhos
-                    %p.mb-0.fs-18.mt-1
-                      %span Diverse
-                .TC-details.d-flex.flex-row.justify-content-center.align-items-center.pt-3.pb-3.pb-xl-4
-                  %small.flex-1.text-center 16,547 Views
-                  %span.flex-1.text-center.color-2.fs-18 ...
-                  %small.flex-1.text-center 1,414 Likes
-          .mx-auto.TC-outerMob-view
-            .container-fluid.my-3.slider-trend-container
-              .NFTslider-trend.slider-Outer
-                %div
-                  .TC-item.d-flex.flex-column.align-items-between.mb-3.mb-lg-4
-                    .TC-img
-                      %img{src: "/user/img/default/trading.png"}/
-                    .TC-details-outer.h-100.d-flex.flex-column.justify-content-between
-                      .TC-details.d-flex.flex-column
-                        .TC-1.d-flex.flex-column.justify-content-center.align-items-center.pt-3
-                          %p.mb-0.fs-18
-                            %strong Talinhos
-                          %p.mb-0.fs-18.mt-1
-                            %span Diverse
-                      .TC-details.d-flex.flex-row.justify-content-center.align-items-center.pt-3.pb-3.pb-xl-4
-                        %small.flex-1.text-center 16,547 Views
-                        %span.flex-1.text-center.color-2.fs-18 ...
-                        %small.flex-1.text-center 1,414 Likes
-                %div
-                  .TC-item.d-flex.flex-column.align-items-between.mb-3.mb-lg-4
-                    .TC-img
-                      %img{src: "/user/img/default/trading.png"}/
-                    .TC-details-outer.h-100.d-flex.flex-column.justify-content-between
-                      .TC-details.d-flex.flex-column
-                        .TC-1.d-flex.flex-column.justify-content-center.align-items-center.pt-3
-                          %p.mb-0.fs-18
-                            %strong Talinhos
-                          %p.mb-0.fs-18.mt-1
-                            %span Diverse
-                      .TC-details.d-flex.flex-row.justify-content-center.align-items-center.pt-3.pb-3.pb-xl-4
-                        %small.flex-1.text-center 16,547 Views
-                        %span.flex-1.text-center.color-2.fs-18 ...
-                        %small.flex-1.text-center 1,414 Likes
-                %div
-                  .TC-item.d-flex.flex-column.align-items-between.mb-3.mb-lg-4
-                    .TC-img
-                      %img{src: "/user/img/default/trading.png"}/
-                    .TC-details-outer.h-100.d-flex.flex-column.justify-content-between
-                      .TC-details.d-flex.flex-column
-                        .TC-1.d-flex.flex-column.justify-content-center.align-items-center.pt-3
-                          %p.mb-0.fs-18
-                            %strong Talinhos
-                          %p.mb-0.fs-18.mt-1
-                            %span Diverse
-                      .TC-details.d-flex.flex-row.justify-content-center.align-items-center.pt-3.pb-3.pb-xl-4
-                        %small.flex-1.text-center 16,547 Views
-                        %span.flex-1.text-center.color-2.fs-18 ...
-                        %small.flex-1.text-center 1,414 Likes
-                %div
-                  .TC-item.d-flex.flex-column.align-items-between.mb-3.mb-lg-4
-                    .TC-img
-                      %img{src: "/user/img/default/trading.png"}/
-                    .TC-details-outer.h-100.d-flex.flex-column.justify-content-between
-                      .TC-details.d-flex.flex-column
-                        .TC-1.d-flex.flex-column.justify-content-center.align-items-center.pt-3
-                          %p.mb-0.fs-18
-                            %strong Talinhos
-                          %p.mb-0.fs-18.mt-1
-                            %span Diverse
-                      .TC-details.d-flex.flex-row.justify-content-center.align-items-center.pt-3.pb-3.pb-xl-4
-                        %small.flex-1.text-center 16,547 Views
-                        %span.flex-1.text-center.color-2.fs-18 ...
-                        %small.flex-1.text-center 1,414 Likes
-                %div
-                  .TC-item.d-flex.flex-column.align-items-between.mb-3.mb-lg-4
-                    .TC-img
-                      %img{src: "/user/img/default/trading.png"}/
-                    .TC-details-outer.h-100.d-flex.flex-column.justify-content-between
-                      .TC-details.d-flex.flex-column
-                        .TC-1.d-flex.flex-column.justify-content-center.align-items-center.pt-3
-                          %p.mb-0.fs-18
-                            %strong Talinhos
-                          %p.mb-0.fs-18.mt-1
-                            %span Diverse
-                      .TC-details.d-flex.flex-row.justify-content-center.align-items-center.pt-3.pb-3.pb-xl-4
-                        %small.flex-1.text-center 16,547 Views
-                        %span.flex-1.text-center.color-2.fs-18 ...
-                        %small.flex-1.text-center 1,414 Likes
-                %div
-                  .TC-item.d-flex.flex-column.align-items-between.mb-3.mb-lg-4
-                    .TC-img
-                      %img{src: "/user/img/default/trading.png"}/
-                    .TC-details-outer.h-100.d-flex.flex-column.justify-content-between
-                      .TC-details.d-flex.flex-column
-                        .TC-1.d-flex.flex-column.justify-content-center.align-items-center.pt-3
-                          %p.mb-0.fs-18
-                            %strong Talinhos
-                          %p.mb-0.fs-18.mt-1
-                            %span Diverse
-                      .TC-details.d-flex.flex-row.justify-content-center.align-items-center.pt-3.pb-3.pb-xl-4
-                        %small.flex-1.text-center 16,547 Views
-                        %span.flex-1.text-center.color-2.fs-18 ...
-                        %small.flex-1.text-center 1,414 Likes
+
+#modal-window.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog"}
+  .modal-dialog{role: "document"}
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", type: "button"} x
+        %h4#myModalLabel.modal-title Modal title
+      .modal-body
+        *Modal content comes here*
+      .modal-footer
+        %button.btn.btn-primary Save
+
 :javascript
 
-  const url = "/user/json/marketPlaceAbi.json";
-  const marketPlaceAddress = "0xb5863aC3a747bFa37eEd4AAd84acec69723E954D";
-  const nftAddress = "0x5Cdd8F41618D06C5BC6164B14786ADc7481F1A6E";
-  const paymentTokenAddress = "0x39E77C8Bc081F20a7AA3a6027Db438FB5DAA1Aa0";
-
   let marketplaceAbi = undefined;
+  let paymentTokenAbi = undefined;
 
   const setMarketplaceAbi = async () => {
     try {
-      var data = await fetch(url);
+      var data = await fetch('/user/json/marketPlaceAbi.json');
       marketplaceAbi = await data.json();
+
+      console.log('marketplaceAbi => ', marketplaceAbi);
+
+      return marketplaceAbi
     } catch (error) {
       console.log(error);
     }
   };
 
-  const createOfferWithVoucher = async () => {
+  const setPaymentTokenAbi = async () => {
     try {
-      let provider = (new Web3(Web3.givenProvider)).eth;
+      var data = await fetch('/user/json/paymentToken.json');
+      paymentTokenAbi = await data.json();
 
-      var marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
-      console.log('marketPlaceContract ---', marketPlaceContract);
+      console.log('paymentTokenAbi => ', paymentTokenAbi);
 
-      const nftId = '15792089237316195423570985008687907853269984665640564039457584007913129639935';
-
-      return marketPlaceContract.methods.createOfferWithVoucher(
-        nftAddress,
-        nftAddress,
-        nftId,
-        '10',
-        '20',
-        '30',
-        Date.now(),
-        '500',
-        'this is test',
-        'sig'
-      ).send({from: nftAddress})
+      return paymentTokenAbi
     } catch (error) {
       console.log(error);
     }
   };
+
+  async function getOfferData(offerId) {
+    return marketPlaceContract.methods.offers(offerId).call();
+  }
+
+  async function getAllowance(baseContract, toApproveContract) {
+    return baseContract.methods.allowance(currentAccount, toApproveContract).call();
+  }
+
+  async function approve(baseContract, toApproveContract) {
+    let maxAmount = Web3.utils.toBN(2).pow(Web3.utils.toBN(256)).sub(Web3.utils.toBN(1)).toString();
+    let allowance = await getAllowance(baseContract, toApproveContract);
+
+    if (allowance !== maxAmount) {
+      return baseContract.methods.approve(toApproveContract, maxAmount).send({from: currentAccount});
+    } else {
+      return Promise.resolve();
+    }
+  }
+
+  async function makeBid(offerId, amount) {
+    let weiAmount = await toWei(amount);
+
+    const paymentTokenContract = new provider.Contract(paymentTokenAbi, paymentTokenAddress);
+    const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
+
+    return approve(paymentTokenContract, marketPlaceAddress).then(() => {
+      return marketPlaceContract.methods.makeBid(offerId, weiAmount, "0x").send({from: currentAccount});
+    });
+  }
 
   setMarketplaceAbi();
-  createOfferWithVoucher();
+  setPaymentTokenAbi();
+
+  // Remove below functions
+
+  async function getOfferCount() {
+    const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
+
+    return marketPlaceContract.methods.offerCount().call();
+  }
+
+  async function getAllOfferData() {
+    let offerCount = await getOfferCount();
+
+    let allOffers = [];
+    let currentOffer = undefined;
+    for (let i = 1; i <= parseInt(offerCount); i++) {
+      currentOffer = await getOfferData(i);
+      // TODO: 0-11 deleten
+
+      allOffers.push(currentOffer);
+    }
+
+    return allOffers;
+  }

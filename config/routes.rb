@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         get :mobile_nft
       end
     end
+    resources :offers
   end
   resources :users, only: [:update]
 

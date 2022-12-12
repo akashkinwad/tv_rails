@@ -38,10 +38,6 @@ class User::NftPostsController < ApplicationController
   def mobile_nft;end
 
   private
-    def set_category
-      @category = Category.find(params[:id])
-    end
-
     def nft_post_params
       params.require(:nft_post).permit(
         :title,
