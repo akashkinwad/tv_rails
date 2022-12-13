@@ -1,3 +1,4 @@
+= turbo_frame_tag "remote_modal", target: "_top"
 %section.nft_section
   .container-fluid.d-flex.p-0.nft_sectionInner
     .LeftSlider
@@ -63,7 +64,7 @@
             .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-start.align-items-center
               %a.btn.px-5.py-2.mod-btn.btn-primary.bg-color-2.br-style-1.mb-3.mb-lg-0.me-lg-3.fw-6{href: "#link-6"} Buy now
 
-              = link_to new_user_offer_path, { remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn px-5 py-2 mod-btn btn-outline-primary bg-white br-style-2 fw-6' } do
+              = link_to new_user_offer_path, class: 'btn px-5 py-2 mod-btn btn-outline-primary bg-white br-style-2 fw-6', data: { turbo_frame: 'remote_modal' } do
                 %span.color-2 Make Offer
             .btnsOuter.d-flex
               .scImg.d-flex.justify-content-center.align-items-center.me-4

@@ -23,7 +23,8 @@ class User::OffersController < ApplicationController
         format.js   { render :new, status: :created }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.js { render json: @offer.errors, status: :unprocessable_entity }
+        format.json { render json: @offer.errors, status: :unprocessable_entity }
+        format.turbo_stream { render :form_update, status: :unprocessable_entity }
       end
     end
   end
