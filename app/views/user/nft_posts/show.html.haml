@@ -240,8 +240,36 @@
     return allOffers;
   }
 
+  async function submitOfferForm() {
+    var amount = $('#offer_amount').val();
+
+    let response = await makeBid(offerId, amount);
+
+    console.log('makeBid response =>', response);
+
+    var formData = new FormData($('#new-offer-form')[0]);
+    formData.append('offer[details]', JSON.stringify(response));
+
+    $.ajax({
+      url: '/user/offers',
+      method: 'POST',
+      headers: {
+        'X-CSRF-Token': token
+      },
+      data: formData,
+      processData: false,
+      contentType: false,
+      dataType: 'json',
+      success:function(data, textStatus, jqXHR){
+        $('.btn-close').click();
+        alert('Offer was successfully created.');
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        alert('Error in creating offer, please try later.');
+      }
+    });
+  }
+
   $(document).on('click','#save-offer',function(){
-
-    alert('Clicked');
-
+    submitOfferForm();
   });

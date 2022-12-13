@@ -538,3 +538,7 @@ wallet click => update address
 save => sign nft & create voucher
 
 sign NFT api
+
+================
+
+stimulus => https://gitlab.com/initforthe/stimulus-remote

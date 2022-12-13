@@ -1,4 +1,4 @@
-= form_with(model: [:user, offer]) do |form|
+= form_with(model: [:user, offer], id: 'new-offer-form') do |form|
   .mb-3
     = form.hidden_field :nft_post_id, value: nft_post_id
     = form.label :amount, style: 'display: block', class: 'form-label'
@@ -8,5 +8,5 @@
         - offer.errors.full_messages_for(:amount).each do |error_message|
           = error_message
   .mb-3
-    = form.submit 'Save', class: 'btn btn-success btn-block', id: 'save-offer'
-
+    / = form.submit 'Save', class: 'btn btn-success btn-block', id: 'save-offer'
+    %a.btn.btn-success.btn-block#save-offer Save
