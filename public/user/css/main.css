@@ -1289,6 +1289,9 @@ resize: none;
 }
 
 @media all and (max-width:1600px){
+    .timer-label{
+        fon-size: 23px;
+    }
     .pr-lable{
         font-size: 47px;
     }
