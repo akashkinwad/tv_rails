@@ -5,8 +5,8 @@ Password: THS12345
 ssh root@185.25.164.82
 
 
+RAILS_ENV=production bundle install
 RAILS_ENV=production bundle exec rails assets:precompile
-
 
 sudo passenger-config restart-app
 

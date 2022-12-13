@@ -12,14 +12,6 @@
   var token = $('meta[name=csrf-token]').attr('content');
   var user_id = "#{current_user.id}";
 
-  const url = "/user/json/marketPlaceAbi.json";
-  const marketPlaceAddress = "0xb5863aC3a747bFa37eEd4AAd84acec69723E954D";
-  const nftAddress = "0x5Cdd8F41618D06C5BC6164B14786ADc7481F1A6E";
-  const paymentTokenAddress = "0x39E77C8Bc081F20a7AA3a6027Db438FB5DAA1Aa0";
-  const nftContract = '0xa5399a1EE519F12A95E86766168308bda2aF82F1';
-  const walletId = "#{current_user.wallet_address}";
-
-  let marketplaceAbi = undefined;
   let offerWithVoucher = '';
   let signature = '';
   let hashMessage = '';

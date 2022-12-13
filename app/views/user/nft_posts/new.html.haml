@@ -83,19 +83,6 @@
 
 :javascript
 
-  let marketplaceAbi = undefined;
-
-  const setMarketplaceAbi = async () => {
-    try {
-      var data = await fetch('/user/json/marketPlaceAbi.json');
-      marketplaceAbi = await data.json();
-
-      return marketplaceAbi
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   async function createOfferWithVoucherNew(nftId, offerAmount, startPrice, targetPrice, offerEnd) {
     const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
 
@@ -140,8 +127,6 @@
 
     return [offerResponse, json.nftId]
   }
-
-  setMarketplaceAbi();
 
   async function submitForm() {
     var date = Date.parse($('#nft_post_end_date').val());

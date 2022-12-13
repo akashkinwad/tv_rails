@@ -64,7 +64,7 @@
             .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-start.align-items-center
               %a.btn.px-5.py-2.mod-btn.btn-primary.bg-color-2.br-style-1.mb-3.mb-lg-0.me-lg-3.fw-6{href: "#link-6"} Buy now
 
-              = link_to new_user_offer_path, class: 'btn px-5 py-2 mod-btn btn-outline-primary bg-white br-style-2 fw-6', data: { turbo_frame: 'remote_modal' } do
+              = link_to new_user_offer_path(nft_post_id: @nft_post.id), class: 'btn px-5 py-2 mod-btn btn-outline-primary bg-white br-style-2 fw-6', data: { turbo_frame: 'remote_modal' } do
                 %span.color-2 Make Offer
             .btnsOuter.d-flex
               .scImg.d-flex.justify-content-center.align-items-center.me-4
@@ -153,49 +153,13 @@
                   %span.flex-1.text-center.color-2.fs-18 ...
                   %small.flex-1.text-center 1,414 Likes
 
-#modal-window.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog"}
-  .modal-dialog{role: "document"}
-    .modal-content
-      .modal-header
-        %button.close{"data-dismiss" => "modal", type: "button"} x
-        %h4#myModalLabel.modal-title Modal title
-      .modal-body
-        *Modal content comes here*
-      .modal-footer
-        %button.btn.btn-primary Save
-
 :javascript
 
-  let marketplaceAbi = undefined;
-  let paymentTokenAbi = undefined;
-
-  const setMarketplaceAbi = async () => {
-    try {
-      var data = await fetch('/user/json/marketPlaceAbi.json');
-      marketplaceAbi = await data.json();
-
-      console.log('marketplaceAbi => ', marketplaceAbi);
-
-      return marketplaceAbi
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const setPaymentTokenAbi = async () => {
-    try {
-      var data = await fetch('/user/json/paymentToken.json');
-      paymentTokenAbi = await data.json();
-
-      console.log('paymentTokenAbi => ', paymentTokenAbi);
-
-      return paymentTokenAbi
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  var offerId = "#{@nft_post.offer_id}"
 
   async function getOfferData(offerId) {
+    const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
+
     return marketPlaceContract.methods.offers(offerId).call();
   }
 
@@ -253,9 +217,6 @@
 
   setInterval(function() { makeTimer("#{@nft_post.end_date&.strftime("%c %z")}"); }, 1000);
 
-  setMarketplaceAbi();
-  setPaymentTokenAbi();
-
   // Remove below functions
 
   async function getOfferCount() {
@@ -278,3 +239,9 @@
 
     return allOffers;
   }
+
+  $(document).on('click','#save-offer',function(){
+
+    alert('Clicked');
+
+  });

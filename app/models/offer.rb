@@ -1,9 +1,8 @@
 class Offer < ApplicationRecord
-
   validates :amount, presence: true
 
   belongs_to :user
-  belongs_to :post
+  belongs_to :nft_post
 
   before_create :details_to_json
 

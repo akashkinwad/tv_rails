@@ -35,15 +35,18 @@
   var token = $('meta[name=csrf-token]').attr('content');
   var user_id = "#{current_user.id}";
 
-  const marketPlaceAddress = "0x7aE5B2215Cb8330753Ec60a126778643A6499Bc0";
-  const nftAddress = "0xa5399a1EE519F12A95E86766168308bda2aF82F1";
-  const paymentTokenAddress = "0x39E77C8Bc081F20a7AA3a6027Db438FB5DAA1Aa0";
+  var marketPlaceAddress = "0x7aE5B2215Cb8330753Ec60a126778643A6499Bc0";
+  var nftAddress = "0xa5399a1EE519F12A95E86766168308bda2aF82F1";
+  var paymentTokenAddress = "0x39E77C8Bc081F20a7AA3a6027Db438FB5DAA1Aa0";
 
-  const nftContract = '0xa5399a1EE519F12A95E86766168308bda2aF82F1';
-  const walletId = "#{current_user.wallet_address}";
+  var nftContract = '0xa5399a1EE519F12A95E86766168308bda2aF82F1';
+  var walletId = "#{current_user.wallet_address}";
 
-  let provider = (new Web3(Web3.givenProvider)).eth;
+  var provider = (new Web3(Web3.givenProvider)).eth;
   var currentAccount = undefined;
+
+  var marketplaceAbi = undefined;
+  var paymentTokenAbi = undefined;
 
   async function toWei(number) {
     return Web3.utils.toWei(number.toString());
@@ -64,6 +67,32 @@
       let accounts = await provider.requestAccounts();
       currentAccount = accounts[0];
       return currentAccount;
+    }
+  };
+
+  async function setMarketplaceAbi() {
+    try {
+      var data = await fetch('/user/json/marketPlaceAbi.json');
+      marketplaceAbi = await data.json();
+
+      console.log('marketplaceAbi => ', marketplaceAbi);
+
+      return marketplaceAbi
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  async function setPaymentTokenAbi() {
+    try {
+      var data = await fetch('/user/json/paymentToken.json');
+      paymentTokenAbi = await data.json();
+
+      console.log('paymentTokenAbi => ', paymentTokenAbi);
+
+      return paymentTokenAbi
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -92,3 +121,6 @@
       getAccount();
     }
   });
+
+  setMarketplaceAbi();
+  setPaymentTokenAbi();

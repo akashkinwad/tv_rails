@@ -6,6 +6,7 @@ class User::OffersController < ApplicationController
 
   def new
     @offer = current_user.offers.new
+    @nft_post_id = params[:nft_post_id]
 
     respond_to do |format|
       format.html
@@ -15,10 +16,9 @@ class User::OffersController < ApplicationController
 
   def create
     @offer = current_user.offers.new(offer_params)
-
     respond_to do |format|
       if @offer.save
-        format.html { redirect_to user_nft_post_url(@offer), notice: "Offer was successfully created." }
+        format.html { redirect_to user_nft_post_url(@offer.nft_post_id), notice: "Offer was successfully created." }
         format.json { render json: @offer, status: :created }
         format.js   { render :new, status: :created }
       else
@@ -34,7 +34,7 @@ class User::OffersController < ApplicationController
       params.require(:offer).permit(
         :amount,
         :details,
-        :post_id
+        :nft_post_id
       )
     end
 end

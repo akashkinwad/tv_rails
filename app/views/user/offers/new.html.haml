@@ -1,2 +1,2 @@
 = render "remote_modal", title: "Make Offer" do
-  = render "form", offer: @offer
+  = render partial: "form", locals: { offer: @offer, nft_post_id: @nft_post_id }
