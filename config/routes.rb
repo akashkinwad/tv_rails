@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       end
     end
     resources :offers
+    resources :users, only: [:edit, :update]
+    get :profile, to: 'users#show'
   end
   resources :users, only: [:update]
 

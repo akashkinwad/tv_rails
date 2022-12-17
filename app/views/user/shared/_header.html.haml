@@ -12,13 +12,13 @@
           %input#search.search-input.w-100{placeholder: "Browse the Marketplace...", type: "text"}/
     .top-menu.d-flex.flex-1.justify-content-end.align-items-center
       .menu-items.h-100.d-none.d-lg-flex.justify-content-center.align-items-center
-        = link_to 'Explore', explore_user_nft_posts_path, class: "#{params[:page]=='explore' ? 'active' : ''} menu-item px-2 px-xl-3"
-        = link_to 'Create', new_user_nft_post_path, class: "#{params[:page]=='create' ? 'active' : ''} menu-item px-2 px-xl-3"
+        = link_to 'Explore', explore_user_nft_posts_path, class: "menu-item px-2 px-xl-3"
+        = link_to 'Create', new_user_nft_post_path, class: "menu-item px-2 px-xl-3"
         - if user_signed_in?
           = button_to 'Logout', destroy_user_session_path, class: 'menu-item px-2 px-xl-3 me-3 me-xl-5', method: :delete, data: { turbo_method: :delete }
       .menu-icons.d-flex.justify-content-center.align-items-center
         .user-icon.me-4
-          %a{href: user_signed_in? ? '/home/profile' : '/users/sign_in'}
+          = link_to user_profile_path do
             %img{alt: "", src: "/user/img/default/Profile-Icon.png"}/
         .wallet-icon
           %a{href: 'javascript:void(0)', id: 'wallet-icon'}
@@ -34,7 +34,7 @@
           %span Explore
         %a.menu-item.px-2.px-xl-3{href: "/home/stats"}
           %span Stats
-        %a.menu-item.px-2.px-xl-3{href: user_signed_in? ? '/home/profile' : '/users/sign_in'}
+        %a.menu-item.px-2.px-xl-3{href: user_signed_in? ? '/user/profile' : '/users/sign_in'}
           %span Profile
         %a.menu-item.px-2.px-xl-3{href: "/home/create"}
           %span Create

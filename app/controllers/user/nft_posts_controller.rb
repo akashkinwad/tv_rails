@@ -28,7 +28,7 @@ class User::NftPostsController < ApplicationController
   end
 
   def explore
-    @nft_posts = NftPost.includes(:user)
+    @nft_posts = NftPost.includes(:user, :likes)
   end
 
   def show

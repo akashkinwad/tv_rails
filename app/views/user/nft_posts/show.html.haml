@@ -72,7 +72,8 @@
                 %p.scNum.color-2 974
               .scImg.d-flex.justify-content-center.align-items-center
                 %img{alt: "", src: "/user/img/default/heart.png"}/
-                %p.scNum.color-2 12354
+                %p.scNum.color-2
+                  = @nft_post.likes.count
         .pt-5.py-3.px-4.simiOuter.mb-padding
           .color-3.cl-label.mb-3 Similar NFTs
           .mb-3.d-flex.flex-wrap.deskBox
@@ -155,7 +156,7 @@
 
 :javascript
 
-  var offerId = "#{@nft_post.offer_id}"
+  var offerId = 38 //"#{@nft_post.offer_id}"
 
   async function getOfferData(offerId) {
     const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);

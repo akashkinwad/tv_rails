@@ -60,7 +60,7 @@
                 %span.name-4
                   = nft_post.listing_price
                 %span.name-5.d-flex.align-items-center
-                  16,320
+                  = nft_post.likes.count
                   %img.like-icon{src: "/user/img/default/like.png"}/
     .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-end.align-items-center.mt-1
       %a.btn.px-5.btn-primary.bg-color-2.br-style-1.mb-3.mb-lg-0.fw-6{href: "#link-6"} View All
@@ -158,5 +158,5 @@
                   %span.name-4
                     = nft_post.listing_price
                   %span.name-5.d-flex.align-items-center
-                    16,320
+                    = nft_post.likes.count
                     %img.like-icon{src: "/user/img/default/like.png"}/
