@@ -1,8 +1,8 @@
 class NftPost < ApplicationRecord
   validates :title,
             :description,
-            :listing_price,
-            :nft_id,
+            :offer_amount,
+            :max_supply,
             :start_price,
             :target_price,
             presence: true

@@ -52,12 +52,12 @@
                   .input-group
                     .input-grp.d-flex.justify-content-start.align-items-center
                       %div
-                        %select.form-select.input-grp.select-filed.tltm-select{"aria-label" => "Default select example"}
+                        %select.form-select.input-grp.select-filed.tltm-select
                           %option{selected: "selected"} TLTM
                       %div
-                        = f.text_field :listing_price, placeholder: 'Price...', class: 'input-field w-100', required: true
+                        = f.number_field :offer_amount, placeholder: 'Offer Amount', class: 'input-field w-100', required: true
                   .flex-1.mx-2.me-0
-                    = f.text_field :quantity, placeholder: 'Quantity', class: 'amt-select input-grp select-filed'
+                    = f.number_field :max_supply, placeholder: 'Max Supply', class: 'amt-select input-grp select-filed'
                 .fee-label.m-2
                   %i Service Fee 1.5%
               .mb-3
@@ -79,7 +79,7 @@
                       = f.datetime_local_field :end_date, class: 'input-field w-100', required: true
 
               .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-center.align-items-center
-                %a.btn.px-5.btn-primary.bg-color-2.br-style-1.mint-btn.mb-3.mb-lg-0.me-lg-3.fw-6#createOfferWithVoucher Save
+                = f.submit 'Save', class: 'btn px-5 btn-primary bg-color-2 br-style-1 mint-btn mb-3 mb-lg-0 me-lg-3 fw-6'
 
 :javascript
 
@@ -160,7 +160,3 @@
       }
     });
   }
-
-  $('#createOfferWithVoucher').click(function(){
-    submitForm()
-  });

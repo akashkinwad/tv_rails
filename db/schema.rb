@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_18_155922) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_19_164852) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,8 +68,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_18_155922) do
     t.text "description"
     t.string "category"
     t.text "hashtags"
-    t.decimal "listing_price"
-    t.integer "quantity"
+    t.integer "offer_amount"
+    t.integer "max_supply"
     t.string "status"
     t.string "token_uri"
     t.string "attachment_url"

@@ -58,7 +58,7 @@
                   = "##{nft_post.nft_id}"
               .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
                 %span.name-4
-                  = nft_post.listing_price
+                  = nft_post.offer_amount
                 %span.name-5.d-flex.align-items-center
                   = nft_post.likes.count
                   %img.like-icon{src: "/user/img/default/like.png"}/
@@ -156,7 +156,7 @@
                     = "##{nft_post.nft_id}"
                 .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
                   %span.name-4
-                    = nft_post.listing_price
+                    = nft_post.offer_amount
                   %span.name-5.d-flex.align-items-center
                     = nft_post.likes.count
                     %img.like-icon{src: "/user/img/default/like.png"}/
