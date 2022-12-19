@@ -542,3 +542,7 @@ sign NFT api
 ================
 
 stimulus => https://gitlab.com/initforthe/stimulus-remote
+
+
+chmod 600 id_rsa
+chmod 644 id_rsa.pub

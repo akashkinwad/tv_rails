@@ -4,7 +4,7 @@ module Api
       before_action :find_post
 
       def index
-        @comments = @post.parent_comments.includes(:user, replies: [:replies, :user])
+        @comments = @post.parent_comments.page(params[:page]).per_page(10).includes(:user, replies: [:replies, :user])
       end
 
       def create

@@ -9,7 +9,8 @@ json.post do
                       :url,
                       :content_type,
                       :extension,
-                      :blr_image
+                      :blr_image,
+                      :status
 
   json.likes post.likes.count
   json.is_liked post.likes.where(user_id: current_user.id).exists?

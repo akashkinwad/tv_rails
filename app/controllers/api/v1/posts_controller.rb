@@ -4,8 +4,11 @@ module Api
       before_action :find_post, only: [:update]
 
       def index
-        posts = current_user.posts.includes(:likes).order(created_at: :desc)
-        render json: posts.map(&:to_json)
+        posts = current_user.posts.except_deleted
+                  .page(params[:page]).per_page(10)
+                  .includes(:likes).order(created_at: :desc)
+
+        render json: { posts: posts.map(&:to_json), meta: paginate(posts) }
       end
 
       def create
@@ -38,6 +41,25 @@ module Api
         else
           render json: {
             messages: @post.errors.full_messages.first,
+            is_success: false,
+            data: {}
+          }, status: :unprocessable_entity
+        end
+      end
+
+      def delete
+        posts = current_user.posts.where(id: params[:ids])
+        if posts.present?
+          posts.update_all(status: 'deleted')
+
+          render json: {
+            messages: 'Post/Posts deleted successfully',
+            is_success: true,
+            data: {}
+          }, status: :ok
+        else
+          render json: {
+            messages: 'Failed to delete post/posts',
             is_success: false,
             data: {}
           }, status: :unprocessable_entity

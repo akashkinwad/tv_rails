@@ -61,6 +61,9 @@ Rails.application.routes.draw do
       end
 
       resources :posts do
+        collection do
+          post :delete
+        end
         resources :comments
       end
       resources :feeds, only: :index

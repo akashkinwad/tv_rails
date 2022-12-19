@@ -103,7 +103,8 @@ module Api
         @user = User.find_by(id: params[:id])
         if @user
           @is_following = current_user.followees.include?(@user)
-          @posts = @user.posts if @is_following
+          @posts = @user.posts.except_deleted
+                    .page(params[:page]).per_page(10) if @is_following
         else
           render json: {
             messages: 'User not found',
