@@ -13,6 +13,8 @@ class Comment < ApplicationRecord
           foreign_key: :parent_id,
           dependent: :destroy
 
+  has_many :likes, as: :likeable, dependent: :destroy
+
   validate :reply_to_comment, if: :parent_id
 
   scope :only_parents, -> { where(parent_id: nil) }

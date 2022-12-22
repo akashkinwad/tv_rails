@@ -26,13 +26,13 @@ module Api
 
         if like && like.destroy
           render json: {
-            messages: 'Disliked post',
+            messages: "Disliked #{@likeable.class}",
             is_success: true,
             data: {}
           }, status: :ok
         else
           render json: {
-            messages: like ? like.errors.full_messages.first : 'You have not liked a post',
+            messages: like ? like.errors.full_messages.first : "You have not liked a #{@likeable.class}",
             is_success: false,
             data: {}
           }, status: :unprocessable_entity
@@ -46,15 +46,18 @@ module Api
       end
 
       def set_likeable
+        likeable_type = params.dig(:like, :likeable_type)
         @likeable =
-          case params.dig(:like, :likeable_type)
+          case likeable_type
           when 'Post'
             Post.find(params.dig(:like, :likeable_id))
+          when 'Comment'
+            Comment.find(params.dig(:like, :likeable_id))
           end
 
         unless @likeable
           render json: {
-            messages: 'Post does not exists',
+            messages: "#{likeable_type} does not exists",
             is_success: false,
             data: {}
           }, status: :unprocessable_entity
