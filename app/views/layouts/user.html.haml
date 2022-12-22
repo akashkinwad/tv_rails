@@ -35,11 +35,12 @@
   var token = $('meta[name=csrf-token]').attr('content');
   var user_id = "#{current_user.id}";
 
-  var marketPlaceAddress = "0x7aE5B2215Cb8330753Ec60a126778643A6499Bc0";
-  var nftAddress = "0xa5399a1EE519F12A95E86766168308bda2aF82F1";
+  var marketPlaceAddress = "0xF08A9502eB874a803f757574e2F8730D39F0C7d2";
+  var nftAddress = "0x749fcF03848D7e5Fc9c8f78739253B3Ec626a763";
   var paymentTokenAddress = "0x39E77C8Bc081F20a7AA3a6027Db438FB5DAA1Aa0";
+  var royaltyReceiverAddress = "0xc014f2a0169a6b3426B78f03CCB8e9c75778d111";
 
-  var nftContract = '0xa5399a1EE519F12A95E86766168308bda2aF82F1';
+  var nftContract = '0x749fcF03848D7e5Fc9c8f78739253B3Ec626a763';
   var walletId = "#{current_user.wallet_address}";
 
   var provider = (new Web3(Web3.givenProvider)).eth;
@@ -124,3 +125,9 @@
 
   setMarketplaceAbi();
   setPaymentTokenAbi();
+
+  async function mintPaymentToken() {
+    const paymentTokenContract = new provider.Contract(paymentTokenAbi, paymentTokenAddress);
+
+    return paymentTokenContract.methods.mint().send({from: currentAccount});
+  }

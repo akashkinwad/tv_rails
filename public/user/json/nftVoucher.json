@@ -115,6 +115,25 @@
             {
                 "indexed":false,
                 "internalType":"address",
+                "name":"marketplace",
+                "type":"address"
+            },
+            {
+                "indexed":false,
+                "internalType":"bool",
+                "name":"premission",
+                "type":"bool"
+            }
+        ],
+        "name":"ChangedMarketplacePremissions",
+        "type":"event"
+    },
+    {
+        "anonymous":false,
+        "inputs":[
+            {
+                "indexed":false,
+                "internalType":"address",
                 "name":"executor",
                 "type":"address"
             },
@@ -456,6 +475,25 @@
     {
         "inputs":[
             {
+                "internalType":"address",
+                "name":"",
+                "type":"address"
+            }
+        ],
+        "name":"isMarketplace",
+        "outputs":[
+            {
+                "internalType":"bool",
+                "name":"",
+                "type":"bool"
+            }
+        ],
+        "stateMutability":"view",
+        "type":"function"
+    },
+    {
+        "inputs":[
+            {
                 "internalType":"uint256",
                 "name":"",
                 "type":"uint256"
@@ -511,6 +549,116 @@
             }
         ],
         "name":"mint",
+        "outputs":[
+            
+        ],
+        "stateMutability":"pure",
+        "type":"function"
+    },
+    {
+        "inputs":[
+            {
+                "internalType":"address",
+                "name":"to",
+                "type":"address"
+            },
+            {
+                "internalType":"uint256",
+                "name":"id",
+                "type":"uint256"
+            },
+            {
+                "internalType":"uint256",
+                "name":"amount",
+                "type":"uint256"
+            },
+            {
+                "internalType":"uint256",
+                "name":"maxSupplyOfId_",
+                "type":"uint256"
+            },
+            {
+                "internalType":"address",
+                "name":"nftCreator",
+                "type":"address"
+            },
+            {
+                "internalType":"bytes",
+                "name":"data",
+                "type":"bytes"
+            },
+            {
+                "internalType":"uint256",
+                "name":"royalityNominator_",
+                "type":"uint256"
+            },
+            {
+                "internalType":"address[]",
+                "name":"payees",
+                "type":"address[]"
+            },
+            {
+                "internalType":"uint256[]",
+                "name":"shares_",
+                "type":"uint256[]"
+            }
+        ],
+        "name":"mintByMarketplace",
+        "outputs":[
+            
+        ],
+        "stateMutability":"nonpayable",
+        "type":"function"
+    },
+    {
+        "inputs":[
+            {
+                "internalType":"address",
+                "name":"to",
+                "type":"address"
+            },
+            {
+                "internalType":"uint256",
+                "name":"id",
+                "type":"uint256"
+            },
+            {
+                "internalType":"uint256",
+                "name":"amount",
+                "type":"uint256"
+            },
+            {
+                "internalType":"uint256",
+                "name":"maxSupplyOfId_",
+                "type":"uint256"
+            },
+            {
+                "internalType":"bytes",
+                "name":"data",
+                "type":"bytes"
+            },
+            {
+                "internalType":"uint256",
+                "name":"royalityNominator_",
+                "type":"uint256"
+            },
+            {
+                "internalType":"address",
+                "name":"creator",
+                "type":"address"
+            },
+            {
+                "internalType":"address[]",
+                "name":"payees",
+                "type":"address[]"
+            },
+            {
+                "internalType":"uint256[]",
+                "name":"shares_",
+                "type":"uint256[]"
+            }
+        ],
+        "name":"mintByTalentsVers",
         "outputs":[
             
         ],
@@ -726,6 +874,46 @@
             }
         ],
         "name":"setExecutor",
+        "outputs":[
+            
+        ],
+        "stateMutability":"nonpayable",
+        "type":"function"
+    },
+    {
+        "inputs":[
+            {
+                "internalType":"address",
+                "name":"marketplaceAddr",
+                "type":"address"
+            },
+            {
+                "internalType":"bool",
+                "name":"isMarketplace_",
+                "type":"bool"
+            }
+        ],
+        "name":"setMarketplace",
+        "outputs":[
+            
+        ],
+        "stateMutability":"nonpayable",
+        "type":"function"
+    },
+    {
+        "inputs":[
+            {
+                "internalType":"uint256",
+                "name":"id",
+                "type":"uint256"
+            },
+            {
+                "internalType":"uint256",
+                "name":"maxSupply",
+                "type":"uint256"
+            }
+        ],
+        "name":"setMaxSupplyOfId",
         "outputs":[
             
         ],

@@ -19,6 +19,38 @@
         "anonymous":false,
         "inputs":[
             {
+                "indexed":false,
+                "internalType":"address",
+                "name":"contractAddr",
+                "type":"address"
+            },
+            {
+                "indexed":false,
+                "internalType":"bool",
+                "name":"isWhitelisted",
+                "type":"bool"
+            }
+        ],
+        "name":"ChangeWhitelist",
+        "type":"event"
+    },
+    {
+        "anonymous":false,
+        "inputs":[
+            {
+                "indexed":false,
+                "internalType":"uint256",
+                "name":"id",
+                "type":"uint256"
+            }
+        ],
+        "name":"CreatedOffer",
+        "type":"event"
+    },
+    {
+        "anonymous":false,
+        "inputs":[
+            {
                 "indexed":true,
                 "internalType":"address",
                 "name":"previousOwner",
@@ -37,26 +69,6 @@
     {
         "inputs":[
             {
-                "internalType":"uint256",
-                "name":"offerId_",
-                "type":"uint256"
-            },
-            {
-                "internalType":"bytes",
-                "name":"data",
-                "type":"bytes"
-            }
-        ],
-        "name":"cancelOffer",
-        "outputs":[
-
-        ],
-        "stateMutability":"nonpayable",
-        "type":"function"
-    },
-    {
-        "inputs":[
-            {
                 "internalType":"address",
                 "name":"newExecutor_",
                 "type":"address"
@@ -67,81 +79,6 @@
 
         ],
         "stateMutability":"nonpayable",
-        "type":"function"
-    },
-    {
-        "inputs":[
-            {
-                "internalType":"address",
-                "name":"signerAddr",
-                "type":"address"
-            },
-            {
-                "internalType":"bool",
-                "name":"canSign",
-                "type":"bool"
-            }
-        ],
-        "name":"changeSigner",
-        "outputs":[
-
-        ],
-        "stateMutability":"nonpayable",
-        "type":"function"
-    },
-    {
-        "inputs":[
-            {
-                "internalType":"address",
-                "name":"creator_",
-                "type":"address"
-            },
-            {
-                "internalType":"address",
-                "name":"nftContractAdr_",
-                "type":"address"
-            },
-            {
-                "internalType":"uint256",
-                "name":"nftId_",
-                "type":"uint256"
-            },
-            {
-                "internalType":"uint256",
-                "name":"offerAmounts_",
-                "type":"uint256"
-            },
-            {
-                "internalType":"uint256",
-                "name":"startPrice_",
-                "type":"uint256"
-            },
-            {
-                "internalType":"uint256",
-                "name":"targetPrice_",
-                "type":"uint256"
-            },
-            {
-                "internalType":"uint256",
-                "name":"offerEnd_",
-                "type":"uint256"
-            },
-            {
-                "internalType":"uint256",
-                "name":"maxSupply_",
-                "type":"uint256"
-            },
-            {
-                "internalType":"bytes32",
-                "name":"message",
-                "type":"bytes32"
-            }
-        ],
-        "name":"checkParameters",
-        "outputs":[
-
-        ],
-        "stateMutability":"pure",
         "type":"function"
     },
     {
@@ -224,137 +161,9 @@
                 "internalType":"uint256[]",
                 "name":"offerEnd_",
                 "type":"uint256[]"
-            },
-            {
-                "internalType":"uint256[]",
-                "name":"maxSupply_",
-                "type":"uint256[]"
-            },
-            {
-                "internalType":"bytes32[]",
-                "name":"message",
-                "type":"bytes32[]"
-            },
-            {
-                "internalType":"bytes[]",
-                "name":"sig",
-                "type":"bytes[]"
             }
         ],
-        "name":"createOffer",
-        "outputs":[
-            {
-                "internalType":"uint256[]",
-                "name":"",
-                "type":"uint256[]"
-            }
-        ],
-        "stateMutability":"nonpayable",
-        "type":"function"
-    },
-    {
-        "inputs":[
-            {
-                "internalType":"address[]",
-                "name":"creator_",
-                "type":"address[]"
-            },
-            {
-                "internalType":"address[]",
-                "name":"nftContractAdr_",
-                "type":"address[]"
-            },
-            {
-                "internalType":"uint256[]",
-                "name":"nftId_",
-                "type":"uint256[]"
-            },
-            {
-                "internalType":"uint256[]",
-                "name":"offerAmounts_",
-                "type":"uint256[]"
-            },
-            {
-                "internalType":"uint256[]",
-                "name":"startPrice_",
-                "type":"uint256[]"
-            },
-            {
-                "internalType":"uint256[]",
-                "name":"targetPrice_",
-                "type":"uint256[]"
-            },
-            {
-                "internalType":"uint256[]",
-                "name":"offerEnd_",
-                "type":"uint256[]"
-            },
-            {
-                "internalType":"uint256[]",
-                "name":"maxSupply_",
-                "type":"uint256[]"
-            },
-            {
-                "internalType":"bytes32[]",
-                "name":"message",
-                "type":"bytes32[]"
-            },
-            {
-                "internalType":"bytes[]",
-                "name":"sig",
-                "type":"bytes[]"
-            }
-        ],
-        "name":"createOfferWithVoucher",
-        "outputs":[
-            {
-                "internalType":"uint256[]",
-                "name":"",
-                "type":"uint256[]"
-            }
-        ],
-        "stateMutability":"nonpayable",
-        "type":"function"
-    },
-    {
-        "inputs":[
-            {
-                "internalType":"address[]",
-                "name":"creator_",
-                "type":"address[]"
-            },
-            {
-                "internalType":"address[]",
-                "name":"nftContractAdr_",
-                "type":"address[]"
-            },
-            {
-                "internalType":"uint256[]",
-                "name":"nftId_",
-                "type":"uint256[]"
-            },
-            {
-                "internalType":"uint256[]",
-                "name":"offerAmounts_",
-                "type":"uint256[]"
-            },
-            {
-                "internalType":"uint256[]",
-                "name":"startPrice_",
-                "type":"uint256[]"
-            },
-            {
-                "internalType":"uint256[]",
-                "name":"targetPrice_",
-                "type":"uint256[]"
-            },
-            {
-                "internalType":"uint256[]",
-                "name":"offerEnd_",
-                "type":"uint256[]"
-            }
-        ],
-        "name":"createOfferWithoutVoucher",
+        "name":"createOffers",
         "outputs":[
             {
                 "internalType":"uint256[]",
@@ -475,13 +284,8 @@
                 "type":"uint256"
             },
             {
-                "internalType":"bool",
-                "name":"isVoucher",
-                "type":"bool"
-            },
-            {
                 "internalType":"uint256",
-                "name":"highesBid",
+                "name":"highestBid",
                 "type":"uint256"
             },
             {
@@ -644,6 +448,26 @@
     {
         "inputs":[
             {
+                "internalType":"address",
+                "name":"contractAddr",
+                "type":"address"
+            },
+            {
+                "internalType":"bool",
+                "name":"isWhitelisted",
+                "type":"bool"
+            }
+        ],
+        "name":"setWhitelistedNft",
+        "outputs":[
+
+        ],
+        "stateMutability":"nonpayable",
+        "type":"function"
+    },
+    {
+        "inputs":[
+            {
                 "internalType":"bytes4",
                 "name":"interfaceId",
                 "type":"bytes4"
@@ -673,30 +497,6 @@
 
         ],
         "stateMutability":"nonpayable",
-        "type":"function"
-    },
-    {
-        "inputs":[
-            {
-                "internalType":"address",
-                "name":"",
-                "type":"address"
-            },
-            {
-                "internalType":"uint256",
-                "name":"",
-                "type":"uint256"
-            }
-        ],
-        "name":"unmintedOffers",
-        "outputs":[
-            {
-                "internalType":"uint256",
-                "name":"",
-                "type":"uint256"
-            }
-        ],
-        "stateMutability":"view",
         "type":"function"
     }
 ]

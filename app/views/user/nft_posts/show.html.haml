@@ -271,6 +271,59 @@
     });
   }
 
+  async function makeBid(offerId, amount) {
+    let weiAmount = await toWei(amount);
+
+    return approve(paymentTokenContract, marketPlaceAddress).then(() => {
+      return marketPlaceContract.methods.makeBid(offerId, weiAmount, "0x").send({from: currentAccount});
+    });
+  }
+
+  async function createOfferAndBid(offerCreator, offerId, offerAmount, nftId, startPrice, targetPrice, offerEnd, maxSupply, bidAmount) {
+    let weiStartPrice = await toWei(startPrice);
+    let weiTargetPrice = await toWei(targetPrice);
+    let unixOfferEnd = Math.floor(offerEnd.getTime() / 1000);
+    let weiBidAmount = await toWei(bidAmount);
+
+    let params = {
+      offerCreator: offerCreator,
+      offerId: offerId,
+      nftContractAdr: nftAddress,
+      offerAmount: offerAmount,
+      nftId: nftId,
+      startPrice: weiStartPrice,
+      targetPrice: weiTargetPrice,
+      offerEnd: unixOfferEnd,
+      maxSupply: maxSupply,
+      highestBid: weiBidAmount,
+      bidder: currentAccount,
+      closed: false
+    };
+
+    let response = await fetch('/api/v1/nfts/sign_nft', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(params)
+    });
+
+    let json = await response.json();
+
+    return approve(paymentTokenContract, marketPlaceAddress).then(() => {
+      return marketPlaceContract.methods.makeBidFirstBid(
+        weiBidAmount,
+        params,
+        json.hashMessage,
+        json.signature
+      ).send({from: currentAccount}).then((result) => {
+        return parseInt(result.events.CreatedOffer.returnValues.id);
+      });
+    });
+  }
+
   $(document).on('click','#save-offer',function(){
     submitOfferForm();
   });
