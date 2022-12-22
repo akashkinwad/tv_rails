@@ -66,6 +66,7 @@ Rails.application.routes.draw do
         end
         resources :comments
       end
+      resources :roles, only: :index
       resources :feeds, only: :index
       resources :nft_posts, only: [:index, :show]
       resources :nfts, only: [] do

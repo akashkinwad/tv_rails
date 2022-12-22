@@ -131,7 +131,7 @@ module Api
           :password,
           :password_confirmation,
           :username,
-          :role
+          :role_id
         )
       end
 

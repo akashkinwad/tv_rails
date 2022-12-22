@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_19_164852) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_22_173052) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -110,7 +110,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_164852) do
     t.string "extension"
     t.string "blr_image"
     t.integer "status", default: 0
+    t.string "thumbnail_url"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sign_nft_requests", force: :cascade do |t|
@@ -137,13 +144,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_164852) do
     t.string "video_url"
     t.string "mobile_otp"
     t.datetime "otp_sent_at"
-    t.integer "role", default: 0
     t.string "blr_image"
     t.string "nft_account"
     t.string "wallet_address"
     t.jsonb "nft_details"
+    t.bigint "role_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   add_foreign_key "comments", "posts"
@@ -153,4 +161,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_164852) do
   add_foreign_key "offers", "nft_posts"
   add_foreign_key "offers", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "users", "roles"
 end

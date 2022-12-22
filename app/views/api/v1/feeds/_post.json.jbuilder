@@ -10,6 +10,7 @@ json.post do
                       :content_type,
                       :extension,
                       :blr_image,
+                      :thumbnail_url,
                       :status
 
   json.comments post.comments.count

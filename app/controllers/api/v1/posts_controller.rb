@@ -16,6 +16,7 @@ module Api
         if post.save
           upload_and_set_attr(post, :blr_image, params[:post][:blr_image], 'blr')
           upload_and_set_attr(post, :url, params[:post][:media], 'act')
+          upload_and_set_attr(post, :thumbnail_url, params[:post][:thumbnail_url], 'thumb')
 
           render json: {
             messages: 'Post created successfully',
@@ -73,7 +74,8 @@ module Api
           :title,
           :description,
           :category,
-          :hashtag
+          :hashtag,
+          :status
         )
       end
 
@@ -97,6 +99,8 @@ module Api
               content_type: file.content_type,
               extension: extension
             )
+          elsif attribute == :thumbnail_url
+            post.update(thumbnail_url: upload_object.public_url)
           else
             post.update(blr_image: upload_object.public_url)
           end if upload_object

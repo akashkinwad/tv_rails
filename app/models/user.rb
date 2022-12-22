@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum :role, { user: 0, admin: 1, scout: 2}
-
   validates :username, uniqueness: { case_sensitive: true }
+
+  belongs_to :role, optional: true
 
   has_many :posts, dependent: :destroy
   has_many :nft_posts, dependent: :destroy
