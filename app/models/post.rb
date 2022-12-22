@@ -10,5 +10,6 @@ class Post < ApplicationRecord
 
   def to_json
     attributes.merge(likes: likes.count)
+    attributes.merge(comments_count: comments.count)
   end
 end

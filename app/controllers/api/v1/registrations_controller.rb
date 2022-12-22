@@ -130,7 +130,8 @@ module Api
           :email,
           :password,
           :password_confirmation,
-          :username
+          :username,
+          :role
         )
       end
 
