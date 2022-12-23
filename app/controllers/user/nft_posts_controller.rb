@@ -33,6 +33,8 @@ class User::NftPostsController < ApplicationController
 
   def show
     @nft_post = NftPost.find_by(id: params[:id])
+    @author = @nft_post.user
+    @nft_id = SignNftRequest.last.count
   end
 
   def mobile_nft;end

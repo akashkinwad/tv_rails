@@ -546,3 +546,40 @@ stimulus => https://gitlab.com/initforthe/stimulus-remote
 
 chmod 600 id_rsa
 chmod 644 id_rsa.pub
+
+--------------
+
+ssh root@185.25.164.82
+
+git remote set-url origin git@bitbucket.org-define:talentsversehq10/tv_rails.git
+
+git remote set-url origin git@github.com:akashkinwad/tv_rails.git
+
+--------------------------------------
+
+{
+    "creator": "0x1a3275748E520B9C117290329F150E67B182EfF7",
+    "nftContract": "0xa5399a1EE519F12A95E86766168308bda2aF82F1",
+    "id": "128",
+    "offerAmount": "1",
+    "startPrice": "1",
+    "endPrice": "10",
+    "endTime": "1111111111",
+    "maxSupply": "1"
+}
+
+
+{
+    "offerCreator": "0x1a3275748E520B9C117290329F150E67B182EfF7",
+    "offerId": 111,
+    "nftContractAdr": "0x749fcF03848D7e5Fc9c8f78739253B3Ec626a763",
+    "offerAmount": 1,
+    "nftId": 12,
+    "startPrice": "1000000000000000000",
+    "targetPrice": "10000000000000000000",
+    "offerEnd": 1671807529,
+    "maxSupply": 10,
+    "highestBid": "1000000000000000000",
+    "bidder": "0x1a3275748E520B9C117290329F150E67B182EfF7",
+    "closed": false
+}

@@ -156,7 +156,7 @@
 
 :javascript
 
-  var offerId = 38 //"#{@nft_post.offer_id}"
+  var offerId = "#{@nft_post.nft_offer_id}"
 
   async function getOfferData(offerId) {
     const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
@@ -242,11 +242,26 @@
   }
 
   async function submitOfferForm() {
-    var amount = $('#offer_amount').val();
+    var response = undefined;
 
-    let response = await makeBid(offerId, amount);
+    var bidAmount = $('#offer_amount').val();
+    var offerCreator = "#{@author.wallet_address}"
+    var offerAmount = "#{@nft_post.offer_amount}"
+    var nftId = "#{@nft_id}"
+    var startPrice = "#{@nft_post.start_price}"
+    var targetPrice = "#{@nft_post.target_price}"
+    var offerEnd = "#{@nft_post.end_date.strftime("%d %b %Y %T")}"
+    var maxSupply = "#{@nft_post.max_supply}"
 
-    console.log('makeBid response =>', response);
+    if (offerId) {
+      response = await makeBid(offerId, bidAmount);
+
+      console.log('makeBid response =>', response);
+    } else {
+      response = await createOfferAndBid(offerCreator, nftId, offerAmount, nftId, startPrice, targetPrice, offerEnd, maxSupply, bidAmount)
+
+      console.log('createOfferAndBid response =>', response);
+    }
 
     var formData = new FormData($('#new-offer-form')[0]);
     formData.append('offer[details]', JSON.stringify(response));
@@ -264,6 +279,10 @@
       success:function(data, textStatus, jqXHR){
         $('.btn-close').click();
         alert('Offer was successfully created.');
+
+        setTimeout(function(){
+          location.reload();
+        }, 1000);
       },
       error: function(jqXHR, textStatus, errorThrown){
         alert('Error in creating offer, please try later.');
@@ -274,15 +293,20 @@
   async function makeBid(offerId, amount) {
     let weiAmount = await toWei(amount);
 
+    const paymentTokenContract = new provider.Contract(paymentTokenAbi, paymentTokenAddress);
+    const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
+
     return approve(paymentTokenContract, marketPlaceAddress).then(() => {
       return marketPlaceContract.methods.makeBid(offerId, weiAmount, "0x").send({from: currentAccount});
     });
   }
 
   async function createOfferAndBid(offerCreator, offerId, offerAmount, nftId, startPrice, targetPrice, offerEnd, maxSupply, bidAmount) {
+
     let weiStartPrice = await toWei(startPrice);
     let weiTargetPrice = await toWei(targetPrice);
-    let unixOfferEnd = Math.floor(offerEnd.getTime() / 1000);
+    let unixOfferEnd = Math.floor(Date.parse(offerEnd) / 1000);
+
     let weiBidAmount = await toWei(bidAmount);
 
     let params = {
@@ -312,6 +336,9 @@
 
     let json = await response.json();
 
+    const paymentTokenContract = new provider.Contract(paymentTokenAbi, paymentTokenAddress);
+    const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
+
     return approve(paymentTokenContract, marketPlaceAddress).then(() => {
       return marketPlaceContract.methods.makeBidFirstBid(
         weiBidAmount,
@@ -326,4 +353,14 @@
 
   $(document).on('click','#save-offer',function(){
     submitOfferForm();
+  });
+
+  async function getOfferData(offerId) {
+    const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
+
+    return marketPlaceContract.methods.offers(offerId).call();
+  }
+
+  $(document).ready(function() {
+    getAccount(false);
   });

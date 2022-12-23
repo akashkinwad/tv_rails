@@ -160,3 +160,9 @@
                   %span.name-5.d-flex.align-items-center
                     = nft_post.likes.count
                     %img.like-icon{src: "/user/img/default/like.png"}/
+
+:javascript
+
+  $(document).ready(function() {
+    getAccount(false);
+  });

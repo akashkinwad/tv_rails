@@ -53,12 +53,23 @@
     return Web3.utils.toWei(number.toString());
   }
 
-  async function getAccount() {
+  async function getAccount(raiseAlert=true) {
     if (provider) {
       let accounts = await provider.getAccounts();
       currentAccount = accounts[0];
       console.log('currentAccount =>', currentAccount);
-      updateNftAccountId(currentAccount)
+
+      if (currentAccount) {
+        updateNftAccountId(currentAccount, raiseAlert)
+      } else {
+        var r = confirm("Your NFT Wallet is not Synced. Click 'OK' to sync your wallet!");
+        if (r == true) {
+          requestAccount();
+        } else {
+          alert('Please Synced your NFT Wallet first!');
+        }
+      }
+
       return currentAccount;
     }
   };
@@ -67,13 +78,16 @@
     if (provider) {
       let accounts = await provider.requestAccounts();
       currentAccount = accounts[0];
+
+      alert('Successfully Synced NFT Wallet!');
+
       return currentAccount;
     }
   };
 
   async function setMarketplaceAbi() {
     try {
-      var data = await fetch('/user/json/marketPlaceAbi.json');
+      var data = await fetch('/user/json/marketplaceVoucher.json');
       marketplaceAbi = await data.json();
 
       console.log('marketplaceAbi => ', marketplaceAbi);
@@ -97,7 +111,7 @@
     }
   };
 
-  function updateNftAccountId(wallet_address) {
+  function updateNftAccountId(wallet_address, raiseAlert) {
     var data = { wallet_address: wallet_address };
 
     $.ajax({
@@ -110,7 +124,9 @@
       },
       dataType: 'json',
       success: function (user, status) {
-        alert('Successfully Synced to NFT');
+        if (raiseAlert) {
+          alert('Successfully Synced NFT Wallet!');
+        }
       }
     });
   }
