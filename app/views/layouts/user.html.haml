@@ -32,6 +32,7 @@
     %script{src: "/user/js/main.js"}
     / Main Script Files END
 :javascript
+  const nftServerUrl = "http://104.248.251.208";
   var token = $('meta[name=csrf-token]').attr('content');
   var user_id = "#{current_user.id}";
 
@@ -146,4 +147,37 @@
     const paymentTokenContract = new provider.Contract(paymentTokenAbi, paymentTokenAddress);
 
     return paymentTokenContract.methods.mint().send({from: currentAccount});
+  }
+
+  async function claimOffer(offerId, royaltyNominator, payees, shares) {
+    let params = {
+      offerId: offerId,
+      royaltyNominator: royaltyNominator,
+      payees: payees,
+      shares: shares
+    };
+
+    let response = await fetch(nftServerUrl + '/sign/royalty', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(params)
+    });
+
+    console.log("response from royalty API ====>", response);
+
+    const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
+
+    return marketPlaceContract.methods.claimOffer(
+      offerId,
+      royaltyNominator,
+      payees,
+      shares,
+      response.hashMessage,
+      response.signature
+    ).send({from: currentAccount});
   }

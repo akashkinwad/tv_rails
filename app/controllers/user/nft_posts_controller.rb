@@ -35,6 +35,9 @@ class User::NftPostsController < ApplicationController
     @nft_post = NftPost.find_by(id: params[:id])
     @author = @nft_post.user
     @nft_id = SignNftRequest.last.count
+    @offers = @nft_post.offers
+    @can_claim_offer = DateTime.now > @nft_post.end_date
+    @highest_offer_id = @offers.order('amount DESC').first.id if @offers
   end
 
   def mobile_nft;end

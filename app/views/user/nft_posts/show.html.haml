@@ -11,7 +11,7 @@
       %div
         .modHead.py-4.px-4
           .modLabel
-            = "##{@nft_post.nft_id}"
+            = "##{@nft_post.nft_offer_id}"
             %br/
             = @nft_post.title
           .d-flex.mt-3.align-items-center.justify-content-between
@@ -58,6 +58,27 @@
               .div.timer-label.ms-3#hours
               .div.timer-label.ms-3#minutes
               .div.timer-label.ms-3#seconds
+
+        .priceStatusOuter.mb-padding.pt-3.py-3.px-4.by-5.d-flex.align-items-end.justify-content-between
+          %p.m-0.cp-label Offers
+
+        .priceStatusOuter.mb-padding.pt-3.py-3.px-4.by-5.d-flex.align-items-end.justify-content-between
+          %table.table
+            %thead
+              %tr
+                %th{scope: "col"} User
+                %th{scope: "col"} Offer Amount
+                %th{scope: "col"} Actions
+            %tbody
+              - @offers.each do |offer|
+                %tr
+                  %th{scope: "row"}
+                    = offer.user.name.presence || "User #{offer.user.id}"
+                  %td
+                    = offer.amount
+                  %td
+                    - if @can_claim_offer && @highest_offer_id == offer.id
+                      = link_to 'Claim Offer', 'javascript:void(0)', class: 'btn btn-primary', id: 'claimOffer'
 
         .pt-3.py-3.px-4.mb-padding
           .btnOuterSection.d-flex.justify-content-between.align-items-center
@@ -282,7 +303,7 @@
 
         setTimeout(function(){
           location.reload();
-        }, 1000);
+        }, 500);
       },
       error: function(jqXHR, textStatus, errorThrown){
         alert('Error in creating offer, please try later.');
@@ -363,4 +384,8 @@
 
   $(document).ready(function() {
     getAccount(false);
+  });
+
+  $(document).on('click','#claimOffer',function(){
+    claimOffer(offerId);
   });

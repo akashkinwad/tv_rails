@@ -5,7 +5,11 @@ class User::UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
-
+    if params[:page] == 'listings'
+      @listing_offers = current_user.listing_offers
+    else
+      @nft_posts = current_user.nft_posts
+    end
   end
 
   def update

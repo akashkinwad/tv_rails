@@ -52,4 +52,8 @@ class User < ApplicationRecord
   def name
     "#{first_name} #{last_name}"
   end
+
+  def listing_offers
+    Offer.joins(:nft_post).where(nft_posts: { user_id: id })
+  end
 end
