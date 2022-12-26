@@ -12,6 +12,10 @@ module GvTalent
     config.load_defaults 7.0
     config.time_zone = 'Chennai'
 
+    config.after_initialize do
+      ::Git_branch = `git rev-parse --abbrev-ref HEAD`
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
