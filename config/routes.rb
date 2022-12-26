@@ -72,6 +72,7 @@ Rails.application.routes.draw do
       resources :nfts, only: [] do
         collection do
           post :sign_nft
+          post :sign_royalty
         end
       end
       resources :likes, only: [] do

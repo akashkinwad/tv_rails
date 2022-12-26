@@ -1,9 +1,8 @@
 class SignNft
-  attr_reader :data, :nft_contract
+  attr_reader :data
 
   def initialize(data)
     @data = JSON.parse(data)
-    @nft_contract = '0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3'
   end
 
   def process

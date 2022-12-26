@@ -9,6 +9,12 @@ module Api
         render json: response.merge(url: mobile_nft_user_nft_posts_path)
       end
 
+      def sign_royalty
+        service = SignRoyalty.new(params['nft'].to_json)
+        response = service.generate_signature
+        render json: response
+      end
+
     end
   end
 end

@@ -32,7 +32,7 @@
     %script{src: "/user/js/main.js"}
     / Main Script Files END
 :javascript
-  const nftServerUrl = "http://104.248.251.208";
+  var nftServerUrl = "http://104.248.251.208";
   var token = $('meta[name=csrf-token]').attr('content');
   var user_id = "#{current_user.id}";
 
@@ -157,16 +157,17 @@
       shares: shares
     };
 
-    let response = await fetch(nftServerUrl + '/sign/royalty', {
+    let response = await fetch('/api/v1/nfts/sign_royalty', {
       method: 'POST',
-      mode: 'no-cors',
+      mode: 'cors',
       headers: {
-        'Access-Control-Allow-Origin': '*',
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(params)
     });
+
+    let json = await response.json();
 
     console.log("response from royalty API ====>", response);
 
@@ -177,7 +178,7 @@
       royaltyNominator,
       payees,
       shares,
-      response.hashMessage,
-      response.signature
+      json.hashMessage,
+      json.signature
     ).send({from: currentAccount});
   }

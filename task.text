@@ -583,3 +583,22 @@ git remote set-url origin git@github.com:akashkinwad/tv_rails.git
     "bidder": "0x1a3275748E520B9C117290329F150E67B182EfF7",
     "closed": false
 }
+
+-------------
+
+claimOffer
+
+highest bidder
+
+show clain offer button for higest bid
+
+==============
+created => nft_posts
+
+listing => nft post with offers
+
+claim offer = creator or bidder
+
+
+
+show nft_post of users in profile page

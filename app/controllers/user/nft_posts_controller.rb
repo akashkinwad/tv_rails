@@ -37,7 +37,7 @@ class User::NftPostsController < ApplicationController
     @nft_id = SignNftRequest.last.count
     @offers = @nft_post.offers
     @can_claim_offer = DateTime.now > @nft_post.end_date
-    @highest_offer_id = @offers.order('amount DESC').first.id if @offers
+    @highest_offer_id = @offers.order('amount DESC').first.id if @offers.any?
   end
 
   def mobile_nft;end
