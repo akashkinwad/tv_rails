@@ -1,12 +1,17 @@
 #!/bin/bash
-# Ask the user for their name
+
+# ssh root@185.25.164.82
+# sh deploy.sh
+
 echo Hello, which branch you would like to deply?
 read branch_name
-cd /var/www/talent/code
-git fetch origin
-echo Deploying $branch_name, please wait.....
-git checkout $branch_name
-git pull origin $branch_name
-RAILS_ENV=production bundle exec rails db:migrate
-rvmsudo passenger-config restart-app
-echo Deployment Completed! Successfully deployed $branch_name
+
+if [ -z "$branch_name" ]
+then
+  branch_name=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+  echo Default branch is $branch_name
+  echo "\$branch_name is empty"
+else
+  echo $branch_name
+  echo "\$branch_name is NOT empty"
+fi

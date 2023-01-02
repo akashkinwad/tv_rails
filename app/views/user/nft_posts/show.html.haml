@@ -33,7 +33,7 @@
         .priceStatusOuter.mb-padding.pt-3.py-3.px-4.by-5.d-flex.align-items-end.justify-content-between
           .priceStatus.d-flex
             .pricSec
-              %p.m-0.cp-label Current Price
+              %p.m-0.cp-label Offer Amount
               %p.m-0.pr-lable.color-2
                 = @nft_post.offer_amount
             .ms-3.me-4
@@ -59,26 +59,41 @@
               .div.timer-label.ms-3#minutes
               .div.timer-label.ms-3#seconds
 
-        .priceStatusOuter.mb-padding.pt-3.py-3.px-4.by-5.d-flex.align-items-end.justify-content-between
-          %p.m-0.cp-label Offers
-
-        .priceStatusOuter.mb-padding.pt-3.py-3.px-4.by-5.d-flex.align-items-end.justify-content-between
-          %table.table
-            %thead
-              %tr
-                %th{scope: "col"} User
-                %th{scope: "col"} Offer Amount
-                %th{scope: "col"} Actions
-            %tbody
-              - @offers.each do |offer|
-                %tr
-                  %th{scope: "row"}
-                    = offer.user.name.presence || "User #{offer.user.id}"
-                  %td
-                    = offer.amount
-                  %td
-                    - if @can_claim_offer && @highest_offer_id == offer.id
-                      = link_to 'Claim Offer', 'javascript:void(0)', class: 'btn btn-primary', id: 'claimOffer'
+        .container
+          .row
+            .col-lg-12
+              .table-1.mt-5
+                .brd-11.d-flex.justify-content-between
+                  .ms-2
+                    %p.pr-lable-1.color-2.mt-2 Offers
+                  %div
+                    %p
+                  %div
+                    %p.angle-1
+                      %i.fa.fa-angle-up.angle-icon.color-2.angle-2
+                .brd-11.d-flex.justify-content-around
+                  %div
+                    %p.offer-price.mt-3 Offer Price
+                  %div
+                    %p.offer-price.mt-3.frm-1 From
+                  %div
+                    %p.offer-price.mt-3.me-5 Date/Time
+                  %div
+                    %p.offer-price.mt-3.me-5 Actions
+                - @offers.each do |offer|
+                  .d-flex.justify-content-around
+                    %div
+                      %p.offer-price.mt-3
+                        = "#{offer.amount} TLTM"
+                    %div
+                      %p.offer-price.text-primary.mt-3
+                        = offer.user.name.presence || "User #{offer.user.id}"
+                    %div
+                      %p.offer-price1.mt-3 Dec, 16, 2022, 11:30 am
+                    %div
+                      %p.offer-price1.mt-3
+                        - if @can_claim_offer && @highest_offer_id == offer.id
+                          = link_to 'Claim Offer', 'javascript:void(0)', class: 'btn btn-primary', id: 'claimOffer'
 
         .pt-3.py-3.px-4.mb-padding
           .btnOuterSection.d-flex.justify-content-between.align-items-center

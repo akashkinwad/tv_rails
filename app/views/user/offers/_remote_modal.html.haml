@@ -1,6 +1,6 @@
 = turbo_frame_tag "remote_modal" do
-  #shareRecipeModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "newItemRemoteModalLabel", "data-action" => "turbo:before-render@document->remote-modal#hideBeforeRender", "data-controller" => "remote-modal", tabindex: "-1"}
-    .modal-dialog.modal-dialog-centered{role: "document"}
+  #shareRecipeModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "newItemRemoteModalLabel", "data-action" => "turbo:before-render@document->remote-modal#hideBeforeRender", "data-controller" => "remote-modal", tabindex: "-1", role: 'dialog'}
+    .modal-lg.modal-dialog
       #modal_content.modal-content
         .modal-header
           %h4#newItemRemoteModalLabel.modal-title= title

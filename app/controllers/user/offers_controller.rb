@@ -5,8 +5,9 @@ class User::OffersController < ApplicationController
   before_action :authenticate_user!
 
   def new
+    @nft_post = NftPost.find(params[:nft_post_id])
     @offer = current_user.offers.new
-    @nft_post_id = params[:nft_post_id]
+    @highest_offer_amount = @nft_post.offers.maximum(:amount) || 0
 
     respond_to do |format|
       format.html

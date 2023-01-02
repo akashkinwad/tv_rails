@@ -602,3 +602,26 @@ claim offer = creator or bidder
 
 
 show nft_post of users in profile page
+
+-------------
+
+        .priceStatusOuter.mb-padding.pt-3.py-3.px-4.by-5.d-flex.align-items-end.justify-content-between
+          %p.m-0.cp-label Offers
+
+        .priceStatusOuter.mb-padding.pt-3.py-3.px-4.by-5.d-flex.align-items-end.justify-content-between
+          %table.table
+            %thead
+              %tr
+                %th{scope: "col"} User
+                %th{scope: "col"} Offer Amount
+                %th{scope: "col"} Actions
+            %tbody
+              - @offers.each do |offer|
+                %tr
+                  %th{scope: "row"}
+                    = offer.user.name.presence || "User #{offer.user.id}"
+                  %td
+                    = offer.amount
+                  %td
+                    - if @can_claim_offer && @highest_offer_id == offer.id
+                      = link_to 'Claim Offer', 'javascript:void(0)', class: 'btn btn-primary', id: 'claimOffer'
