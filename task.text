@@ -625,3 +625,5 @@ show nft_post of users in profile page
                   %td
                     - if @can_claim_offer && @highest_offer_id == offer.id
                       = link_to 'Claim Offer', 'javascript:void(0)', class: 'btn btn-primary', id: 'claimOffer'
+
+==================================================

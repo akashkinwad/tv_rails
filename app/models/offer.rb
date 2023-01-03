@@ -5,7 +5,7 @@ class Offer < ApplicationRecord
   belongs_to :nft_post
 
   before_create :details_to_json
-  before_create :update_nft_offer_id_to_post
+  after_create :update_nft_offer_id_to_post
 
   private
 
@@ -14,8 +14,9 @@ class Offer < ApplicationRecord
   end
 
   def update_nft_offer_id_to_post
-    if details.is_a? Integer
-      nft_post.update(nft_offer_id: details)
+    if nft_post.nft_offer_id.nil?
+      offer_id = details.dig('events', 'CreatedOffer', 'returnValues', 'id')
+      nft_post.update(nft_offer_id: offer_id)
     end
   end
 end

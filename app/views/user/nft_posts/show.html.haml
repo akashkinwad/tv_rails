@@ -294,11 +294,16 @@
     var maxSupply = "#{@nft_post.max_supply}"
 
     if (offerId) {
-      response = await makeBid(offerId, bidAmount);
+      try {
+        response = await makeBid(offerId, bidAmount);
 
-      console.log('makeBid response =>', response);
+        console.log('makeBid response =>', response);
+      } catch (error) {
+        alert(error.message);
+      }
     } else {
-      response = await createOfferAndBid(offerCreator, nftId, offerAmount, nftId, startPrice, targetPrice, offerEnd, maxSupply, bidAmount)
+      let data = await createOfferAndBid(offerCreator, nftId, offerAmount, nftId, startPrice, targetPrice, offerEnd, maxSupply, bidAmount)
+      response = data.txData;
 
       console.log('createOfferAndBid response =>', response);
     }
@@ -326,6 +331,10 @@
       },
       error: function(jqXHR, textStatus, errorThrown){
         alert('Error in creating offer, please try later.');
+
+        setTimeout(function(){
+          location.reload();
+        }, 500);
       }
     });
   }
@@ -386,7 +395,10 @@
         json.hashMessage,
         json.signature
       ).send({from: currentAccount}).then((result) => {
-        return parseInt(result.events.CreatedOffer.returnValues.id);
+        return {
+          txData: result,
+          offerId: parseInt(result.events.CreatedOffer.returnValues.id)
+        };
       });
     });
   }
@@ -405,6 +417,15 @@
     getAccount(false);
   });
 
+  async function triggerClaimOffer() {
+    try {
+      let data = await claimOffer(offerId, 1000, [currentAccount], [100]);
+      console.log('claimOffer data => ', date);
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
   $(document).on('click','#claimOffer',function(){
-    claimOffer(offerId);
+    triggerClaimOffer();
   });

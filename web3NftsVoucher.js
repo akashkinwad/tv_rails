@@ -190,7 +190,10 @@ async function createOfferAndBid(offerCreator, offerId, offerAmount, nftId, star
 			json.hashMessage,
 			json.signature
 		).send({from: currentAccount}).then((result) => {
-			return parseInt(result.events.CreatedOffer.returnValues.id);
+			return {
+				txData: result,
+				offerId: parseInt(result.events.CreatedOffer.returnValues.id)
+			};
 		});
 	});
 }
