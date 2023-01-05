@@ -27,6 +27,21 @@ class User::NftPostsController < ApplicationController
     end
   end
 
+  def update
+    @nft_post = NftPost.find(params[:id])
+
+    respond_to do |format|
+      if @nft_post.update(nft_post_params)
+        format.js
+        format.json { render json: @nft_post, status: :ok }
+      else
+        format.json {
+          render json: @nft_post.errors.first, status: :unprocessable_entity
+        }
+      end
+    end
+  end
+
   def explore
     @nft_posts = NftPost.includes(:user, :likes)
   end
@@ -57,7 +72,9 @@ class User::NftPostsController < ApplicationController
         :start_price,
         :target_price,
         :end_date,
-        :nft_id
+        :nft_id,
+        :state,
+        :nft_block_hash
       )
     end
 

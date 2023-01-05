@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_23_172137) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_05_172604) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,7 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_172137) do
     t.integer "offer_amount"
     t.integer "max_supply"
     t.string "status"
-    t.string "token_uri"
+    t.string "token_url"
     t.string "attachment_url"
     t.string "content_type"
     t.string "extension"
@@ -83,6 +83,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_172137) do
     t.datetime "end_date"
     t.integer "nft_id"
     t.bigint "nft_offer_id"
+    t.integer "state", default: 0
+    t.string "nft_block_hash"
+    t.jsonb "metadata"
     t.index ["user_id"], name: "index_nft_posts_on_user_id"
   end
 

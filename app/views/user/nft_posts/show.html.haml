@@ -417,10 +417,30 @@
     getAccount(false);
   });
 
+  function updateNftPostDetails(data) {
+    var body = { details: data, state: 'minted', nft_block_hash: data.blockHash };
+
+    $.ajax({
+      url: `/user/nft_posts/${"#{@nft_post.id}"}`,
+      type: 'PATCH',
+      data: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': token
+      },
+      dataType: 'json',
+      success: function (user, status) {
+        alert('Claimed Successfully!');
+      }
+    });
+  }
+
   async function triggerClaimOffer() {
     try {
-      let data = await claimOffer(offerId, 1000, [currentAccount], [100]);
-      console.log('claimOffer data => ', date);
+      let data = await claimOffer(offerId, 100, [currentAccount], [10]);
+      console.log('claimOffer data => ', data);
+
+      updateNftPostDetails(data);
     } catch (error) {
       alert(error.message);
     }

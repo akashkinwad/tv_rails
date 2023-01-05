@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     get :profile, to: 'users#show'
   end
   resources :users, only: [:update]
+  resources :nfts, only: [:show]
 
   get "/home/*page" => "home#show"
 
