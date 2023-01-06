@@ -74,7 +74,7 @@ class User::NftPostsController < ApplicationController
         :end_date,
         :nft_id,
         :state,
-        :nft_block_hash
+        :nft_token_id,
       )
     end
 

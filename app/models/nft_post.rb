@@ -17,7 +17,7 @@ class NftPost < ApplicationRecord
   has_many :likes, as: :likeable, dependent: :destroy
 
   before_save :details_to_json
-  before_save :set_dummy_nft_block_hash
+  before_save :set_dummy_nft_token_id
   before_save :set_token_url
   before_save :set_metadata
 
@@ -27,18 +27,18 @@ class NftPost < ApplicationRecord
     self.details = JSON.parse(self.details) if details
   end
 
-  def set_dummy_nft_block_hash
-    self.nft_block_hash = SecureRandom.uuid if nft_block_hash.nil?
+  def set_dummy_nft_token_id
+    self.nft_token_id = SecureRandom.uuid if nft_token_id.nil?
   end
 
   def set_token_url
-    self.token_url = "#{ENV['HOST']}/nfts/#{nft_block_hash}"
+    self.token_url = "#{ENV['HOST']}/nfts/#{nft_token_id}"
   end
 
   def set_metadata
     selected_attrs = %w[title description category hashtags
       offer_amount max_supply token_url attachment_url content_type
-      extension details start_price target_price end_date state
+      extension start_price target_price end_date state
     ]
 
     self.metadata = self.attributes.slice(*selected_attrs)

@@ -79,6 +79,8 @@
                   %div
                     %p.offer-price.mt-3.me-5 Date/Time
                   %div
+                    %p.offer-price.mt-3.me-5 Post Status
+                  %div
                     %p.offer-price.mt-3.me-5 Actions
                 - @offers.each do |offer|
                   .d-flex.justify-content-around
@@ -92,7 +94,10 @@
                       %p.offer-price1.mt-3 Dec, 16, 2022, 11:30 am
                     %div
                       %p.offer-price1.mt-3
-                        - if @can_claim_offer && @highest_offer_id == offer.id
+                        = "NFT #{@nft_post.state}"
+                    %div
+                      %p.offer-price1.mt-3
+                        - if @can_claim_offer && @highest_offer_id == offer.id && !@nft_post.state_minted?
                           = link_to 'Claim Offer', 'javascript:void(0)', class: 'btn btn-primary', id: 'claimOffer'
 
         .pt-3.py-3.px-4.mb-padding
@@ -193,12 +198,6 @@
 :javascript
 
   var offerId = "#{@nft_post.nft_offer_id}"
-
-  async function getOfferData(offerId) {
-    const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
-
-    return marketPlaceContract.methods.offers(offerId).call();
-  }
 
   async function getAllowance(baseContract, toApproveContract) {
     return baseContract.methods.allowance(currentAccount, toApproveContract).call();
@@ -410,15 +409,20 @@
   async function getOfferData(offerId) {
     const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
 
-    return marketPlaceContract.methods.offers(offerId).call();
+    return marketPlaceContract.methods.offers(offerId).call().then((result) => {
+      return {
+        offerData: result,
+        nftId: parseInt(result.nftId)
+      }
+    });
   }
 
   $(document).ready(function() {
     getAccount(false);
   });
 
-  function updateNftPostDetails(data) {
-    var body = { details: data, state: 'minted', nft_block_hash: data.blockHash };
+  function updateNftPostDetails(data, offerData) {
+    var body = { details: data, state: 'minted', nft_token_id: offerData.nftId };
 
     $.ajax({
       url: `/user/nft_posts/${"#{@nft_post.id}"}`,
@@ -440,7 +444,10 @@
       let data = await claimOffer(offerId, 100, [currentAccount], [10]);
       console.log('claimOffer data => ', data);
 
-      updateNftPostDetails(data);
+      let offerData = await getOfferData(offerId);
+      console.log('getOfferData offerData => ', offerData);
+
+      updateNftPostDetails(data, offerData);
     } catch (error) {
       alert(error.message);
     }
