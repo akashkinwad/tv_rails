@@ -15,11 +15,14 @@ class NftPost < ApplicationRecord
   belongs_to :user
   has_many :offers, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
+  has_many :royalty_nominators, dependent: :destroy
 
   before_save :details_to_json
   before_save :set_dummy_nft_token_id
   before_save :set_token_url
   before_save :set_metadata
+
+  accepts_nested_attributes_for :royalty_nominators, reject_if: :all_blank, allow_destroy: true
 
   private
 

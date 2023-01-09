@@ -1,7 +1,10 @@
 .container-fluid.col-lg-12
   .row
     .col-lg-6.nft-sec-1
-      %a{href: "#"}
+      - if @nft_post.content_type == 'video/mp4'
+        %video{controls: "", height: "240", width: "320"}
+          %source{src: "#{@nft_post.attachment_url}#t=0.1", type: "video/mp4"}
+      - else
         %img.nft-img-1{src: "#{@nft_post.attachment_url}"}
     .col-lg-6
       .d-flex.justify-content-between.mob-section1

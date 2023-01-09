@@ -35,7 +35,7 @@
               %span.color-2.create-label Create a NFT
             %span.right-line.flex-1
           %section
-            %form{action: ""}
+            %form
               .input-group.mb-4
                 .input-grp.d-flex.justify-content-start.align-items-center
                   = f.text_field :title, placeholder: 'Title...', class: 'input-field w-100'
@@ -77,6 +77,14 @@
                   .input-group.mb-4
                     .input-grp.d-flex.justify-content-start.align-items-center
                       = f.datetime_local_field :end_date, class: 'input-field w-100', required: true
+
+              .input-group.mb-4
+                = f.fields_for :royalty_nominators do |nominator|
+                  = render 'royalty_nominator_fields', f: nominator
+                %div.links
+                  %br
+                  = link_to_add_association "Add New Nominator", f, :royalty_nominators
+
 
               .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-center.align-items-center
                 = f.submit 'Save', class: 'btn px-5 btn-primary bg-color-2 br-style-1 mint-btn mb-3 mb-lg-0 me-lg-3 fw-6'

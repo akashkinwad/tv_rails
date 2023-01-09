@@ -6,7 +6,11 @@
         %div
           .NFTSL_Box.d-flex.align-item-center
             .Nft_img.d-flex.align-items-center
-              %img{src: "#{@nft_post.attachment_url}"}
+              - if @nft_post.content_type == 'video/mp4'
+                %video{controls: "", height: "640", width: "820"}
+                  %source{src: "#{@nft_post.attachment_url}#t=0.1", type: "video/mp4"}
+              - else
+                %img{src: "#{@nft_post.attachment_url}"}
     .RightContent
       %div
         .modHead.py-4.px-4

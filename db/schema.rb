@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_06_164855) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_09_131208) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -123,6 +123,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_06_164855) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "royalty_nominators", force: :cascade do |t|
+    t.bigint "nft_post_id", null: false
+    t.string "payee_address"
+    t.decimal "shares"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["nft_post_id"], name: "index_royalty_nominators_on_nft_post_id"
+  end
+
   create_table "sign_nft_requests", force: :cascade do |t|
     t.integer "count"
     t.datetime "created_at", null: false
@@ -164,5 +173,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_06_164855) do
   add_foreign_key "offers", "nft_posts"
   add_foreign_key "offers", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "royalty_nominators", "nft_posts"
   add_foreign_key "users", "roles"
 end

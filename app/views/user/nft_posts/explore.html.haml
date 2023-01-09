@@ -47,7 +47,11 @@
           .SL_Box
             = link_to user_nft_post_url(nft_post) do
               .img-box
-                %img{src: "#{nft_post.attachment_url}"}/
+                - if nft_post.content_type == 'video/mp4'
+                  %img{controls: "", height: "240", width: "320"}
+                    %source{src: "#{nft_post.attachment_url}#t=0.1", type: "video/mp4"}
+                - else
+                  %img{src: "#{nft_post.attachment_url}"}
             .text-box.w-100.d-flex.justify-content-between
               .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
                 %span.name-1
@@ -145,7 +149,11 @@
             .SL_Box
               = link_to user_nft_post_url(nft_post) do
                 .img-box
-                  %img{src: "#{nft_post.attachment_url}"}/
+                  - if nft_post.content_type == 'video/mp4'
+                    %img{controls: "", height: "240", width: "320"}
+                      %source{src: "#{nft_post.attachment_url}#t=0.1", type: "video/mp4"}
+                  - else
+                    %img{src: "#{nft_post.attachment_url}"}
               .text-box.w-100.d-flex.justify-content-between
                 .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
                   %span.name-1

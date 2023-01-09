@@ -8,6 +8,7 @@ class User::NftPostsController < ApplicationController
 
   def new
     @nft_post = current_user.nft_posts.new
+    @nft_post.royalty_nominators.build
   end
 
   def create
@@ -75,6 +76,12 @@ class User::NftPostsController < ApplicationController
         :nft_id,
         :state,
         :nft_token_id,
+        royalty_nominators_attributes: [
+          :id,
+          :payee_address,
+          :shares,
+          :_destroy
+        ],
       )
     end
 

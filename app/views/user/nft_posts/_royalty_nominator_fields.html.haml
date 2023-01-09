@@ -1,0 +1,10 @@
+.mb-3.nested-fields
+  .d-flex
+    .input-group
+      .input-grp.d-flex.justify-content-start.align-items-center
+        = f.text_field :payee_address, placeholder: 'Payee Address', class: 'input-field w-100'
+    .input-group.mx-2.me-0
+      .input-grp.d-flex.justify-content-start.align-items-center
+        = f.text_field :shares, placeholder: 'Shares', class: 'input-field w-100'
+
+    = link_to_remove_association "Remove", f
