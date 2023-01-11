@@ -572,7 +572,7 @@ git remote set-url origin git@github.com:akashkinwad/tv_rails.git
 {
     "offerCreator": "0x1a3275748E520B9C117290329F150E67B182EfF7",
     "offerId": 111,
-    "nftContractAdr": "0x749fcF03848D7e5Fc9c8f78739253B3Ec626a763",
+    "nftContractAdr": "0x4dc7ef5515c5DF15C3060C7eB70db12897FbF0E7",
     "offerAmount": 1,
     "nftId": 12,
     "startPrice": "1000000000000000000",
@@ -627,3 +627,5 @@ show nft_post of users in profile page
                       = link_to 'Claim Offer', 'javascript:void(0)', class: 'btn btn-primary', id: 'claimOffer'
 
 ==================================================
+
+https://github.com/gorails-screencasts/dynamic-nested-forms-with-stimulusjs/blob/master/app/javascript/controllers/nested_form_controller.js

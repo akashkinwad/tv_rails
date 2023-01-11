@@ -32,7 +32,7 @@ class SignNft
   #   {
   #     "offerCreator": "0x1a3275748E520B9C117290329F150E67B182EfF7",
   #     "offerId": 111,
-  #     "nftContractAdr": "0x749fcF03848D7e5Fc9c8f78739253B3Ec626a763",
+  #     "nftContractAdr": "0xbd152A7fe7807F00b747712d1f72afAbA36ea336",
   #     "offerAmount": 1,
   #     "nftId": 12,
   #     "startPrice": "1000000000000000000",

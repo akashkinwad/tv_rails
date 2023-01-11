@@ -1,10 +1,12 @@
-.mb-3.nested-fields
+= content_tag :div, class: "nested-fields mb-3", data: { new_record: form.object.new_record? } do
   .d-flex
     .input-group
       .input-grp.d-flex.justify-content-start.align-items-center
-        = f.text_field :payee_address, placeholder: 'Payee Address', class: 'input-field w-100'
+        = form.text_field :payee_address, placeholder: 'Payee Address', class: 'input-field w-100'
     .input-group.mx-2.me-0
       .input-grp.d-flex.justify-content-start.align-items-center
-        = f.text_field :shares, placeholder: 'Shares', class: 'input-field w-100'
+        = form.text_field :shares, placeholder: 'Shares', class: 'input-field w-100'
 
-    = link_to_remove_association "Remove", f
+    %small= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" }
+    = form.hidden_field :_destroy
+

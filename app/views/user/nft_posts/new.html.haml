@@ -78,12 +78,21 @@
                     .input-grp.d-flex.justify-content-start.align-items-center
                       = f.datetime_local_field :end_date, class: 'input-field w-100', required: true
 
-              .input-group.mb-4
+              .input-group.mb-3.d-flex.justify-content-between
+                .input-grp.d-flex.justify-content-start.align-items-center
+                  = f.number_field :shared_royalty, placeholder: "Share 40% of royalty", class: 'input-field w-100'
+
+              %h4.mx-2 Royalty Nominators
+              %div{"data-controller" => "nested-form"}
+                %template{"data-target" => "nested-form.template"}
+                  = f.fields_for :royalty_nominators, @royalty_nominator, child_index: 'NEW_RECORD' do |nominator|
+                    = render "royalty_nominator_fields", form: nominator
+
                 = f.fields_for :royalty_nominators do |nominator|
-                  = render 'royalty_nominator_fields', f: nominator
-                %div.links
-                  %br
-                  = link_to_add_association "Add New Nominator", f, :royalty_nominators
+                  = render "royalty_nominator_fields", form: nominator
+
+                .mb-3{"data-target" => "nested-form.links"}
+                  = link_to "Add Nominator", "#", class: "btn btn-outline-primary", data: { action: "click->nested-form#add_association" }
 
 
               .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-center.align-items-center
