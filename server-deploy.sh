@@ -13,5 +13,7 @@ echo Deploying $branch_name, please wait.....
 git checkout $branch_name
 git pull origin $branch_name
 RAILS_ENV=production bundle exec rails db:migrate
-rvmsudo passenger-config restart-app
+RAILS_ENV=production bundle exec rails assets:precompile
+passenger-config restart-app .
+# rvmsudo passenger-config restart-app
 echo Deployment Completed! Successfully deployed $branch_name
