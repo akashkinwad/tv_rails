@@ -182,10 +182,9 @@
       json.signature
     ).send({from: currentAccount}).then((result) => {
       console.log('claimOffer result => ', result)
-      debugger;
       return {
-        txData: result,
-        nftId: parseInt(result.events.ClaimedOffer.returnValues.nftId)
+        txData: result
+        // nftId: parseInt(result.events.ClaimedOffer.returnValues.nftId)
       };
     });
   }
