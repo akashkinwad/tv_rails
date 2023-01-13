@@ -26,7 +26,32 @@
             {
                 "indexed":false,
                 "internalType":"uint256",
-                "name":"id",
+                "name":"offerId",
+                "type":"uint256"
+            },
+            {
+                "indexed":false,
+                "internalType":"uint256",
+                "name":"nftId",
+                "type":"uint256"
+            },
+            {
+                "indexed":false,
+                "internalType":"uint256",
+                "name":"offerAmount",
+                "type":"uint256"
+            }
+        ],
+        "name":"ClaimedOffer",
+        "type":"event"
+    },
+    {
+        "anonymous":false,
+        "inputs":[
+            {
+                "indexed":false,
+                "internalType":"uint256",
+                "name":"offerId",
                 "type":"uint256"
             }
         ],
@@ -54,6 +79,21 @@
     },
     {
         "inputs":[
+
+        ],
+        "name":"SERVICE_FEE_DENOMINATOR",
+        "outputs":[
+            {
+                "internalType":"uint256",
+                "name":"",
+                "type":"uint256"
+            }
+        ],
+        "stateMutability":"view",
+        "type":"function"
+    },
+    {
+        "inputs":[
             {
                 "internalType":"address",
                 "name":"newExecutor_",
@@ -62,7 +102,7 @@
         ],
         "name":"changeExecutor",
         "outputs":[
-            
+
         ],
         "stateMutability":"nonpayable",
         "type":"function"
@@ -82,7 +122,7 @@
         ],
         "name":"changeSigner",
         "outputs":[
-            
+
         ],
         "stateMutability":"nonpayable",
         "type":"function"
@@ -122,9 +162,24 @@
         ],
         "name":"claimOffer",
         "outputs":[
-            
+
         ],
         "stateMutability":"nonpayable",
+        "type":"function"
+    },
+    {
+        "inputs":[
+
+        ],
+        "name":"closedOffers",
+        "outputs":[
+            {
+                "internalType":"uint256",
+                "name":"",
+                "type":"uint256"
+            }
+        ],
+        "stateMutability":"view",
         "type":"function"
     },
     {
@@ -140,7 +195,7 @@
                 "type":"uint256"
             }
         ],
-        "name":"closedOffers",
+        "name":"closedOffersOfId",
         "outputs":[
             {
                 "internalType":"uint256",
@@ -153,7 +208,7 @@
     },
     {
         "inputs":[
-            
+
         ],
         "name":"executor",
         "outputs":[
@@ -282,14 +337,14 @@
         ],
         "name":"makeBidFirstBid",
         "outputs":[
-            
+
         ],
         "stateMutability":"nonpayable",
         "type":"function"
     },
     {
         "inputs":[
-            
+
         ],
         "name":"offerCount",
         "outputs":[
@@ -456,16 +511,7 @@
     },
     {
         "inputs":[
-            {
-                "internalType":"address",
-                "name":"",
-                "type":"address"
-            },
-            {
-                "internalType":"uint256",
-                "name":"",
-                "type":"uint256"
-            }
+
         ],
         "name":"openOffers",
         "outputs":[
@@ -480,7 +526,31 @@
     },
     {
         "inputs":[
-            
+            {
+                "internalType":"address",
+                "name":"",
+                "type":"address"
+            },
+            {
+                "internalType":"uint256",
+                "name":"",
+                "type":"uint256"
+            }
+        ],
+        "name":"openOffersOfId",
+        "outputs":[
+            {
+                "internalType":"uint256",
+                "name":"",
+                "type":"uint256"
+            }
+        ],
+        "stateMutability":"view",
+        "type":"function"
+    },
+    {
+        "inputs":[
+
         ],
         "name":"owner",
         "outputs":[
@@ -495,7 +565,7 @@
     },
     {
         "inputs":[
-            
+
         ],
         "name":"paymentToken",
         "outputs":[
@@ -510,9 +580,58 @@
     },
     {
         "inputs":[
-            
+
         ],
         "name":"renounceOwnership",
+        "outputs":[
+
+        ],
+        "stateMutability":"nonpayable",
+        "type":"function"
+    },
+    {
+        "inputs":[
+            {
+                "internalType":"uint256",
+                "name":"amount",
+                "type":"uint256"
+            }
+        ],
+        "name":"serviceFee",
+        "outputs":[
+            {
+                "internalType":"uint256",
+                "name":"",
+                "type":"uint256"
+            }
+        ],
+        "stateMutability":"view",
+        "type":"function"
+    },
+    {
+        "inputs":[
+
+        ],
+        "name":"serviceFeeNominator",
+        "outputs":[
+            {
+                "internalType":"uint256",
+                "name":"",
+                "type":"uint256"
+            }
+        ],
+        "stateMutability":"view",
+        "type":"function"
+    },
+    {
+        "inputs":[
+            {
+                "internalType":"uint256",
+                "name":"feeNominator",
+                "type":"uint256"
+            }
+        ],
+        "name":"setServiceFee",
         "outputs":[
             
         ],

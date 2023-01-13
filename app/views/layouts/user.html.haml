@@ -36,12 +36,12 @@
   var token = $('meta[name=csrf-token]').attr('content');
   var user_id = "#{current_user.id}";
 
-  var marketPlaceAddress = "0xF08A9502eB874a803f757574e2F8730D39F0C7d2";
-  var nftAddress = "0x749fcF03848D7e5Fc9c8f78739253B3Ec626a763";
+  var marketPlaceAddress = "0xC81c31fadbe8B99b20B8B1a149Ee167334242F69";
+  var nftAddress = "0x4dc7ef5515c5DF15C3060C7eB70db12897FbF0E7";
   var paymentTokenAddress = "0x39E77C8Bc081F20a7AA3a6027Db438FB5DAA1Aa0";
   var royaltyReceiverAddress = "0xc014f2a0169a6b3426B78f03CCB8e9c75778d111";
 
-  var nftContract = '0x749fcF03848D7e5Fc9c8f78739253B3Ec626a763';
+  var nftContract = '0x4dc7ef5515c5DF15C3060C7eB70db12897FbF0E7';
   var walletId = "#{current_user.wallet_address}";
 
   var provider = (new Web3(Web3.givenProvider)).eth;
@@ -180,5 +180,12 @@
       shares,
       json.hashMessage,
       json.signature
-    ).send({from: currentAccount});
+    ).send({from: currentAccount}).then((result) => {
+      console.log('claimOffer result => ', result)
+      debugger;
+      return {
+        txData: result,
+        nftId: parseInt(result.events.ClaimedOffer.returnValues.nftId)
+      };
+    });
   }

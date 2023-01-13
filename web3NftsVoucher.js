@@ -4,8 +4,8 @@ import marketplaceVoucherAbi from '../../data/abis/marketplaceVoucher.json';
 import nftVoucherAbi from '../../data/abis/nftVoucher.json';
 import royaltyReceiverAbi from '../../data/abis/royaltyReceiver.json';
 
-const marketPlaceAddress = "0x585ffE8A491abB31FBF9827B2e7ee432141Cea73";
-const nftAddress = "0xbd152A7fe7807F00b747712d1f72afAbA36ea336";
+const marketPlaceAddress = "0xC81c31fadbe8B99b20B8B1a149Ee167334242F69";
+const nftAddress = "0x4dc7ef5515c5DF15C3060C7eB70db12897FbF0E7";
 const royaltyReceiverAddress = "0xc014f2a0169a6b3426B78f03CCB8e9c75778d111";
 
 const marketPlaceContract = new provider.Contract(marketplaceVoucherAbi, marketPlaceAddress);
