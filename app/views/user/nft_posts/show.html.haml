@@ -305,7 +305,6 @@
         alert(error.message);
       }
     } else {
-      debugger;
       let data = await createOfferAndBid(offerCreator, nftId, offerAmount, nftId, startPrice, targetPrice, offerEnd, maxSupply, bidAmount)
       response = data.txData;
 
@@ -446,7 +445,7 @@
 
   async function triggerClaimOffer() {
     try {
-      let data = await claimOffer(offerId, 10, [], []);
+      let data = await claimOffer(offerId, 10, [currentAccount], [10]);
       console.log('claimOffer data => ', data);
 
       let offerData = await getOfferData(offerId);
