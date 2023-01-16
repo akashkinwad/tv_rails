@@ -425,8 +425,8 @@
     getAccount(false);
   });
 
-  function updateNftPostDetails(result, offerData) {
-    var body = { details: result, state: 'minted', nft_token_id: offerData.nftId };
+  function updateNftPostDetails(txData, offerData) {
+    var body = { details: txData, state: 'minted', nft_token_id: offerData.nftId };
 
     $.ajax({
       url: `/user/nft_posts/${"#{@nft_post.id}"}`,
@@ -445,13 +445,13 @@
 
   async function triggerClaimOffer() {
     try {
-      let data = await claimOffer(offerId, 100, [currentAccount], [10]);
+      let data = await claimOffer(offerId, 0, [], []);
       console.log('claimOffer data => ', data);
 
       let offerData = await getOfferData(offerId);
       console.log('getOfferData offerData => ', offerData);
 
-      updateNftPostDetails(data.result, offerData);
+      updateNftPostDetails(data.txData, offerData);
     } catch (error) {
       alert(error.message);
     }
