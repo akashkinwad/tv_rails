@@ -15,7 +15,7 @@ class Offer < ApplicationRecord
 
   def update_nft_offer_id_to_post
     if nft_post.nft_offer_id.nil?
-      offer_id = details.dig('events', 'CreatedOffer', 'returnValues', 'id')
+      offer_id = details.dig('events', 'CreatedOffer', 'returnValues', 'offerId')
       nft_post.update(nft_offer_id: offer_id)
     end
   end

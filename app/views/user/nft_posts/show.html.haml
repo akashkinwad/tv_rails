@@ -95,7 +95,8 @@
                       %p.offer-price.text-primary.mt-3
                         = offer.user.name.presence || "User #{offer.user.id}"
                     %div
-                      %p.offer-price1.mt-3 Dec, 16, 2022, 11:30 am
+                      %p.offer-price1.mt-3
+                        = offer.created_at.strftime("%b %d, %Y %I:%M %p")
                     %div
                       %p.offer-price1.mt-3
                         = "NFT #{@nft_post.state}"
@@ -425,8 +426,8 @@
     getAccount(false);
   });
 
-  function updateNftPostDetails(txData, offerData) {
-    var body = { details: txData, state: 'minted', nft_token_id: offerData.nftId };
+  function updateNftPostDetails(txData, nftId) {
+    var body = { details: txData, state: 'minted', nft_token_id: nftId };
 
     $.ajax({
       url: `/user/nft_posts/${"#{@nft_post.id}"}`,
@@ -448,10 +449,10 @@
       let data = await claimOffer(offerId, 0, [], []);
       console.log('claimOffer data => ', data);
 
-      let offerData = await getOfferData(offerId);
-      console.log('getOfferData offerData => ', offerData);
+      // let offerData = await getOfferData(offerId);
+      // console.log('getOfferData offerData => ', offerData);
 
-      updateNftPostDetails(data.txData, offerData);
+      updateNftPostDetails(data.txData, data.nftId);
     } catch (error) {
       alert(error.message);
     }

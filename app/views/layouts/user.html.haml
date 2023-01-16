@@ -183,8 +183,8 @@
     ).send({from: currentAccount}).then((result) => {
       console.log('claimOffer result => ', result)
       return {
-        txData: result
-        // nftId: parseInt(result.events.ClaimedOffer.returnValues.nftId)
+        txData: result,
+        nftId: parseInt(result.events.ClaimedOffer.returnValues.nftId)
       };
     });
   }
