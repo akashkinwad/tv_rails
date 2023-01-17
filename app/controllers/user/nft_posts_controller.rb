@@ -44,7 +44,7 @@ class User::NftPostsController < ApplicationController
   end
 
   def explore
-    @nft_posts = NftPost.includes(:user, :likes)
+    @nft_posts = NftPost.state_created.includes(:user, :likes)
   end
 
   def show
@@ -77,6 +77,8 @@ class User::NftPostsController < ApplicationController
         :state,
         :nft_token_id,
         :shared_royalty,
+        :claimer_id,
+        :claimer_wallet_address,
         royalty_nominators_attributes: [
           :id,
           :payee_address,

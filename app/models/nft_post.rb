@@ -13,6 +13,7 @@ class NftPost < ApplicationRecord
   validates :attachment_url, presence: true, on: :update
 
   belongs_to :user
+  belongs_to :claimer, class_name: 'User', optional: true
   has_many :offers, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :royalty_nominators, dependent: :destroy

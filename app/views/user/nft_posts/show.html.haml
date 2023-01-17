@@ -427,7 +427,13 @@
   });
 
   function updateNftPostDetails(txData, nftId) {
-    var body = { details: txData, state: 'minted', nft_token_id: nftId };
+    var body = {
+      details: txData,
+      state: 'minted',
+      nft_token_id: nftId,
+      claimer_id: "#{current_user.id}",
+      claimer_wallet_address: currentAccount
+    };
 
     $.ajax({
       url: `/user/nft_posts/${"#{@nft_post.id}"}`,
