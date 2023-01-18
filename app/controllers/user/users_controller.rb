@@ -7,8 +7,10 @@ class User::UsersController < ApplicationController
   def show
     if params[:page] == 'listings'
       @listing_offers = current_user.listing_offers
+    elsif params[:page] == 'created'
+      @nft_posts = current_user.nft_posts.state_created
     else
-      @nft_posts = current_user.nft_posts
+      @nft_posts = current_user.cliamed_posts
     end
   end
 

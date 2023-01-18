@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_many :following_users, foreign_key: :followee_id, class_name: 'Follow'
   has_many :followers, through: :following_users
   has_many :likes, dependent: :destroy
+  has_many :cliamed_posts, foreign_key: :claimer_id, class_name: 'NftPost'
 
   def generate_otp
     # rand.to_s[2..7]
