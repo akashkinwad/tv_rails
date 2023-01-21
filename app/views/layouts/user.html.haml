@@ -20,6 +20,13 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
   %body
+    #loader.loader
+      .loader-container
+
+    #waitingLoader
+      .cv-spinner
+        %span.spinner
+
     .overlay
     = render partial: 'user/shared/header'
     = yield
@@ -188,3 +195,19 @@
       };
     });
   }
+
+  function startWaitingLoader() {
+    $('#waitingLoader').fadeIn(300);
+  }
+
+  function removeWaitingLoader() {
+    setTimeout(function(){
+      $('#waitingLoader').fadeOut(300);
+    },500);
+  }
+
+  function stopLoader() {
+    $('#loader').delay(800).fadeOut(500);
+  }
+
+  stopLoader();

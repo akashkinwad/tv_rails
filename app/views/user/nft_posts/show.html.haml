@@ -297,12 +297,15 @@
     var offerEnd = "#{@nft_post.end_date.strftime("%d %b %Y %T")}"
     var maxSupply = "#{@nft_post.max_supply}"
 
+    startWaitingLoader();
+
     if (offerId) {
       try {
         response = await makeBid(offerId, bidAmount);
 
         console.log('makeBid response =>', response);
       } catch (error) {
+        removeWaitingLoader();
         alert(error.message);
       }
     } else {
@@ -340,6 +343,8 @@
           location.reload();
         }, 500);
       }
+    }).done(function() {
+      removeWaitingLoader();
     });
   }
 
@@ -447,10 +452,13 @@
       success: function (user, status) {
         alert('Claimed Successfully!');
       }
+    }).done(function() {
+      removeWaitingLoader();
     });
   }
 
   async function triggerClaimOffer() {
+    startWaitingLoader();
     try {
       let data = await claimOffer(offerId, 0, [], []);
       console.log('claimOffer data => ', data);
@@ -460,6 +468,7 @@
 
       updateNftPostDetails(data.txData, data.nftId);
     } catch (error) {
+      removeWaitingLoader();
       alert(error.message);
     }
   }

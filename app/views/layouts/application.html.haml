@@ -12,3 +12,11 @@
     %main.container
       %br
       = yield
+
+:javascript
+
+  function stopLoader() {
+    $("#loader").delay(800).fadeOut(500);
+  }
+
+  stopLoader();
