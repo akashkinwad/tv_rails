@@ -48,7 +48,7 @@
             = link_to user_nft_post_url(nft_post) do
               .img-box
                 - if nft_post.content_type == 'video/mp4'
-                  %img{controls: "", height: "240", width: "320"}
+                  %video{controls: "", height: "240", width: "320"}
                     %source{src: "#{nft_post.attachment_url}#t=0.1", type: "video/mp4"}
                 - else
                   %img{src: "#{nft_post.attachment_url}"}
@@ -150,7 +150,7 @@
               = link_to user_nft_post_url(nft_post) do
                 .img-box
                   - if nft_post.content_type == 'video/mp4'
-                    %img{controls: "", height: "240", width: "320"}
+                    %video{controls: "", height: "240", width: "320"}
                       %source{src: "#{nft_post.attachment_url}#t=0.1", type: "video/mp4"}
                   - else
                     %img{src: "#{nft_post.attachment_url}"}
