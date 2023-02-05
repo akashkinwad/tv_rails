@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :nft_posts, dependent: :destroy
   has_many :offers, dependent: :destroy
+  has_many :bids, dependent: :destroy
 
   # to whom I am following
   has_many :followed_users, foreign_key: :follower_id, class_name: 'Follow'

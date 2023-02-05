@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_17_172128) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_05_090122) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_172128) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "bids", force: :cascade do |t|
+    t.bigint "offer_id", null: false
+    t.bigint "user_id", null: false
+    t.decimal "amount"
+    t.jsonb "details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offer_id"], name: "index_bids_on_offer_id"
+    t.index ["user_id"], name: "index_bids_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -89,6 +100,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_172128) do
     t.decimal "shared_royalty"
     t.integer "claimer_id"
     t.string "claimer_wallet_address"
+    t.integer "total_supplied", default: 0
+    t.integer "available_supply", default: 0
     t.index ["claimer_id"], name: "index_nft_posts_on_claimer_id"
     t.index ["user_id"], name: "index_nft_posts_on_user_id"
   end
@@ -100,6 +113,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_172128) do
     t.jsonb "details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "description"
+    t.string "category"
+    t.text "hashtags"
+    t.decimal "offer_amount"
+    t.string "attachment_url"
+    t.string "content_type"
+    t.string "extension"
+    t.string "token_url"
+    t.decimal "start_price"
+    t.decimal "target_price"
+    t.datetime "end_date"
+    t.integer "state", default: 0
+    t.string "nft_token_id"
+    t.jsonb "metadata"
+    t.bigint "nft_offer_id"
+    t.integer "claimer_id"
+    t.string "claimer_wallet_address"
+    t.index ["claimer_id"], name: "index_offers_on_claimer_id"
     t.index ["nft_post_id"], name: "index_offers_on_nft_post_id"
     t.index ["user_id"], name: "index_offers_on_user_id"
   end
@@ -170,6 +202,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_172128) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "bids", "offers"
+  add_foreign_key "bids", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "users"

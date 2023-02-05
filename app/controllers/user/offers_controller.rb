@@ -30,6 +30,19 @@ class User::OffersController < ApplicationController
     end
   end
 
+  def explore
+    @offers = Offer.state_created.includes(:user, :likes)
+  end
+
+  def show
+    @offer = Offer.find_by(id: params[:id])
+    @author = @offer.user
+    @nft_id = SignNftRequest.last.count
+    @bids = @offer.bids
+    @can_claim_bid = DateTime.now > @offer.end_date
+    @highest_bid_id = @bids.order('amount DESC').first.id if @bids.any?
+  end
+
   private
     def offer_params
       params.require(:offer).permit(

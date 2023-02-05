@@ -17,7 +17,12 @@ Rails.application.routes.draw do
         get :mobile_nft
       end
     end
-    resources :offers
+    resources :offers do
+      collection do
+        get :explore
+      end
+    end
+    resources :bids
     resources :users, only: [:edit, :update]
     get :profile, to: 'users#show'
   end

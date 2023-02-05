@@ -1,0 +1,52 @@
+.container-fluid.col-lg-12
+  .row
+    .col-lg-6.nft-sec-1
+      - if @offer.content_type == 'video/mp4'
+        %video{controls: "", height: "240", width: "320"}
+          %source{src: "#{@offer.attachment_url}#t=0.1", type: "video/mp4"}
+      - else
+        %img.nft-img-1{src: "#{@offer.attachment_url}"}
+    .col-lg-6
+      .d-flex.justify-content-between.mob-section1
+        %div
+          %h5
+            = "##{@offer.nft_offer_id}"
+          %h6
+            = @offer.title
+        %div
+          %h5 --TLTM
+          %h6.text-center.fw-bold --
+      / --
+      .mt-4.price-section
+        .d-flex.justify-content-between
+          .mt-2
+            %div
+              %img.wallet-icon{alt: "", src: "/user/img/default/Wallet-Icon.png"}>
+              %span.balance Balance
+          .mt-2
+            %h6 0 TLTM
+        .d-flex.justify-content-between.mt-3
+          .mt-2
+            %p.balance Offer Amount
+          .mt-2
+            %h6
+              = "#{@offer.offer_amount} TLTM"
+        .d-flex.justify-content-between
+          .mt-2
+            %p.balance Best Offer
+          .mt-2
+            %h6
+              = "#{@highest_offer_amount} TLTM"
+      .form-section-1
+        %div{style: 'color: red'}
+          - if bid.errors.include?(:amount)
+            - bid.errors.full_messages_for(:amount).each do |error_message|
+              = error_message
+        = form_with(model: [:user, bid], id: 'new-bid-form', class: 'new-bid-form') do |form|
+          = form.hidden_field :offer_id, value: @offer.id
+          = form.text_field :amount, placeholder: 'Price', required: true
+          %button
+            %span.color-2 TLTM
+        %p.paragraph-1.mt-1 Total Offer amount: 0 WETH
+    .col-sm-12
+      %button.btn.btn-offer#save-bid Make Bid

@@ -1,0 +1,478 @@
+= turbo_frame_tag "remote_modal", target: "_top"
+%section.nft_section
+  .container-fluid.d-flex.p-0.nft_sectionInner
+    .LeftSlider
+      .NftSlider-2.slider-Outer
+        %div
+          .NFTSL_Box.d-flex.align-item-center
+            .Nft_img.d-flex.align-items-center
+              - if @offer.content_type == 'video/mp4'
+                %video{controls: "", height: "640", width: "820"}
+                  %source{src: "#{@offer.attachment_url}#t=0.1", type: "video/mp4"}
+              - else
+                %img{src: "#{@offer.attachment_url}"}
+    .RightContent
+      %div
+        .modHead.py-4.px-4
+          .modLabel
+            = "##{@offer.nft_offer_id}"
+            %br/
+            = @offer.title
+          .d-flex.mt-3.align-items-center.justify-content-between
+            .md_bottom
+              %span.me-3
+                %img{alt: "", src: "/user/img/default/moderate-img.png"}/
+              = "by #{@offer.user.name || @offer.user.email} "
+            .md_bottom
+              = @offer.category
+        .pt-5.py-4.px-4.mb-padding.graphOuter
+          .graph_sec
+            .graph_prg
+            .graph_line
+        .pt-5.py-4.px-4.mb-padding
+          .about_Sec
+            %h1.abt-label.color-3 About
+            %p.abt-para
+              = @offer.description
+        .priceStatusOuter.mb-padding.pt-3.py-3.px-4.by-5.d-flex.align-items-end.justify-content-between
+          .priceStatus.d-flex
+            .pricSec
+              %p.m-0.cp-label Offer Amount
+              %p.m-0.pr-lable.color-2
+                = @offer.offer_amount
+            .ms-3.me-4
+              %img.pr-img{alt: "", src: "/user/img/default/prImg.png"}/
+            .pricSec
+              %p.m-0.cp-label Start Price
+              %p.m-0.pr-lable.color-2
+                = @offer.start_price
+            .ms-3.me-4
+              %img.pr-img{alt: "", src: "/user/img/default/prImg.png"}/
+            .pricSec
+              %p.m-0.cp-label Target Price
+              %p.m-0.pr-lable.color-2
+                = @offer.target_price
+
+        .priceStatusOuter.mb-padding.pt-3.py-3.px-4.by-5.d-flex.align-items-end.justify-content-between
+          .priceStatus.d-flex
+            .pricSec
+              %p.m-0.cp-label Offer End Time
+            .div.d-flex#timer
+              .div.timer-label.ms-3#days
+              .div.timer-label.ms-3#hours
+              .div.timer-label.ms-3#minutes
+              .div.timer-label.ms-3#seconds
+
+        .container
+          .row
+            .col-lg-12
+              .table-1.mt-5
+                .brd-11.d-flex.justify-content-between
+                  .ms-2
+                    %p.pr-lable-1.color-2.mt-2 Offers
+                  %div
+                    %p
+                  %div
+                    %p.angle-1
+                      %i.fa.fa-angle-up.angle-icon.color-2.angle-2
+                .brd-11.d-flex.justify-content-around
+                  %div
+                    %p.offer-price.mt-3 Offer Price
+                  %div
+                    %p.offer-price.mt-3.frm-1 From
+                  %div
+                    %p.offer-price.mt-3.me-5 Date/Time
+                  %div
+                    %p.offer-price.mt-3.me-5 Post Status
+                  %div
+                    %p.offer-price.mt-3.me-5 Actions
+                - @bids.each do |bid|
+                  .d-flex.justify-content-around
+                    %div
+                      %p.offer-price.mt-3
+                        = "#{bid.amount} TLTM"
+                    %div
+                      %p.offer-price.text-primary.mt-3
+                        = bid.user.name.presence || "User #{bid.user_id}"
+                    %div
+                      %p.offer-price1.mt-3
+                        = bid.created_at.strftime("%b %d, %Y %I:%M %p")
+                    %div
+                      %p.offer-price1.mt-3
+                        = "NFT #{@offer.state}"
+                    %div
+                      %p.offer-price1.mt-3
+                        - if @can_claim_bid && @highest_bid_id == bid.id && !@offer.state_minted?
+                          = link_to 'Claim Bid', 'javascript:void(0)', class: 'btn btn-primary', id: 'claimOffer'
+
+        .pt-3.py-3.px-4.mb-padding
+          .btnOuterSection.d-flex.justify-content-between.align-items-center
+            .btn-outer-1.d-flex.flex-lg-row.flex-column.justify-content-start.align-items-center
+              %a.btn.px-5.py-2.mod-btn.btn-primary.bg-color-2.br-style-1.mb-3.mb-lg-0.me-lg-3.fw-6{href: "#link-6"} Buy now
+
+              = link_to new_user_bid_path(offer_id: @offer.id), class: 'btn px-5 py-2 mod-btn btn-outline-primary bg-white br-style-2 fw-6', data: { turbo_frame: 'remote_modal' } do
+                %span.color-2 Make Bid
+            .btnsOuter.d-flex
+              .scImg.d-flex.justify-content-center.align-items-center.me-4
+                %img{alt: "", src: "/user/img/default/share.png"}/
+                %p.scNum.color-2 974
+              .scImg.d-flex.justify-content-center.align-items-center
+                %img{alt: "", src: "/user/img/default/heart.png"}/
+                %p.scNum.color-2
+                  = @offer.likes.count
+        .pt-5.py-3.px-4.simiOuter.mb-padding
+          .color-3.cl-label.mb-3 Similar NFTs
+          .mb-3.d-flex.flex-wrap.deskBox
+            .modBox
+              .SL_Box
+                .img-box
+                  %img{src: "/user/img/default/img-1.png"}/
+                .text-box.w-100.d-flex.justify-content-between
+                  .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
+                    %span.name-1 Talinhos
+                    %strong.name-2 Moderator
+                    %strong.name-3 #001
+                  .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
+                    %span.name-4 654
+                    %span.name-5.d-flex.align-items-center
+                      16,320
+                      %img.like-icon{src: "/user/img/default/like.png"}/
+            .modBox
+              .SL_Box
+                .img-box
+                  %img{src: "/user/img/default/img-1.png"}/
+                .text-box.w-100.d-flex.justify-content-between
+                  .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
+                    %span.name-1 Talinhos
+                    %strong.name-2 Moderator
+                    %strong.name-3 #001
+                  .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
+                    %span.name-4 654
+                    %span.name-5.d-flex.align-items-center
+                      16,320
+                      %img.like-icon{src: "/user/img/default/like.png"}/
+            .modBox
+              .SL_Box
+                .img-box
+                  %img{src: "/user/img/default/img-1.png"}/
+                .text-box.w-100.d-flex.justify-content-between
+                  .text-box-left.d-flex.flex-column.justify-content-center.align-items-center.align-items-lg-start
+                    %span.name-1 Talinhos
+                    %strong.name-2 Moderator
+                    %strong.name-3 #001
+                  .text-box-right.d-flex.flex-column.justify-content-end.align-items-end
+                    %span.name-4 654
+                    %span.name-5.d-flex.align-items-center
+                      16,320
+                      %img.like-icon{src: "/user/img/default/like.png"}/
+
+        .pt-3.pt-3.px-4.simiOuter.mb-padding
+          .color-2.cl-label Other Collections by Talentsverse
+          .TC-outer.flex-wrap.d-flex.flex-row.justify-content-center.align-items-center.mt-4.mx-auto.TC-outerDesk-view
+            .TC-item.d-flex.flex-column.align-items-between.me-md-4.mb-3.mb-lg-4
+              .TC-img
+                %img{src: "/user/img/default/trading.png"}/
+              .TC-details-outer.h-100.d-flex.flex-column.justify-content-between
+                .TC-details.d-flex.flex-column
+                  .TC-1.d-flex.flex-column.justify-content-center.align-items-center.pt-3
+                    %p.mb-0.fs-18
+                      %strong Talinhos
+                    %p.mb-0
+                      %small by
+                    %p.mb-0.fs-18
+                      %span Talentsverse
+                .TC-details.d-flex.flex-row.justify-content-center.align-items-center.pt-3.pb-3.pb-xl-4
+                  %small.flex-1.text-center 16,547 Views
+                  %span.flex-1.text-center.color-2.fs-18 ...
+                  %small.flex-1.text-center 1,414 Likes
+            .TC-item.d-flex.flex-column.align-items-between.me-md-4.mb-3.mb-lg-4
+              .TC-img
+                %img{src: "/user/img/default/trading.png"}/
+              .TC-details-outer.h-100.d-flex.flex-column.justify-content-between
+                .TC-details.d-flex.flex-column
+                  .TC-1.d-flex.flex-column.justify-content-center.align-items-center.pt-3
+                    %p.mb-0.fs-18
+                      %strong Talinhos
+                    %p.mb-0.fs-18.mt-1
+                      %span Diverse
+                .TC-details.d-flex.flex-row.justify-content-center.align-items-center.pt-3.pb-3.pb-xl-4
+                  %small.flex-1.text-center 16,547 Views
+                  %span.flex-1.text-center.color-2.fs-18 ...
+                  %small.flex-1.text-center 1,414 Likes
+
+:javascript
+
+  var offerId = "#{@offer.nft_offer_id}"
+
+  async function getAllowance(baseContract, toApproveContract) {
+    return baseContract.methods.allowance(currentAccount, toApproveContract).call();
+  }
+
+  async function approve(baseContract, toApproveContract) {
+    let maxAmount = Web3.utils.toBN(2).pow(Web3.utils.toBN(256)).sub(Web3.utils.toBN(1)).toString();
+    let allowance = await getAllowance(baseContract, toApproveContract);
+
+    if (allowance !== maxAmount) {
+      return baseContract.methods.approve(toApproveContract, maxAmount).send({from: currentAccount});
+    } else {
+      return Promise.resolve();
+    }
+  }
+
+  async function makeBid(offerId, amount) {
+    let weiAmount = await toWei(amount);
+
+    const paymentTokenContract = new provider.Contract(paymentTokenAbi, paymentTokenAddress);
+    const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
+
+    return approve(paymentTokenContract, marketPlaceAddress).then(() => {
+      return marketPlaceContract.methods.makeBid(offerId, weiAmount, "0x").send({from: currentAccount});
+    });
+  }
+
+  function makeTimer(dateTime) {
+    if (dateTime) {
+      var endTime = new Date(dateTime);
+      endTime = (Date.parse(endTime) / 1000);
+
+      var now = new Date();
+      now = (Date.parse(now) / 1000);
+
+      if (endTime > now) {
+        var timeLeft = endTime - now;
+        var days = Math.floor(timeLeft / 86400);
+        var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
+        var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) / 60);
+        var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
+
+        if (hours < "10") { hours = "0" + hours; }
+        if (minutes < "10") { minutes = "0" + minutes; }
+        if (seconds < "10") { seconds = "0" + seconds; }
+
+        $("#days").html(days + "<span> Days</span>");
+        $("#hours").html(hours + "<span> Hours</span>");
+        $("#minutes").html(minutes + "<span> Minutes</span>");
+        $("#seconds").html(seconds + "<span> Seconds</span>");
+      } else {
+        $("#days").html("<span> Offer Is Expired!</span>");
+      }
+
+    }
+  }
+
+  setInterval(function() { makeTimer("#{@offer.end_date&.strftime("%c %z")}"); }, 1000);
+
+  // Remove below functions
+
+  async function getOfferCount() {
+    //const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
+
+    return marketPlaceContract.methods.offerCount().call();
+  }
+
+  async function getAllOfferData() {
+    let offerCount = await getOfferCount();
+
+    let allOffers = [];
+    let currentOffer = undefined;
+    for (let i = 1; i <= parseInt(offerCount); i++) {
+      currentOffer = await getOfferData(i);
+      // TODO: 0-11 deleten
+
+      allOffers.push(currentOffer);
+    }
+
+    return allOffers;
+  }
+
+  async function submitBidForm() {
+    var response = undefined;
+
+    var bidAmount = $('#bid_amount').val();
+    var offerCreator = "#{@author.wallet_address}"
+    var offerAmount = "#{@offer.offer_amount}"
+    var nftId = "#{@nft_id}"
+    var startPrice = "#{@offer.start_price}"
+    var targetPrice = "#{@offer.target_price}"
+    var offerEnd = "#{@offer.end_date.strftime("%d %b %Y %T")}"
+    var maxSupply = "#{@offer.nft_post.max_supply}"
+
+    startWaitingLoader();
+
+    if (offerId) {
+      try {
+        response = await makeBid(offerId, bidAmount);
+
+        console.log('makeBid response =>', response);
+      } catch (error) {
+        removeWaitingLoader();
+        alert(error.message);
+      }
+    } else {
+      let data = await createOfferAndBid(offerCreator, nftId, offerAmount, nftId, startPrice, targetPrice, offerEnd, maxSupply, bidAmount)
+      response = data.txData;
+
+      console.log('createOfferAndBid response =>', response);
+    }
+
+    var formData = new FormData($('#new-bid-form')[0]);
+    formData.append('bid[details]', JSON.stringify(response));
+
+    $.ajax({
+      url: '/user/bids',
+      method: 'POST',
+      headers: {
+        'X-CSRF-Token': token
+      },
+      data: formData,
+      processData: false,
+      contentType: false,
+      dataType: 'json',
+      success:function(data, textStatus, jqXHR){
+        $('.btn-close').click();
+        alert('Bid was successfully created.');
+
+        setTimeout(function(){
+          location.reload();
+        }, 500);
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        alert('Error in creating bid, please try later.');
+
+        setTimeout(function(){
+          location.reload();
+        }, 500);
+      }
+    }).done(function() {
+      removeWaitingLoader();
+    });
+  }
+
+  async function makeBid(offerId, amount) {
+    let weiAmount = await toWei(amount);
+
+    const paymentTokenContract = new provider.Contract(paymentTokenAbi, paymentTokenAddress);
+    const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
+
+    return approve(paymentTokenContract, marketPlaceAddress).then(() => {
+      return marketPlaceContract.methods.makeBid(offerId, weiAmount, "0x").send({from: currentAccount});
+    });
+  }
+
+  async function createOfferAndBid(offerCreator, offerId, offerAmount, nftId, startPrice, targetPrice, offerEnd, maxSupply, bidAmount) {
+
+    let weiStartPrice = await toWei(startPrice);
+    let weiTargetPrice = await toWei(targetPrice);
+    let unixOfferEnd = Math.floor(Date.parse(offerEnd) / 1000);
+
+    let weiBidAmount = await toWei(bidAmount);
+
+    let params = {
+      offerCreator: offerCreator,
+      offerId: offerId,
+      nftContractAdr: nftAddress,
+      offerAmount: offerAmount,
+      nftId: nftId,
+      startPrice: weiStartPrice,
+      targetPrice: weiTargetPrice,
+      offerEnd: unixOfferEnd,
+      maxSupply: maxSupply,
+      highestBid: weiBidAmount,
+      bidder: currentAccount,
+      closed: false
+    };
+
+    let response = await fetch('/api/v1/nfts/sign_nft', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(params)
+    });
+
+    let json = await response.json();
+
+    const paymentTokenContract = new provider.Contract(paymentTokenAbi, paymentTokenAddress);
+    const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
+
+    return approve(paymentTokenContract, marketPlaceAddress).then(() => {
+      return marketPlaceContract.methods.makeBidFirstBid(
+        weiBidAmount,
+        params,
+        json.hashMessage,
+        json.signature
+      ).send({from: currentAccount}).then((result) => {
+        return {
+          txData: result,
+          offerId: parseInt(result.events.CreatedOffer.returnValues.offerId)
+        };
+      });
+    });
+  }
+
+  $(document).on('click','#save-bid',function(){
+    submitBidForm();
+  });
+
+  async function getOfferData(offerId) {
+    const marketPlaceContract = new provider.Contract(marketplaceAbi, marketPlaceAddress);
+
+    return marketPlaceContract.methods.offers(offerId).call().then((result) => {
+      return {
+        offerData: result,
+        nftId: parseInt(result.nftId)
+      }
+    });
+  }
+
+  $(document).ready(function() {
+    getAccount(false);
+  });
+
+  function updateNftPostDetails(txData, nftId) {
+    var body = {
+      details: txData,
+      state: 'minted',
+      nft_token_id: nftId,
+      claimer_id: "#{current_user.id}",
+      claimer_wallet_address: currentAccount
+    };
+
+    $.ajax({
+      url: `/user/nft_posts/${"#{@offer.id}"}`,
+      type: 'PATCH',
+      data: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': token
+      },
+      dataType: 'json',
+      success: function (user, status) {
+        alert('Claimed Successfully!');
+      }
+    }).done(function() {
+      removeWaitingLoader();
+    });
+  }
+
+  async function triggerClaimOffer() {
+    startWaitingLoader();
+    try {
+      let data = await claimOffer(offerId, 0, [], []);
+      console.log('claimOffer data => ', data);
+
+      // let offerData = await getOfferData(offerId);
+      // console.log('getOfferData offerData => ', offerData);
+
+      updateNftPostDetails(data.txData, data.nftId);
+    } catch (error) {
+      removeWaitingLoader();
+      alert(error.message);
+    }
+  }
+
+  $(document).on('click','#claimOffer',function(){
+    triggerClaimOffer();
+  });

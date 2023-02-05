@@ -12,7 +12,7 @@
           %input#search.search-input.w-100{placeholder: "Browse the Marketplace...", type: "text"}/
     .top-menu.d-flex.flex-1.justify-content-end.align-items-center
       .menu-items.h-100.d-none.d-lg-flex.justify-content-center.align-items-center
-        = link_to 'Explore', explore_user_nft_posts_path, class: "menu-item px-2 px-xl-3"
+        = link_to 'Explore', explore_user_offers_path, class: "menu-item px-2 px-xl-3"
         = link_to 'Create', new_user_nft_post_path, class: "menu-item px-2 px-xl-3"
         - if user_signed_in?
           = button_to 'Logout', destroy_user_session_path, class: 'menu-item px-2 px-xl-3 me-3 me-xl-5', method: :delete, data: { turbo_method: :delete }

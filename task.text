@@ -645,3 +645,56 @@ vouchers table
 bid
 
 
+1. vouchers
+2.
+
+
+offer - offers
+
+--------------------
+
+hex conversion
+create post UI issue for video
+
+
+nft_posts
+-max_supply
+-total_supplied
+-available_supply
+
+
+offers
+-nft_offer_id
+-details
+-metadata
+-token_url
+
+
+t.bigint "user_id", null: false
+t.string "title"
+t.text "description"
+t.string "category"
+t.text "hashtags"
+t.integer "offer_amount"
+t.integer "max_supply"
+t.string "token_url"
+t.string "attachment_url"
+t.string "content_type"
+t.string "extension"
+t.jsonb "details"
+t.decimal "start_price"
+t.decimal "target_price"
+t.datetime "end_date"
+t.bigint "nft_offer_id"
+t.integer "state", default: 0
+t.string "nft_token_id"
+t.jsonb "metadata"
+t.integer "claimer_id"
+t.string "claimer_wallet_address"
+
+
+bids
+-id
+-offer_id
+-amount
+-details
