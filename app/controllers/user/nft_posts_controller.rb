@@ -18,7 +18,10 @@ class User::NftPostsController < ApplicationController
       if @nft_post.save
         upload_and_set_attr(nft_post_params.dig(:attachment))
 
-        format.html { redirect_to user_nft_post_url(@nft_post), notice: "Post was successfully created." }
+        @offer = @nft_post.offers.last
+        redirect_url = @offer.present? ? user_offer_url(@offer) : user_nft_post_url(@nft_post)
+
+        format.html { redirect_to redirect_url, notice: "Post was successfully created." }
         format.json { render json: @nft_post, status: :created }
         format.js   { render :new, status: :created }
       else

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_05_090122) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_06_142100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -117,7 +117,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_090122) do
     t.text "description"
     t.string "category"
     t.text "hashtags"
-    t.decimal "offer_amount"
+    t.integer "offer_amount"
     t.string "attachment_url"
     t.string "content_type"
     t.string "extension"

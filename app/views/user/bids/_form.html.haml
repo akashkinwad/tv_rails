@@ -42,7 +42,7 @@
           - if bid.errors.include?(:amount)
             - bid.errors.full_messages_for(:amount).each do |error_message|
               = error_message
-        = form_with(model: [:user, bid], id: 'new-bid-form', class: 'new-bid-form') do |form|
+        = form_with(model: [:user, bid], id: 'new-bid-form', class: 'example') do |form|
           = form.hidden_field :offer_id, value: @offer.id
           = form.text_field :amount, placeholder: 'Price', required: true
           %button

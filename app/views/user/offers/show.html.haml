@@ -294,7 +294,7 @@
     var nftId = "#{@nft_id}"
     var startPrice = "#{@offer.start_price}"
     var targetPrice = "#{@offer.target_price}"
-    var offerEnd = "#{@offer.end_date.strftime("%d %b %Y %T")}"
+    var offerEnd = "#{@offer.end_date.utc.strftime("%d %b %Y %T")}"
     var maxSupply = "#{@offer.nft_post.max_supply}"
 
     startWaitingLoader();
@@ -309,10 +309,14 @@
         alert(error.message);
       }
     } else {
-      let data = await createOfferAndBid(offerCreator, nftId, offerAmount, nftId, startPrice, targetPrice, offerEnd, maxSupply, bidAmount)
-      response = data.txData;
-
-      console.log('createOfferAndBid response =>', response);
+      try {
+        let data = await createOfferAndBid(offerCreator, nftId, offerAmount, nftId, startPrice, targetPrice, offerEnd, maxSupply, bidAmount)
+        response = data.txData;
+        console.log('createOfferAndBid response =>', response);
+      } catch (error) {
+        removeWaitingLoader();
+        alert(error.message);
+      }
     }
 
     var formData = new FormData($('#new-bid-form')[0]);
