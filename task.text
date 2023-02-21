@@ -11,6 +11,11 @@ RAILS_ENV=production bundle exec rails assets:precompile
 sudo passenger-config restart-app
 
 
+brew services restart postgresql@14
+
+CREATE ROLE postgres WITH LOGIN PASSWORD 'postgres';
+ALTER ROLE postgres CREATEDB;
+
 =========================================
 
 
@@ -698,3 +703,21 @@ bids
 -offer_id
 -amount
 -details
+
+----------
+
+
+categories API expose
+
+user profile - 3 categories
+
+talents points
+
+setting - admin
+signup 1000 points
+refferal 50 points
+10 videos
+comment on video
+share video
+like
+following
