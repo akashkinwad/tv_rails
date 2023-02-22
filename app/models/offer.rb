@@ -70,7 +70,16 @@ class Offer < ApplicationRecord
     return unless state_changed_from_created_to_minted?
     return if nft_post.available_supply.zero?
 
+    # set the end_date as per diff between end_date & created_at time
+    time_diff = end_date - created_at
+    calculated_end_date = Time.current + time_diff
+
     new_offer = self.dup
-    new_offer.update(nft_token_id: nil, metadata: nil, state: 'created')
+    new_offer.update(
+      nft_token_id: nil,
+      metadata: nil,
+      state: 'created'
+      end_date: calculated_end_date,
+    )
   end
 end

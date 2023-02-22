@@ -552,6 +552,7 @@ stimulus => https://gitlab.com/initforthe/stimulus-remote
 chmod 600 id_rsa
 chmod 644 id_rsa.pub
 
+ssh-add ~/.ssh/talent
 --------------
 
 ssh root@185.25.164.82
